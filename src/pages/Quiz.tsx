@@ -2,18 +2,24 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { archetypes, quizQuestions } from '@/constants/archetypes';
+import { quizTranslations } from '@/constants/quizTranslations';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/hooks/useAuth';
+import { useLang } from '@/contexts/LanguageContext';
 import PostQuizProfile from '@/components/PostQuizProfile';
 
 export default function Quiz() {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
+  const { lang } = useLang();
   const [current, setCurrent] = useState(0);
   const [scores, setScores] = useState<Record<number, number>>({});
   const [result, setResult] = useState<typeof archetypes[0] | null>(null);
   const [saving, setSaving] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+
+  const qt = quizTranslations[lang];
+  const questions = qt.questions;
 
   useEffect(() => {
     if (!authLoading && !user) navigate('/auth');
@@ -23,7 +29,7 @@ export default function Quiz() {
     const newScores = { ...scores, [archetypeId]: (scores[archetypeId] || 0) + 1 };
     setScores(newScores);
 
-    if (current < quizQuestions.length - 1) {
+    if (current < questions.length - 1) {
       setCurrent(current + 1);
     } else {
       const winnerId = Object.entries(newScores).sort((a, b) => b[1] - a[1])[0][0];
@@ -58,7 +64,10 @@ export default function Quiz() {
 
   if (authLoading) return <div className="min-h-screen bg-background" />;
 
-  const q = quizQuestions[current];
+  const q = questions[current];
+  const resultArchetype = result
+    ? qt.archetypeNames[result.id]
+    : null;
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
@@ -74,12 +83,12 @@ export default function Quiz() {
             >
               <div className="text-center mb-8">
                 <p className="text-primary font-mono text-[0.65rem] uppercase tracking-[0.18em] mb-2">
-                  Question {current + 1} of {quizQuestions.length}
+                  {qt.ui.questionOf.replace('{0}', String(current + 1)).replace('{1}', String(questions.length))}
                 </p>
                 <div className="w-full bg-[rgba(255,255,255,0.06)] h-[2px] mb-6">
                   <div
                     className="bg-primary h-[2px] transition-all"
-                    style={{ width: `${((current + 1) / quizQuestions.length) * 100}%` }}
+                    style={{ width: `${((current + 1) / questions.length) * 100}%` }}
                   />
                 </div>
                 <h2 className="font-display text-2xl md:text-3xl text-foreground font-bold">
@@ -112,13 +121,13 @@ export default function Quiz() {
                 {result.emoji}
               </div>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                You are...
+                {qt.ui.youAre}
               </h2>
               <h3 className="font-syne text-2xl font-bold mb-2" style={{ color: result.color }}>
-                {result.name}
+                {resultArchetype?.name ?? result.name}
               </h3>
               <p className="text-[rgba(248,245,240,0.65)] font-syne text-sm mb-6">
-                "{result.tagline}"
+                "{resultArchetype?.tagline ?? result.tagline}"
               </p>
 
               {!showProfile ? (
@@ -128,14 +137,14 @@ export default function Quiz() {
                     disabled={saving}
                     className="bg-primary text-primary-foreground px-8 py-4 font-mono uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors min-h-[48px]"
                   >
-                    {saving ? 'Saving...' : 'Go to Your Dashboard →'}
+                    {saving ? qt.ui.saving : qt.ui.goToDashboard}
                   </button>
                   <div>
                     <button
                       onClick={() => setShowProfile(true)}
                       className="text-sm font-syne text-[rgba(248,245,240,0.35)] hover:text-foreground mt-2"
                     >
-                      Help SPARK know you better →
+                      {qt.ui.helpSpark}
                     </button>
                   </div>
                 </div>
