@@ -198,6 +198,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         done: 'done',
       },
     },
+    onboarding: {
+      skip: 'Skip tour',
+      next: 'Next',
+      done: "Let's go!",
+      step: 'Step {0} of {1}',
+      slides: [
+        { emoji: '🎯', title: 'Your Archetype', desc: "We just discovered your Solopreneur Archetype — your unique superpower profile. Everything in your dashboard is now tailored to how you think and build." },
+        { emoji: '🗺️', title: 'Your Roadmap', desc: "Your personalized 4-step action plan is ready. Check off each step as you go — your progress is saved automatically." },
+        { emoji: '⚡', title: 'Meet SPARK', desc: "SPARK is your AI co-pilot. Ask anything about your business, ideas, or next move. Every conversation is saved and gets smarter over time." },
+        { emoji: '👤', title: 'Your Profile', desc: "Set your language, timezone, and contact preferences so SPARK can reach you the way you prefer." },
+      ],
+    },
     profilePage: {
       title: 'Your Profile',
       dashboard: '← Dashboard',
