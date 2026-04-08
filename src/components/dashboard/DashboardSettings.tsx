@@ -45,6 +45,11 @@ export default function DashboardSettings({ profile, onUpdate, onReplayTour }: P
       <Button onClick={save} disabled={saving} className="w-full">
         {saving ? s.saving : s.save}
       </Button>
+      {onReplayTour && (
+        <Button variant="ghost" onClick={onReplayTour} className="w-full text-[rgba(248,245,240,0.35)] hover:text-foreground">
+          🎓 {s.replayTour || 'Replay onboarding tour'}
+        </Button>
+      )}
     </div>
   );
 }

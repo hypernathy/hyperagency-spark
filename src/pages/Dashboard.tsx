@@ -158,7 +158,10 @@ export default function Dashboard() {
               </button>
             </motion.div>
 
-            <DashboardSettings profile={profile} onUpdate={updateProfile} />
+            <DashboardSettings profile={profile} onUpdate={updateProfile} onReplayTour={() => {
+              if (user) localStorage.removeItem(`onboarding_done_${user.id}`);
+              setShowTour(true);
+            }} />
           </TabsContent>
 
           <TabsContent value="learning" className="pb-24">
