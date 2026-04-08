@@ -631,6 +631,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Idioma',
         save: 'Salvar',
         saving: 'Salvando...',
+        replayTour: 'Rever tour de boas-vindas',
       },
       spark: {
         online: 'Online',
