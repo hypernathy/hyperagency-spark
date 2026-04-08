@@ -1,6 +1,7 @@
 import { useLang } from '@/contexts/LanguageContext';
 import ScrollReveal from '@/components/motion/ScrollReveal';
 import { motion } from 'framer-motion';
+import nathyPortrait from '@/assets/nathy-portrait.jpg';
 
 export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   const { t } = useLang();
