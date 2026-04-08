@@ -420,7 +420,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "E aí 👋 Eu sou o SPARK — companheiro IA da Nathy.\nMe conta — o que no seu negócio tá sugando sua energia agora?",
-      placeholder: 'Me conta o que tá rolando...',
+      placeholder: 'Conta pro SPARK o que tá na sua cabeça...',
+      statusOnline: 'Online · Companheiro IA grátis',
       footer: 'Grátis · SPARK · EN · FR · PT · IT',
       error: 'Deu ruim na conexão. Tenta de novo? ⚡',
     },
