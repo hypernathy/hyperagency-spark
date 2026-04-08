@@ -1,5 +1,5 @@
 import { useLang } from '@/contexts/LanguageContext';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/motion/ScrollReveal';
 
 const entries = [
   {
@@ -26,28 +26,30 @@ const entries = [
 
 export default function FounderSection() {
   const { t } = useLang();
-  const ref = useScrollReveal<HTMLDivElement>();
 
   return (
     <section id="founder" className="py-24 sm:py-32 bg-card">
-      <div ref={ref} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-12">{t.founder.label}</p>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-12">{t.founder.label}</p>
+        </ScrollReveal>
 
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-[7px] top-2 bottom-2 w-px bg-primary/20" />
 
-          <div className="space-y-12">
+          <StaggerContainer className="space-y-12" staggerDelay={0.15}>
             {entries.map((entry, i) => (
-              <div key={i} className="relative pl-10">
-                {/* Dot */}
-                <div className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-primary bg-background" />
-
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-3">{entry.year}</p>
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">{entry.text}</p>
-              </div>
+              <StaggerItem key={i} variant="slide-left">
+                <div className="relative pl-10">
+                  {/* Dot */}
+                  <div className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-primary bg-background" />
+                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-3">{entry.year}</p>
+                  <p className="font-mono text-sm text-muted-foreground leading-relaxed">{entry.text}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>
