@@ -8,9 +8,10 @@ import { toast } from 'sonner';
 interface Props {
   profile: Profile;
   onUpdate: (updates: Partial<Profile>) => Promise<any>;
+  onReplayTour?: () => void;
 }
 
-export default function DashboardSettings({ profile, onUpdate }: Props) {
+export default function DashboardSettings({ profile, onUpdate, onReplayTour }: Props) {
   const [name, setName] = useState(profile.name || '');
   const [langVal, setLangVal] = useState(profile.lang || 'en');
   const [saving, setSaving] = useState(false);
@@ -44,6 +45,11 @@ export default function DashboardSettings({ profile, onUpdate }: Props) {
       <Button onClick={save} disabled={saving} className="w-full">
         {saving ? s.saving : s.save}
       </Button>
+      {onReplayTour && (
+        <Button variant="ghost" onClick={onReplayTour} className="w-full text-[rgba(248,245,240,0.35)] hover:text-foreground">
+          🎓 {s.replayTour || 'Replay onboarding tour'}
+        </Button>
+      )}
     </div>
   );
 }

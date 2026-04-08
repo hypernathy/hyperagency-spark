@@ -167,6 +167,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Language',
         save: 'Save Settings',
         saving: 'Saving...',
+        replayTour: 'Replay onboarding tour',
       },
       spark: {
         online: 'Online',
@@ -398,6 +399,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Langue',
         save: 'Sauvegarder',
         saving: 'Sauvegarde...',
+        replayTour: 'Revoir le tour d\'accueil',
       },
       spark: {
         online: 'En ligne',
@@ -629,6 +631,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Idioma',
         save: 'Salvar',
         saving: 'Salvando...',
+        replayTour: 'Rever tour de boas-vindas',
       },
       spark: {
         online: 'Online',
@@ -860,6 +863,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Lingua',
         save: 'Salva',
         saving: 'Salvataggio...',
+        replayTour: 'Rivedi il tour di benvenuto',
       },
       spark: {
         online: 'Online',
