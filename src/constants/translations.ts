@@ -863,6 +863,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Lingua',
         save: 'Salva',
         saving: 'Salvataggio...',
+        replayTour: 'Rivedi il tour di benvenuto',
       },
       spark: {
         online: 'Online',
