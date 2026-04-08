@@ -14,13 +14,22 @@ const msgVariants = {
 };
 
 export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const prevLangRef = useRef(lang);
+
+  // Reset greeting when language changes
+  useEffect(() => {
+    if (prevLangRef.current !== lang) {
+      setMessages([{ role: 'assistant', content: t.chat.greeting }]);
+      prevLangRef.current = lang;
+    }
+  }, [lang, t.chat.greeting]);
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
