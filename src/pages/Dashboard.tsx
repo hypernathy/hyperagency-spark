@@ -26,6 +26,7 @@ export default function Dashboard() {
   const { milestones, checkAutoMilestones } = useMilestones(user?.id);
   const [isAdmin, setIsAdmin] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const [showTour, setShowTour] = useState(false);
   const { t, setLang } = useLang();
   const d = t.dashboard;
 
