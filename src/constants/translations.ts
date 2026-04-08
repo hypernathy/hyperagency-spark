@@ -136,7 +136,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "Hey 👋 I'm SPARK — Nathy's AI companion.\nTell me — what's the thing in your business that's eating your energy right now?",
-      placeholder: "Tell me what's going on...",
+      placeholder: "Tell SPARK what's on your mind...",
+      statusOnline: 'Online · Free AI companion',
       footer: 'Free · SPARK · EN · FR · PT · IT',
       error: 'Connection hiccup. Try again? ⚡',
     },
