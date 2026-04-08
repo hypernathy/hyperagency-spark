@@ -652,6 +652,8 @@ export const translations: Record<Lang, Record<string, any>> = {
       deleteConfirm: 'Tem certeza? Isso vai deletar permanentemente sua conta e todos os dados.',
     },
   },
+
+  it: {
     nav: { about: 'Chi sono', services: 'Servizi', products: 'Prodotti', contact: 'Contatto', cta: 'Inizia' },
     hero: {
       eyebrow: 'Infrastruttura IA · Costruita da chi la vive',
