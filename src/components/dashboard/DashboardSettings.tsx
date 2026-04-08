@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 interface Props {
   profile: Profile;
   onUpdate: (updates: Partial<Profile>) => Promise<any>;
+  onReplayTour?: () => void;
 }
 
 export default function DashboardSettings({ profile, onUpdate }: Props) {
