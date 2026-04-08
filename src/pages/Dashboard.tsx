@@ -5,6 +5,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { useProfile } from '@/hooks/useProfile';
 import { useMilestones } from '@/hooks/useMilestones';
 import { archetypes } from '@/constants/archetypes';
+import { useLang } from '@/contexts/LanguageContext';
+import { Lang } from '@/constants/translations';
 import { motion } from 'framer-motion';
 import { Skeleton } from '@/components/ui/skeleton';
 import DashboardChat from '@/components/dashboard/DashboardChat';
@@ -23,6 +25,13 @@ export default function Dashboard() {
   const { milestones, checkAutoMilestones } = useMilestones(user?.id);
   const [isAdmin, setIsAdmin] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const { t, setLang } = useLang();
+  const d = t.dashboard;
+
+  // Sync language from profile
+  useEffect(() => {
+    if (profile?.lang) setLang(profile.lang as Lang);
+  }, [profile?.lang]);
 
   useEffect(() => {
     if (!authLoading && !user) navigate('/auth');
@@ -46,7 +55,6 @@ export default function Dashboard() {
       });
   }, [user]);
 
-  // Check auto milestones when profile loads
   useEffect(() => {
     if (profile && user) {
       checkAutoMilestones(profile);
@@ -67,23 +75,22 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <div className="border-b border-foreground/[0.07] bg-background/80 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="font-playfair text-lg font-bold text-foreground">
-            Welcome back, {profile.name || 'friend'}
+            {d.welcomeBack} {profile.name || 'friend'}
           </h1>
           <div className="flex items-center gap-2">
             {isAdmin && (
               <button onClick={() => navigate('/admin')} className="text-xs font-mono text-primary hover:underline min-h-[48px] px-3">
-                Admin
+                {d.admin}
               </button>
             )}
             <button onClick={() => navigate('/profile')} className="text-xs font-mono text-muted-foreground hover:text-foreground min-h-[48px] px-3">
-              {profile.avatar_emoji || '👤'} Profile
+              {profile.avatar_emoji || '👤'} {d.profile}
             </button>
             <button onClick={async () => { await signOut(); navigate('/'); }} className="text-xs font-mono text-muted-foreground hover:text-foreground min-h-[48px] px-3">
-              Sign Out
+              {d.signOut}
             </button>
           </div>
         </div>
@@ -92,12 +99,11 @@ export default function Dashboard() {
       <div className="max-w-3xl mx-auto px-4 py-4">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="bg-foreground/5 mb-6">
-            <TabsTrigger value="home" className="font-mono text-xs">Home</TabsTrigger>
-            <TabsTrigger value="learning" className="font-mono text-xs">Learning</TabsTrigger>
+            <TabsTrigger value="home" className="font-mono text-xs">{d.home}</TabsTrigger>
+            <TabsTrigger value="learning" className="font-mono text-xs">{d.learning}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="home" className="space-y-6 pb-24">
-            {/* Archetype Hero */}
             {archetype && (
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -117,22 +123,12 @@ export default function Dashboard() {
               </motion.div>
             )}
 
-            {/* AI Journey */}
             <DashboardJourney milestones={milestones} />
-
-            {/* Roadmap */}
             {archetype && user && <DashboardRoadmap archetype={archetype} userId={user.id} />}
-
-            {/* SPARK Chat */}
             {user && <DashboardChat userId={user.id} />}
-
-            {/* Products */}
             {archetype && <DashboardProducts archetype={archetype} />}
-
-            {/* Community */}
             <DashboardCommunity />
 
-            {/* Upgrade CTA */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -140,15 +136,14 @@ export default function Dashboard() {
               className="rounded-xl p-6 text-center"
               style={{ background: 'linear-gradient(135deg, #5A2C8C, #9B7FA6)' }}
             >
-              <h3 className="font-syne text-xl font-bold text-white mb-2">Upgrade to HyperCompanion™</h3>
-              <p className="text-white/70 font-mono text-sm mb-4">Unlimited SPARK conversations, personalized AI coaching, priority support</p>
+              <h3 className="font-syne text-xl font-bold text-white mb-2">{d.upgrade.title}</h3>
+              <p className="text-white/70 font-mono text-sm mb-4">{d.upgrade.desc}</p>
               <p className="text-white font-syne text-2xl font-bold mb-4">€19/mo</p>
               <button className="bg-white text-[#5A2C8C] px-8 py-3 rounded-lg font-mono font-bold hover:bg-white/90 transition min-h-[48px]">
-                Coming Soon
+                {d.upgrade.cta}
               </button>
             </motion.div>
 
-            {/* Settings */}
             <DashboardSettings profile={profile} onUpdate={updateProfile} />
           </TabsContent>
 

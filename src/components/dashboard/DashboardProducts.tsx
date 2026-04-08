@@ -1,4 +1,5 @@
 import { Archetype } from '@/constants/archetypes';
+import { useLang } from '@/contexts/LanguageContext';
 
 const productsByArchetype: Record<number, { title: string; desc: string; emoji: string }[]> = {
   1: [
@@ -30,16 +31,14 @@ const productsByArchetype: Record<number, { title: string; desc: string; emoji: 
 
 export default function DashboardProducts({ archetype }: { archetype: Archetype }) {
   const products = productsByArchetype[archetype.id] || [];
+  const { t } = useLang();
 
   return (
     <div>
-      <h3 className="font-syne text-lg font-bold text-foreground mb-4">Recommended for You</h3>
+      <h3 className="font-syne text-lg font-bold text-foreground mb-4">{t.dashboard.recommendedForYou}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {products.map((p, i) => (
-          <div
-            key={i}
-            className="bg-card border border-foreground/[0.07] rounded-xl p-5 hover:border-primary/30 transition-colors"
-          >
+          <div key={i} className="bg-card border border-foreground/[0.07] rounded-xl p-5 hover:border-primary/30 transition-colors">
             <span className="text-2xl mb-3 block">{p.emoji}</span>
             <h4 className="font-syne font-bold text-sm text-foreground mb-1">{p.title}</h4>
             <p className="font-mono text-xs text-muted-foreground">{p.desc}</p>

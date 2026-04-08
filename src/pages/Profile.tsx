@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { useProfile, Profile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/useProfile';
 import { archetypes } from '@/constants/archetypes';
+import { useLang } from '@/contexts/LanguageContext';
+import { Lang } from '@/constants/translations';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
@@ -28,6 +28,12 @@ export default function ProfilePage() {
   const { user, loading: authLoading, signOut } = useAuth();
   const { profile, loading: profileLoading, autoSave } = useProfile(user);
   const [deleting, setDeleting] = useState(false);
+  const { t, setLang } = useLang();
+  const p = t.profilePage;
+
+  useEffect(() => {
+    if (profile?.lang) setLang(profile.lang as Lang);
+  }, [profile?.lang]);
 
   useEffect(() => {
     if (!authLoading && !user) navigate('/auth');
@@ -46,12 +52,16 @@ export default function ProfilePage() {
   const archetype = archetypes.find(a => a.id === profile.archetype_id);
 
   const handleDelete = async () => {
-    if (!confirm('Are you sure? This will permanently delete your account and all data.')) return;
+    if (!confirm(p.deleteConfirm)) return;
     setDeleting(true);
-    // Sign out — actual deletion would require an edge function
     await signOut();
     toast.success('Account deleted');
     navigate('/');
+  };
+
+  const handleLangChange = (newLang: string) => {
+    autoSave({ lang: newLang });
+    setLang(newLang as Lang);
   };
 
   const Field = ({ label, children }: { label: string; children: React.ReactNode }) => (
@@ -65,17 +75,16 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-background">
       <div className="border-b border-foreground/[0.07] bg-background/80 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <h1 className="font-playfair text-lg font-bold text-foreground">Your Profile</h1>
+          <h1 className="font-playfair text-lg font-bold text-foreground">{p.title}</h1>
           <button onClick={() => navigate('/dashboard')} className="text-xs font-mono text-primary hover:underline min-h-[48px] px-3">
-            ← Dashboard
+            {p.dashboard}
           </button>
         </div>
       </div>
 
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6 pb-24">
-        {/* Avatar */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="bg-card border border-foreground/[0.07] rounded-xl p-6">
-          <Field label="Avatar emoji">
+          <Field label={p.avatarEmoji}>
             <div className="flex flex-wrap gap-2">
               {EMOJI_OPTIONS.map(emoji => (
                 <button
@@ -94,16 +103,15 @@ export default function ProfilePage() {
           </Field>
         </motion.div>
 
-        {/* Basic info */}
         <div className="bg-card border border-foreground/[0.07] rounded-xl p-6 space-y-4">
-          <Field label="Nickname">
+          <Field label={p.nickname}>
             <Input
               defaultValue={profile.name || ''}
               onBlur={e => autoSave({ name: e.target.value })}
               className="h-12 bg-background border-foreground/10 font-mono"
             />
           </Field>
-          <Field label="Email">
+          <Field label={p.email}>
             <Input
               type="email"
               defaultValue={profile.email}
@@ -113,9 +121,8 @@ export default function ProfilePage() {
           </Field>
         </div>
 
-        {/* Contact */}
         <div className="bg-card border border-foreground/[0.07] rounded-xl p-6 space-y-4">
-          <Field label="Contact preference">
+          <Field label={p.contactPreference}>
             <RadioGroup
               defaultValue={profile.contact_preference || 'whatsapp'}
               onValueChange={(v: any) => autoSave({ contact_preference: v })}
@@ -132,7 +139,7 @@ export default function ProfilePage() {
             </RadioGroup>
           </Field>
           {(profile.contact_preference || 'whatsapp') === 'whatsapp' ? (
-            <Field label="WhatsApp number">
+            <Field label={p.whatsappNumber}>
               <Input
                 defaultValue={profile.whatsapp_number || ''}
                 placeholder="+55 11 99999-9999"
@@ -141,7 +148,7 @@ export default function ProfilePage() {
               />
             </Field>
           ) : (
-            <Field label="Telegram handle">
+            <Field label={p.telegramHandle}>
               <Input
                 defaultValue={profile.telegram_handle || ''}
                 placeholder="@yourtelegram"
@@ -152,9 +159,8 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {/* Social */}
         <div className="bg-card border border-foreground/[0.07] rounded-xl p-6 space-y-4">
-          <Field label="Instagram">
+          <Field label={p.instagram}>
             <Input
               defaultValue={profile.instagram_handle || ''}
               placeholder="@yourhandle"
@@ -162,7 +168,7 @@ export default function ProfilePage() {
               className="h-12 bg-background border-foreground/10 font-mono"
             />
           </Field>
-          <Field label="LinkedIn">
+          <Field label={p.linkedin}>
             <Input
               defaultValue={profile.linkedin_handle || ''}
               placeholder="@yourhandle"
@@ -172,12 +178,11 @@ export default function ProfilePage() {
           </Field>
         </div>
 
-        {/* Building */}
         <div className="bg-card border border-foreground/[0.07] rounded-xl p-6">
-          <Field label="What are you building?">
+          <Field label={p.whatBuilding}>
             <Textarea
               defaultValue={profile.building_description || ''}
-              placeholder="Tell SPARK what you're working on..."
+              placeholder={p.buildingPlaceholder}
               rows={3}
               maxLength={500}
               onBlur={e => autoSave({ building_description: e.target.value })}
@@ -186,14 +191,13 @@ export default function ProfilePage() {
           </Field>
         </div>
 
-        {/* Language */}
         <div className="bg-card border border-foreground/[0.07] rounded-xl p-6">
-          <Field label="Language preference">
+          <Field label={p.langPreference}>
             <div className="flex gap-2">
               {['en', 'fr', 'pt', 'it'].map(l => (
                 <button
                   key={l}
-                  onClick={() => autoSave({ lang: l })}
+                  onClick={() => handleLangChange(l)}
                   className={`px-4 py-2 rounded-lg font-mono text-sm font-bold transition-all min-h-[44px] ${
                     profile.lang === l
                       ? 'bg-primary text-primary-foreground'
@@ -207,9 +211,8 @@ export default function ProfilePage() {
           </Field>
         </div>
 
-        {/* Timezone */}
         <div className="bg-card border border-foreground/[0.07] rounded-xl p-6">
-          <Field label="Timezone">
+          <Field label={p.timezone}>
             <select
               defaultValue={profile.timezone || 'UTC+00:00'}
               onChange={e => autoSave({ timezone: e.target.value })}
@@ -222,7 +225,6 @@ export default function ProfilePage() {
           </Field>
         </div>
 
-        {/* Archetype card */}
         {archetype && (
           <div
             className="rounded-xl p-6 border"
@@ -241,19 +243,18 @@ export default function ProfilePage() {
               onClick={() => navigate('/quiz')}
               className="text-xs font-mono text-muted-foreground hover:text-foreground"
             >
-              Retake quiz →
+              {p.retakeQuiz}
             </button>
           </div>
         )}
 
-        {/* Delete account */}
         <div className="pt-8 border-t border-foreground/[0.07]">
           <button
             onClick={handleDelete}
             disabled={deleting}
             className="text-xs font-mono text-red-500/70 hover:text-red-500 transition"
           >
-            {deleting ? 'Deleting...' : 'Delete my account'}
+            {deleting ? p.deleting : p.deleteAccount}
           </button>
         </div>
       </div>

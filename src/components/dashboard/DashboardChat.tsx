@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, KeyboardEvent } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { useLang } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Message {
@@ -14,8 +15,9 @@ export default function DashboardChat({ userId }: { userId: string }) {
   const [historyLoaded, setHistoryLoaded] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const { t } = useLang();
+  const s = t.dashboard.spark;
 
-  // Load conversation history
   useEffect(() => {
     supabase
       .from('conversations')
@@ -39,7 +41,6 @@ export default function DashboardChat({ userId }: { userId: string }) {
   const send = async () => {
     const text = input.trim();
     if (!text || loading) return;
-
     const userMsg: Message = { role: 'user', content: text };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
@@ -47,32 +48,18 @@ export default function DashboardChat({ userId }: { userId: string }) {
     setLoading(true);
     if (inputRef.current) inputRef.current.style.height = 'auto';
 
-    // Save user message
-    await supabase.from('conversations').insert({
-      user_id: userId,
-      role: 'user',
-      content: text,
-    });
+    await supabase.from('conversations').insert({ user_id: userId, role: 'user', content: text });
 
     try {
       const apiMessages = newMessages
         .filter(m => !(m === newMessages[0] && m.role === 'assistant'))
         .map(m => ({ role: m.role, content: m.content }));
 
-      const { data, error } = await supabase.functions.invoke('spark-chat', {
-        body: { messages: apiMessages },
-      });
-
+      const { data, error } = await supabase.functions.invoke('spark-chat', { body: { messages: apiMessages } });
       if (error) throw error;
       const reply = data?.content?.[0]?.text || 'Something went wrong.';
       setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
-
-      // Save assistant message
-      await supabase.from('conversations').insert({
-        user_id: userId,
-        role: 'assistant',
-        content: reply,
-      });
+      await supabase.from('conversations').insert({ user_id: userId, role: 'assistant', content: reply });
     } catch {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, something went wrong. Try again.' }]);
     }
@@ -80,10 +67,7 @@ export default function DashboardChat({ userId }: { userId: string }) {
   };
 
   const handleKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      send();
-    }
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -103,7 +87,7 @@ export default function DashboardChat({ userId }: { userId: string }) {
           <p className="font-syne font-bold text-sm text-primary-foreground">SPARK</p>
           <p className="font-mono text-[10px] text-primary-foreground/60 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            Online
+            {s.online}
           </p>
         </div>
       </div>
@@ -129,20 +113,17 @@ export default function DashboardChat({ userId }: { userId: string }) {
                 animate={{ opacity: 1, y: 0 }}
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div
-                  className={`max-w-[85%] px-[18px] py-[14px] text-sm font-mono leading-relaxed whitespace-pre-line ${
-                    msg.role === 'user'
-                      ? 'bg-primary text-primary-foreground rounded-tl-xl rounded-bl-xl rounded-br-xl'
-                      : 'bg-foreground/5 text-foreground rounded-tr-xl rounded-bl-xl rounded-br-xl'
-                  }`}
-                >
+                <div className={`max-w-[85%] px-[18px] py-[14px] text-sm font-mono leading-relaxed whitespace-pre-line ${
+                  msg.role === 'user'
+                    ? 'bg-primary text-primary-foreground rounded-tl-xl rounded-bl-xl rounded-br-xl'
+                    : 'bg-foreground/5 text-foreground rounded-tr-xl rounded-bl-xl rounded-br-xl'
+                }`}>
                   {msg.content}
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         )}
-
         {loading && (
           <div className="flex justify-start">
             <div className="bg-foreground/5 px-[18px] py-[14px] rounded-tr-xl rounded-bl-xl rounded-br-xl flex gap-1.5">
@@ -161,7 +142,7 @@ export default function DashboardChat({ userId }: { userId: string }) {
             value={input}
             onChange={handleInput}
             onKeyDown={handleKey}
-            placeholder="Tell SPARK what's on your mind..."
+            placeholder={s.placeholder}
             rows={1}
             className="flex-1 bg-background border border-foreground/[0.07] rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 resize-none min-h-[48px]"
             style={{ maxHeight: '120px' }}
