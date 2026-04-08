@@ -27,7 +27,7 @@ export default function Navbar() {
             <button
               key={key}
               onClick={() => scrollTo(key === 'about' ? 'see-you' : key === 'products' ? 'spark' : key)}
-              className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors"
+              className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors no-min-tap"
             >
               {t.nav[key]}
             </button>
