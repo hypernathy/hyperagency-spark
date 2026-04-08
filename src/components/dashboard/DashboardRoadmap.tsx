@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Archetype } from '@/constants/archetypes';
+import { archetypeContent } from '@/constants/archetypeContent';
+import { useLang } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
 interface Props {
@@ -15,6 +17,10 @@ interface Step {
 
 export default function DashboardRoadmap({ archetype, userId }: Props) {
   const [steps, setSteps] = useState<Step[]>([]);
+  const { lang, t } = useLang();
+
+  const content = archetypeContent[lang]?.[archetype.id] || archetypeContent.en[archetype.id];
+  const roadmapSteps = content?.roadmap || archetype.roadmap;
 
   useEffect(() => {
     supabase
@@ -52,20 +58,20 @@ export default function DashboardRoadmap({ archetype, userId }: Props) {
   return (
     <div className="bg-card border border-[rgba(255,255,255,0.07)] p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-syne text-lg font-bold text-foreground">Your Roadmap</h3>
+        <h3 className="font-syne text-lg font-bold text-foreground">{t.dashboard.roadmap.title}</h3>
         <span className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider">
-          {completedCount}/{archetype.roadmap.length} done
+          {completedCount}/{roadmapSteps.length} {t.dashboard.roadmap.done}
         </span>
       </div>
       <div className="w-full bg-[rgba(255,255,255,0.06)] h-[2px] mb-5">
         <motion.div
           className="h-[2px] bg-primary"
           initial={{ width: 0 }}
-          animate={{ width: `${(completedCount / archetype.roadmap.length) * 100}%` }}
+          animate={{ width: `${(completedCount / roadmapSteps.length) * 100}%` }}
         />
       </div>
       <div className="space-y-3">
-        {archetype.roadmap.map((text, i) => {
+        {roadmapSteps.map((text, i) => {
           const step = steps.find(s => s.step_index === i);
           const done = step?.completed || false;
           return (

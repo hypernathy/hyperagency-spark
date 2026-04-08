@@ -194,7 +194,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Video coming soon',
       },
       roadmap: {
-        completed: 'completed',
+        title: 'Your Roadmap',
+        done: 'done',
       },
     },
     profilePage: {
@@ -412,7 +413,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Vidéo bientôt disponible',
       },
       roadmap: {
-        completed: 'complété',
+        title: 'Ta feuille de route',
+        done: 'fait',
       },
     },
     profilePage: {
@@ -630,7 +632,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Vídeo em breve',
       },
       roadmap: {
-        completed: 'concluído',
+        title: 'Teu roteiro',
+        done: 'feito',
       },
     },
     profilePage: {
@@ -848,7 +851,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Video in arrivo',
       },
       roadmap: {
-        completed: 'completato',
+        title: 'La tua roadmap',
+        done: 'fatto',
       },
     },
     profilePage: {
