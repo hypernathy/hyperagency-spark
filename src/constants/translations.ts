@@ -167,6 +167,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         language: 'Language',
         save: 'Save Settings',
         saving: 'Saving...',
+        replayTour: 'Replay onboarding tour',
       },
       spark: {
         online: 'Online',
