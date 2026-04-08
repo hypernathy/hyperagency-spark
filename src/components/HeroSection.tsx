@@ -18,13 +18,13 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
 
           <ScrollReveal delay={0.25}>
             <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight">
-              You were never<br />too much.<br />The system was just<br />
-              <em className="text-primary italic">too small.</em>
+              {t.hero.h1_1}<br />{t.hero.h1_2}<br />{t.hero.h1_3}<br />
+              <em className="text-primary italic">{t.hero.h1_em}</em>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
-            <p className="font-mono text-base text-muted-foreground leading-relaxed whitespace-pre-line max-w-lg">
+            <p className="font-mono body-text whitespace-pre-line max-w-lg">
               {t.hero.sub}
             </p>
           </ScrollReveal>
@@ -56,7 +56,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
         <ScrollReveal variant="scale-up" delay={0.3} duration={0.9}>
           <div className="relative hidden md:flex items-center justify-center">
             <div className="w-full aspect-[3/4] max-w-md rounded-lg bg-gradient-to-br from-violet/30 via-card to-primary/20 flex items-center justify-center">
-              <span className="font-mono text-xs text-muted-foreground tracking-wider">[ Your photo here ]</span>
+              <span className="font-mono text-xs text-muted-foreground tracking-wider">{t.hero.photoAlt}</span>
             </div>
           </div>
         </ScrollReveal>
