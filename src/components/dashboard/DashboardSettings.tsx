@@ -12,7 +12,7 @@ interface Props {
 
 export default function DashboardSettings({ profile, onUpdate }: Props) {
   const [name, setName] = useState(profile.name || '');
-  const [lang, setLangVal] = useState(profile.lang || 'en');
+  const [langVal, setLangVal] = useState(profile.lang || 'en');
   const [saving, setSaving] = useState(false);
   const { t } = useLang();
   const s = t.dashboard.settings;
@@ -23,8 +23,6 @@ export default function DashboardSettings({ profile, onUpdate }: Props) {
     toast.success('✓');
     setSaving(false);
   };
-
-  const langVal = lang;
 
   return (
     <div className="bg-card border border-foreground/[0.07] rounded-xl p-6">
