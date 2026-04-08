@@ -9,7 +9,7 @@ export default function DashboardCommunity() {
       <h3 className="font-syne text-lg font-bold text-foreground mb-2">{c.title}</h3>
       <p className="text-muted-foreground font-mono text-sm mb-5">{c.desc}</p>
       <div className="flex flex-col sm:flex-row gap-3">
-        <a href="#" target="_blank" rel="noopener noreferrer"
+        <a href="https://t.me/HyperYouCommunity" target="_blank" rel="noopener noreferrer"
           className="flex-1 bg-[#0088cc] text-white px-5 py-3 rounded-lg font-mono text-sm font-bold text-center hover:opacity-90 transition min-h-[48px] flex items-center justify-center">
           {c.telegram}
         </a>
