@@ -429,6 +429,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         done: 'fait',
       },
     },
+    onboarding: {
+      skip: 'Passer le tour',
+      next: 'Suivant',
+      done: "C'est parti !",
+      step: 'Étape {0} sur {1}',
+      slides: [
+        { emoji: '🎯', title: 'Ton Archétype', desc: "On vient de découvrir ton Archétype de Solopreneur — ton profil de superpouvoir unique. Tout dans ton dashboard est maintenant adapté à ta façon de penser et construire." },
+        { emoji: '🗺️', title: 'Ta Feuille de Route', desc: "Ton plan d'action personnalisé en 4 étapes est prêt. Coche chaque étape au fur et à mesure — ta progression est sauvegardée automatiquement." },
+        { emoji: '⚡', title: 'Rencontre SPARK', desc: "SPARK est ton copilote IA. Pose n'importe quelle question sur ton business, tes idées ou ton prochain move. Chaque conversation est sauvée et devient plus intelligente." },
+        { emoji: '👤', title: 'Ton Profil', desc: "Règle ta langue, ton fuseau horaire et tes préférences de contact pour que SPARK te contacte comme tu préfères." },
+      ],
+    },
     profilePage: {
       title: 'Ton Profil',
       dashboard: '← Tableau de bord',
