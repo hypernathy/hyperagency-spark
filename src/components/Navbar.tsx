@@ -27,7 +27,7 @@ export default function Navbar() {
             <button
               key={key}
               onClick={() => scrollTo(key === 'about' ? 'see-you' : key === 'products' ? 'spark' : key)}
-              className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors"
+              className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors"
             >
               {t.nav[key]}
             </button>
@@ -42,7 +42,7 @@ export default function Navbar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`font-mono text-[10px] uppercase px-1.5 py-0.5 rounded transition-colors ${
+                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 rounded transition-colors ${
                   lang === l ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -54,14 +54,14 @@ export default function Navbar() {
           {/* CTA */}
           <button
             onClick={() => scrollTo('contact')}
-            className="bg-primary text-primary-foreground font-mono text-[11px] uppercase tracking-wider px-4 py-2 rounded-sm hover:bg-primary/90 transition-colors"
+            className="bg-primary text-primary-foreground font-mono text-xs uppercase tracking-wider px-4 py-2 rounded-sm hover:bg-primary/90 transition-colors"
           >
             {t.nav.cta}
           </button>
 
           {/* Mobile menu button */}
           <button className="md:hidden ml-2 text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {mobileOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M3 12h18M3 6h18M3 18h18" />}
             </svg>
           </button>
@@ -70,12 +70,12 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-t border-foreground/[0.07] px-4 py-4 space-y-3">
+        <div className="md:hidden bg-background border-t border-foreground/[0.07] px-4 py-4 space-y-4">
           {['about', 'services', 'products', 'contact'].map((key) => (
             <button
               key={key}
               onClick={() => scrollTo(key === 'about' ? 'see-you' : key === 'products' ? 'spark' : key)}
-              className="block font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground hover:text-primary"
+              className="block font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-primary"
             >
               {t.nav[key]}
             </button>
@@ -85,7 +85,7 @@ export default function Navbar() {
               <button
                 key={l}
                 onClick={() => { setLang(l); setMobileOpen(false); }}
-                className={`font-mono text-[10px] uppercase px-2 py-1 rounded ${
+                className={`font-mono text-xs uppercase px-2 py-1 rounded ${
                   lang === l ? 'text-primary bg-primary/10' : 'text-muted-foreground'
                 }`}
               >
