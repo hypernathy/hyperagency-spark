@@ -56,8 +56,13 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
         {/* Right - portrait placeholder */}
         <ScrollReveal variant="scale-up" delay={0.3} duration={0.9}>
           <div className="relative hidden md:flex items-center justify-center">
-            <div className="w-full aspect-[3/4] max-w-md rounded-lg bg-gradient-to-br from-violet/30 via-card to-primary/20 flex items-center justify-center">
-              <span className="font-mono text-xs text-muted-foreground tracking-wider">{t.hero.photoAlt}</span>
+            <div className="w-full aspect-[3/4] max-w-md rounded-lg overflow-hidden">
+              <img
+                src={nathyPortrait}
+                alt={t.hero.photoAlt}
+                className="w-full h-full object-cover object-top"
+                loading="eager"
+              />
             </div>
           </div>
         </ScrollReveal>
