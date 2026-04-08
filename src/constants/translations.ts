@@ -562,7 +562,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "Hey 👋 Sono SPARK — il compagno IA di Nathy.\nDimmi — qual è la cosa nel tuo business che ti sta mangiando l'energia adesso?",
-      placeholder: 'Dimmi cosa sta succedendo...',
+      placeholder: 'Racconta a SPARK cosa hai in testa...',
+      statusOnline: 'Online · Compagno IA gratis',
       footer: 'Gratis · SPARK · EN · FR · PT · IT',
       error: 'Problema di connessione. Riproviamo? ⚡',
     },
