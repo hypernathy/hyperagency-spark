@@ -1,14 +1,31 @@
 import { useLang } from '@/contexts/LanguageContext';
 import ScrollReveal from '@/components/motion/ScrollReveal';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import nathyPortrait from '@/assets/nathy-portrait.jpg';
 
 export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   const { t } = useLang();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const glowY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const gridY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const portraitY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
 
   return (
-    <section id="hero" className="min-h-screen grid-bg flex items-center pt-16 relative">
-      <div className="absolute inset-0 hero-glow pointer-events-none" />
+    <section ref={sectionRef} id="hero" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
+      {/* Parallax grid background */}
+      <motion.div
+        className="absolute inset-0 grid-bg pointer-events-none"
+        style={{ y: gridY, opacity: gridOpacity }}
+      />
+      {/* Parallax glow */}
+      <motion.div className="absolute inset-0 hero-glow pointer-events-none" style={{ y: glowY }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center py-20 relative z-10">
         {/* Mobile portrait */}
         <ScrollReveal variant="scale-up" delay={0.15} duration={0.7} className="md:hidden flex justify-center">
@@ -66,9 +83,12 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
           </ScrollReveal>
         </div>
 
-        {/* Right - desktop portrait */}
+        {/* Right - desktop portrait with parallax */}
         <ScrollReveal variant="scale-up" delay={0.3} duration={0.9}>
-          <div className="relative hidden md:flex items-center justify-center">
+          <motion.div
+            className="relative hidden md:flex items-center justify-center"
+            style={{ y: portraitY }}
+          >
             <div className="w-full aspect-[3/4] max-w-md overflow-hidden">
               <img
                 src={nathyPortrait}
@@ -77,7 +97,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
                 loading="lazy"
               />
             </div>
-          </div>
+          </motion.div>
         </ScrollReveal>
       </div>
     </section>
