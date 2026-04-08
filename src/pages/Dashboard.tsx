@@ -59,8 +59,18 @@ export default function Dashboard() {
   useEffect(() => {
     if (profile && user) {
       checkAutoMilestones(profile);
+      // Show onboarding tour for first-time users
+      const tourKey = `onboarding_done_${user.id}`;
+      if (!localStorage.getItem(tourKey)) {
+        setShowTour(true);
+      }
     }
   }, [profile?.archetype_id, user?.id]);
+
+  const dismissTour = () => {
+    setShowTour(false);
+    if (user) localStorage.setItem(`onboarding_done_${user.id}`, '1');
+  };
 
   if (authLoading || profileLoading || !profile) {
     return (
