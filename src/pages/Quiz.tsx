@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { archetypes, quizQuestions } from '@/constants/archetypes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/hooks/useAuth';
+import PostQuizProfile from '@/components/PostQuizProfile';
 
 export default function Quiz() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function Quiz() {
   const [scores, setScores] = useState<Record<number, number>>({});
   const [result, setResult] = useState<typeof archetypes[0] | null>(null);
   const [saving, setSaving] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) navigate('/auth');
@@ -24,7 +26,6 @@ export default function Quiz() {
     if (current < quizQuestions.length - 1) {
       setCurrent(current + 1);
     } else {
-      // Calculate result
       const winnerId = Object.entries(newScores).sort((a, b) => b[1] - a[1])[0][0];
       const winner = archetypes.find(a => a.id === Number(winnerId))!;
       setResult(winner);
@@ -40,7 +41,6 @@ export default function Quiz() {
       .update({ archetype_id: archetype.id, archetype_name: archetype.name })
       .eq('user_id', user.id);
 
-    // Initialize roadmap progress
     const steps = archetype.roadmap.map((_, i) => ({
       user_id: user.id,
       step_index: i,
@@ -48,6 +48,12 @@ export default function Quiz() {
     }));
     await supabase.from('roadmap_progress').insert(steps);
     setSaving(false);
+  };
+
+  const handleProfileSave = async (data: Record<string, string | null>) => {
+    if (!user) return;
+    await supabase.from('profiles').update(data as any).eq('user_id', user.id);
+    navigate('/dashboard');
   };
 
   if (authLoading) return <div className="min-h-screen bg-background" />;
@@ -109,22 +115,37 @@ export default function Quiz() {
               <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-2">
                 You are...
               </h2>
-              <h3
-                className="font-syne text-2xl font-bold mb-2"
-                style={{ color: result.color }}
-              >
+              <h3 className="font-syne text-2xl font-bold mb-2" style={{ color: result.color }}>
                 {result.name}
               </h3>
-              <p className="text-muted-foreground font-mono text-sm mb-8">
+              <p className="text-muted-foreground font-mono text-sm mb-6">
                 "{result.tagline}"
               </p>
-              <button
-                onClick={() => navigate('/dashboard')}
-                disabled={saving}
-                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-mono font-bold hover:bg-primary/90 transition-colors min-h-[48px]"
-              >
-                {saving ? 'Saving...' : 'Go to Your Dashboard →'}
-              </button>
+
+              {!showProfile ? (
+                <div className="space-y-3">
+                  <button
+                    onClick={() => navigate('/dashboard')}
+                    disabled={saving}
+                    className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-mono font-bold hover:bg-primary/90 transition-colors min-h-[48px]"
+                  >
+                    {saving ? 'Saving...' : 'Go to Your Dashboard →'}
+                  </button>
+                  <div>
+                    <button
+                      onClick={() => setShowProfile(true)}
+                      className="text-sm font-mono text-muted-foreground hover:text-foreground mt-2"
+                    >
+                      Help SPARK know you better →
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <PostQuizProfile
+                  onSave={handleProfileSave}
+                  onSkip={() => navigate('/dashboard')}
+                />
+              )}
             </motion.div>
           )}
         </AnimatePresence>
