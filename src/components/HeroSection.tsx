@@ -83,9 +83,12 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
           </ScrollReveal>
         </div>
 
-        {/* Right - desktop portrait */}
+        {/* Right - desktop portrait with parallax */}
         <ScrollReveal variant="scale-up" delay={0.3} duration={0.9}>
-          <div className="relative hidden md:flex items-center justify-center">
+          <motion.div
+            className="relative hidden md:flex items-center justify-center"
+            style={{ y: portraitY }}
+          >
             <div className="w-full aspect-[3/4] max-w-md overflow-hidden">
               <img
                 src={nathyPortrait}
@@ -94,7 +97,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
                 loading="lazy"
               />
             </div>
-          </div>
+          </motion.div>
         </ScrollReveal>
       </div>
     </section>
