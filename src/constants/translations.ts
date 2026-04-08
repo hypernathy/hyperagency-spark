@@ -413,7 +413,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Vidéo bientôt disponible',
       },
       roadmap: {
-        completed: 'complété',
+        title: 'Ta feuille de route',
+        done: 'fait',
       },
     },
     profilePage: {
