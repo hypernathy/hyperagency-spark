@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, KeyboardEvent } from 'react';
 import { useLang } from '@/contexts/LanguageContext';
-import { SPARK_SYSTEM_PROMPT } from '@/constants/sparkPrompt';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -48,25 +48,12 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
         apiMessages.unshift({ role: 'user', content: text });
       }
 
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': import.meta.env.VITE_ANTHROPIC_API_KEY || '',
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: SPARK_SYSTEM_PROMPT,
-          messages: apiMessages,
-        }),
+      const { data, error } = await supabase.functions.invoke('spark-chat', {
+        body: { messages: apiMessages },
       });
 
-      if (!res.ok) throw new Error('API error');
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || t.chat.error;
+      if (error) throw error;
+      const reply = data?.content?.[0]?.text || t.chat.error;
       setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
     } catch {
       setMessages(prev => [...prev, { role: 'assistant', content: t.chat.error }]);
