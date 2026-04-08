@@ -1,37 +1,12 @@
 import { Archetype } from '@/constants/archetypes';
+import { archetypeContent } from '@/constants/archetypeContent';
 import { useLang } from '@/contexts/LanguageContext';
 
-const productsByArchetype: Record<number, { title: string; desc: string; emoji: string }[]> = {
-  1: [
-    { title: 'Daily CEO Briefing', desc: 'Your morning AI prompt that organizes chaos into clarity', emoji: '📋' },
-    { title: 'Insight Extractor', desc: 'Turn saved links, notes & bookmarks into actionable insights', emoji: '🔍' },
-    { title: 'Automation Starter Kit', desc: 'One-click templates for your first business automation', emoji: '⚡' },
-  ],
-  2: [
-    { title: 'Offer Validator', desc: 'Test if your expertise can sell — before you build anything', emoji: '✅' },
-    { title: 'Product Architect', desc: 'Structure your knowledge into a sellable digital product', emoji: '🏗️' },
-    { title: 'Content Authority Pack', desc: 'Templates to position yourself as the go-to expert', emoji: '👑' },
-  ],
-  3: [
-    { title: 'Offer Validator', desc: 'Find out if anyone will pay for what you\'re building', emoji: '✅' },
-    { title: 'Weekly Strategy Review', desc: 'Sunday ritual to stop starting and start finishing', emoji: '📅' },
-    { title: 'Ship Date Accountability', desc: 'Set a deadline, announce it, and ship it', emoji: '🚀' },
-  ],
-  4: [
-    { title: 'System Builder', desc: 'Design your first real automation from scratch', emoji: '🔧' },
-    { title: 'Funnel Mapper', desc: 'Visualize where people enter and where they drop off', emoji: '🗺️' },
-    { title: 'Email Sequence Starter', desc: '3 emails that convert — written and ready to send', emoji: '📧' },
-  ],
-  5: [
-    { title: 'Content Engine', desc: 'Build 30 days of content from your origin story', emoji: '🎯' },
-    { title: 'Origin Story Framework', desc: 'Why you, why now, why this — in 200 words', emoji: '📖' },
-    { title: 'Platform Commitment Pack', desc: '90-day playbook for one platform dominance', emoji: '🏆' },
-  ],
-};
-
 export default function DashboardProducts({ archetype }: { archetype: Archetype }) {
-  const products = productsByArchetype[archetype.id] || [];
-  const { t } = useLang();
+  const { lang, t } = useLang();
+
+  const content = archetypeContent[lang]?.[archetype.id] || archetypeContent.en[archetype.id];
+  const products = content?.products || [];
 
   return (
     <div>
