@@ -9,6 +9,18 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
   return (
     <section id="hero" className="min-h-screen grid-bg flex items-center pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center py-20">
+        {/* Mobile portrait */}
+        <ScrollReveal variant="scale-up" delay={0.15} duration={0.7} className="md:hidden flex justify-center">
+          <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-primary/30">
+            <img
+              src={nathyPortrait}
+              alt={t.hero.photoAlt}
+              className="w-full h-full object-cover object-top"
+              loading="eager"
+            />
+          </div>
+        </ScrollReveal>
+
         {/* Left */}
         <div className="space-y-8">
           <ScrollReveal delay={0.1}>
@@ -53,7 +65,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
           </ScrollReveal>
         </div>
 
-        {/* Right - portrait placeholder */}
+        {/* Right - desktop portrait */}
         <ScrollReveal variant="scale-up" delay={0.3} duration={0.9}>
           <div className="relative hidden md:flex items-center justify-center">
             <div className="w-full aspect-[3/4] max-w-md rounded-lg overflow-hidden">
