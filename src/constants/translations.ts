@@ -194,7 +194,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Video coming soon',
       },
       roadmap: {
-        completed: 'completed',
+        title: 'Your Roadmap',
+        done: 'done',
       },
     },
     profilePage: {
