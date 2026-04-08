@@ -39,7 +39,7 @@ export default function DashboardSettings({ profile, onUpdate }: Props) {
         <div>
           <label className="font-mono text-xs text-muted-foreground block mb-1.5">{s.language}</label>
           <select
-            value={lang}
+            value={langVal}
             onChange={e => setLangVal(e.target.value)}
             className="w-full h-12 bg-background border border-foreground/10 rounded-md px-3 font-mono text-sm text-foreground"
           >

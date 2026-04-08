@@ -436,6 +436,8 @@ export const translations: Record<Lang, Record<string, any>> = {
       deleteConfirm: 'Tu es sûr·e ? Ça va supprimer définitivement ton compte et toutes tes données.',
     },
   },
+
+  pt: {
     nav: { about: 'Sobre', services: 'Serviços', products: 'Produtos', contact: 'Contato', cta: 'Começar' },
     hero: {
       eyebrow: 'Infraestrutura de IA · Feita por quem vive isso na pele',
