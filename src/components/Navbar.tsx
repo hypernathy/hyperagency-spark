@@ -42,7 +42,7 @@ export default function Navbar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 rounded transition-colors ${
+                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 rounded transition-colors no-min-tap ${
                   lang === l ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
