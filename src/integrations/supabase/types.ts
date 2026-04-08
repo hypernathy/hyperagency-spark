@@ -38,42 +38,117 @@ export type Database = {
         }
         Relationships: []
       }
+      courses_waitlist: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      milestones: {
+        Row: {
+          completed: boolean | null
+          completed_at: string | null
+          created_at: string
+          id: string
+          milestone_key: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          milestone_key: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          milestone_key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           archetype_id: number | null
           archetype_name: string | null
+          avatar_emoji: string | null
+          avatar_url: string | null
+          building_description: string | null
+          contact_preference: string | null
           created_at: string
           email: string
           id: string
+          instagram_handle: string | null
           lang: string | null
+          linkedin_handle: string | null
           name: string | null
           stripe_customer_id: string | null
+          telegram_handle: string | null
+          timezone: string | null
           updated_at: string
           user_id: string
+          whatsapp_number: string | null
         }
         Insert: {
           archetype_id?: number | null
           archetype_name?: string | null
+          avatar_emoji?: string | null
+          avatar_url?: string | null
+          building_description?: string | null
+          contact_preference?: string | null
           created_at?: string
           email: string
           id?: string
+          instagram_handle?: string | null
           lang?: string | null
+          linkedin_handle?: string | null
           name?: string | null
           stripe_customer_id?: string | null
+          telegram_handle?: string | null
+          timezone?: string | null
           updated_at?: string
           user_id: string
+          whatsapp_number?: string | null
         }
         Update: {
           archetype_id?: number | null
           archetype_name?: string | null
+          avatar_emoji?: string | null
+          avatar_url?: string | null
+          building_description?: string | null
+          contact_preference?: string | null
           created_at?: string
           email?: string
           id?: string
+          instagram_handle?: string | null
           lang?: string | null
+          linkedin_handle?: string | null
           name?: string | null
           stripe_customer_id?: string | null
+          telegram_handle?: string | null
+          timezone?: string | null
           updated_at?: string
           user_id?: string
+          whatsapp_number?: string | null
         }
         Relationships: []
       }
