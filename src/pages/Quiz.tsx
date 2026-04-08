@@ -73,16 +73,16 @@ export default function Quiz() {
               transition={{ duration: 0.25 }}
             >
               <div className="text-center mb-8">
-                <p className="text-primary font-mono text-sm mb-2">
+                <p className="text-primary font-mono text-[0.65rem] uppercase tracking-[0.18em] mb-2">
                   Question {current + 1} of {quizQuestions.length}
                 </p>
-                <div className="w-full bg-foreground/10 rounded-full h-1.5 mb-6">
+                <div className="w-full bg-[rgba(255,255,255,0.06)] h-[2px] mb-6">
                   <div
-                    className="bg-primary h-1.5 rounded-full transition-all"
+                    className="bg-primary h-[2px] transition-all"
                     style={{ width: `${((current + 1) / quizQuestions.length) * 100}%` }}
                   />
                 </div>
-                <h2 className="font-playfair text-2xl md:text-3xl text-foreground font-bold">
+                <h2 className="font-display text-2xl md:text-3xl text-foreground font-bold">
                   {q.question}
                 </h2>
               </div>
@@ -92,7 +92,7 @@ export default function Quiz() {
                   <button
                     key={i}
                     onClick={() => handleAnswer(opt.archetype)}
-                    className="w-full text-left bg-card border border-foreground/[0.07] rounded-xl px-5 py-4 font-mono text-sm text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all min-h-[48px]"
+                    className="w-full text-left bg-card border border-[rgba(255,255,255,0.07)] px-5 py-4 font-syne text-sm text-foreground hover:border-[rgba(0,196,180,0.35)] transition-all min-h-[48px]"
                   >
                     {opt.text}
                   </button>
@@ -107,18 +107,17 @@ export default function Quiz() {
               className="text-center"
             >
               <div
-                className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-5xl"
-                style={{ backgroundColor: result.color + '20' }}
+                className="w-24 h-24 mx-auto mb-6 flex items-center justify-center text-5xl bg-card border border-[rgba(255,255,255,0.07)]"
               >
                 {result.emoji}
               </div>
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold text-foreground mb-2">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
                 You are...
               </h2>
               <h3 className="font-syne text-2xl font-bold mb-2" style={{ color: result.color }}>
                 {result.name}
               </h3>
-              <p className="text-muted-foreground font-mono text-sm mb-6">
+              <p className="text-[rgba(248,245,240,0.65)] font-syne text-sm mb-6">
                 "{result.tagline}"
               </p>
 
@@ -127,14 +126,14 @@ export default function Quiz() {
                   <button
                     onClick={() => navigate('/dashboard')}
                     disabled={saving}
-                    className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-mono font-bold hover:bg-primary/90 transition-colors min-h-[48px]"
+                    className="bg-primary text-primary-foreground px-8 py-4 font-mono uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors min-h-[48px]"
                   >
                     {saving ? 'Saving...' : 'Go to Your Dashboard →'}
                   </button>
                   <div>
                     <button
                       onClick={() => setShowProfile(true)}
-                      className="text-sm font-mono text-muted-foreground hover:text-foreground mt-2"
+                      className="text-sm font-syne text-[rgba(248,245,240,0.35)] hover:text-foreground mt-2"
                     >
                       Help SPARK know you better →
                     </button>

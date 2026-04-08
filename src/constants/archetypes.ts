@@ -38,7 +38,7 @@ export const archetypes: Archetype[] = [
     id: 3,
     name: 'The Scattered Builder',
     emoji: '⚡',
-    color: '#C8A84B',
+    color: 'rgba(248,245,240,0.5)',
     tagline: "You're building everything. Finishing nothing.",
     roadmap: [
       'Stop all new builds. Audit what you have. Pick one thing that is 80% done.',
@@ -51,7 +51,7 @@ export const archetypes: Archetype[] = [
     id: 4,
     name: 'The Monetization-Ready Founder',
     emoji: '🚀',
-    color: '#9B7FA6',
+    color: 'rgba(248,245,240,0.4)',
     tagline: "You're closer than you think.",
     roadmap: [
       'Map your current funnel — where do people enter, where do they drop off',
@@ -64,7 +64,7 @@ export const archetypes: Archetype[] = [
     id: 5,
     name: 'The Dormant Powerhouse',
     emoji: '🦂',
-    color: '#5A2C8C',
+    color: 'rgba(248,245,240,0.3)',
     tagline: "You've been building in silence. Time to surface.",
     roadmap: [
       'Write your origin story — 200 words. Why you, why now, why this.',

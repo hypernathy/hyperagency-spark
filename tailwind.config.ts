@@ -17,6 +17,7 @@ export default {
         display: ['"Playfair Display"', 'serif'],
         mono: ['"DM Mono"', 'monospace'],
         syne: ['"Syne"', 'sans-serif'],
+        body: ['"Syne"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -54,7 +55,6 @@ export default {
         },
         surface: "hsl(var(--surface))",
         teal: "hsl(var(--teal))",
-        violet: "hsl(var(--violet))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
