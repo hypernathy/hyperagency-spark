@@ -52,7 +52,7 @@ export default function Quiz() {
 
   const handleProfileSave = async (data: Record<string, string | null>) => {
     if (!user) return;
-    await supabase.from('profiles').update(data).eq('user_id', user.id);
+    await supabase.from('profiles').update(data as any).eq('user_id', user.id);
     navigate('/dashboard');
   };
 
