@@ -660,6 +660,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         done: 'feito',
       },
     },
+    onboarding: {
+      skip: 'Pular tour',
+      next: 'Próximo',
+      done: 'Bora!',
+      step: 'Passo {0} de {1}',
+      slides: [
+        { emoji: '🎯', title: 'Seu Arquétipo', desc: 'A gente acabou de descobrir seu Arquétipo de Solopreneur — seu perfil de superpoder único. Tudo no seu dashboard agora é feito sob medida pro seu jeito de pensar e construir.' },
+        { emoji: '🗺️', title: 'Seu Roteiro', desc: 'Seu plano de ação personalizado em 4 passos tá pronto. Marque cada passo conforme avança — seu progresso é salvo automaticamente.' },
+        { emoji: '⚡', title: 'Conheça o SPARK', desc: 'SPARK é seu copiloto de IA. Pergunte qualquer coisa sobre seu negócio, ideias ou próximo passo. Cada conversa é salva e fica mais inteligente com o tempo.' },
+        { emoji: '👤', title: 'Seu Perfil', desc: 'Configure seu idioma, fuso horário e preferências de contato pra que o SPARK te alcance do jeito que você prefere.' },
+      ],
+    },
     profilePage: {
       title: 'Seu Perfil',
       dashboard: '← Painel',
