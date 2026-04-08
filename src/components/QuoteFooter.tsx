@@ -59,7 +59,7 @@ export default function QuoteFooter() {
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className={`font-mono text-xs uppercase px-1.5 py-0.5 rounded transition-colors ${
+                  className={`font-mono text-xs uppercase px-2 py-1.5 rounded transition-colors no-min-tap ${
                     lang === l ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
