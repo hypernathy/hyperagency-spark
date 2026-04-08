@@ -632,7 +632,8 @@ export const translations: Record<Lang, Record<string, any>> = {
         soon: 'Vídeo em breve',
       },
       roadmap: {
-        completed: 'concluído',
+        title: 'Teu roteiro',
+        done: 'feito',
       },
     },
     profilePage: {
