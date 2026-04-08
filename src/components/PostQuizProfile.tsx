@@ -170,7 +170,7 @@ export default function PostQuizProfile({ onSave, onSkip }: Props) {
             {LANGS.map(l => (
               <button
                 key={l.code}
-                onClick={() => setLang(l.code)}
+                onClick={() => setLang(l.code as Lang)}
                 className={`px-4 py-2 font-mono text-sm font-bold transition-all min-h-[44px] ${
                   lang === l.code
                     ? 'bg-primary text-primary-foreground'
