@@ -24,15 +24,15 @@ export default function PowerHourSection() {
             <div className="grid lg:grid-cols-2 gap-12 relative z-10">
               {/* Left */}
               <div className="space-y-6">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">{t.power.eyebrow}</p>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">{t.power.eyebrow}</p>
+                <h2 className="font-display text-4xl sm:text-5xl font-bold">
                   The Power Hour.
                 </h2>
-                <p className="font-display italic text-primary text-lg">One session. Real answers.</p>
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+                <p className="font-display italic text-primary text-xl">One session. Real answers.</p>
+                <p className="font-mono text-base text-muted-foreground leading-relaxed">
                   You have a specific problem. A decision to make. A system to design. You don't want a discovery call that turns into a sales pitch — you want 60 minutes of raw, undivided strategic intelligence.
                 </p>
-                <p className="font-mono text-sm text-foreground font-medium leading-relaxed">
+                <p className="font-mono text-base text-foreground font-medium leading-relaxed">
                   This is the only way to get me on a call. Because I don't do free calls. My energy is worth something — and so is yours.
                 </p>
               </div>
@@ -43,13 +43,13 @@ export default function PowerHourSection() {
                 transition={{ duration: 0.3 }}
                 className="bg-muted border border-primary/20 rounded-sm p-8"
               >
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Investment</p>
-                <p className="font-display text-6xl font-black text-primary mb-2">€197</p>
-                <p className="font-mono text-[10px] text-muted-foreground mb-8">60-minute session · recorded · no fluff</p>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Investment</p>
+                <p className="font-display text-7xl font-black text-primary mb-2">€197</p>
+                <p className="font-mono text-xs text-muted-foreground mb-8">60-minute session · recorded · no fluff</p>
 
                 <ul className="space-y-3 mb-8">
                   {includes.map((item, i) => (
-                    <li key={i} className="font-mono text-xs text-muted-foreground flex items-start gap-2">
+                    <li key={i} className="font-mono text-sm text-muted-foreground flex items-start gap-2">
                       <span className="text-primary mt-0.5">◆</span>{item}
                     </li>
                   ))}
@@ -58,7 +58,7 @@ export default function PowerHourSection() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-primary text-primary-foreground font-mono text-sm py-3 rounded-sm hover:bg-primary/90 transition-colors"
+                  className="w-full bg-primary text-primary-foreground font-mono text-base py-3 rounded-sm hover:bg-primary/90 transition-colors"
                 >
                   {t.power.cta}
                 </motion.button>

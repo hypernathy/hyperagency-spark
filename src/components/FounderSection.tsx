@@ -31,7 +31,7 @@ export default function FounderSection() {
     <section id="founder" className="py-24 sm:py-32 bg-card">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-12">{t.founder.label}</p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary mb-12">{t.founder.label}</p>
         </ScrollReveal>
 
         <div className="relative">
@@ -44,8 +44,8 @@ export default function FounderSection() {
                 <div className="relative pl-10">
                   {/* Dot */}
                   <div className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-primary bg-background" />
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-3">{entry.year}</p>
-                  <p className="font-mono text-sm text-muted-foreground leading-relaxed">{entry.text}</p>
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary mb-3">{entry.year}</p>
+                  <p className="font-mono text-base text-muted-foreground leading-relaxed">{entry.text}</p>
                 </div>
               </StaggerItem>
             ))}
