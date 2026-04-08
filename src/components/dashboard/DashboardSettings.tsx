@@ -11,7 +11,7 @@ interface Props {
   onReplayTour?: () => void;
 }
 
-export default function DashboardSettings({ profile, onUpdate }: Props) {
+export default function DashboardSettings({ profile, onUpdate, onReplayTour }: Props) {
   const [name, setName] = useState(profile.name || '');
   const [langVal, setLangVal] = useState(profile.lang || 'en');
   const [saving, setSaving] = useState(false);
