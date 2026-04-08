@@ -64,6 +64,23 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
   }
+
+  p, li, span, label, textarea, input {
+    line-height: 1.85;
+  }
+
+  /* Body text utility — rgba(248,245,240,0.65) */
+  .body-text {
+    color: rgba(248, 245, 240, 0.65);
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  @media (min-width: 768px) {
+    .body-text {
+      font-size: 1.05rem;
+    }
+  }
 }
 
 /* Custom cursor */

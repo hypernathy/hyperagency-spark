@@ -36,7 +36,7 @@ export default function ContactSection() {
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary mb-4">{t.contact.label}</p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-2">{t.contact.h2}</h2>
           <p className="font-display italic text-primary text-xl mb-4">{t.contact.sub}</p>
-          <p className="font-mono text-base text-muted-foreground mb-12">{t.contact.intro}</p>
+          <p className="font-mono body-text mb-12">{t.contact.intro}</p>
         </ScrollReveal>
 
         {submitted ? (
@@ -44,7 +44,7 @@ export default function ContactSection() {
             <div className="bg-card border border-foreground/[0.07] rounded-sm p-12 text-center">
               <span className="text-4xl mb-4 block">💫</span>
               <h3 className="font-display text-2xl font-bold mb-3">{t.contact.confirmTitle}</h3>
-              <p className="font-mono text-base text-muted-foreground">{t.contact.confirmText}</p>
+              <p className="font-mono body-text">{t.contact.confirmText}</p>
             </div>
           </ScrollReveal>
         ) : (

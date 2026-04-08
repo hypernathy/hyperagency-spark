@@ -1,16 +1,9 @@
 import { useLang } from '@/contexts/LanguageContext';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/motion/ScrollReveal';
 
-const cards = [
-  { top: 'You ask yourself every week:', bottom: '"Why am I doing this manually again?"' },
-  { top: "You've thought more than once:", bottom: '"There has to be a system for this."' },
-  { top: 'You feel like:', bottom: '"I\'m too much for most people — and not enough for myself."' },
-  { top: 'You know AI is the answer but:', bottom: '"You don\'t know which answer, for which question."' },
-  { top: 'You want someone who:', bottom: '"Just gets it. No explanation needed."' },
-];
-
 export default function SeeYouSection() {
   const { t } = useLang();
+  const cards: { top: string; bottom: string }[] = t.seeYou.cards;
 
   return (
     <section id="see-you" className="py-24 sm:py-32">
@@ -26,9 +19,9 @@ export default function SeeYouSection() {
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                 {t.seeYou.h2pre}<em className="text-primary italic">{t.seeYou.h2em}</em>
               </h2>
-              <p className="font-mono text-base text-muted-foreground leading-relaxed">{t.seeYou.p1}</p>
-              <p className="font-mono text-base text-muted-foreground leading-relaxed">{t.seeYou.p2}</p>
-              <p className="font-mono text-base text-foreground font-medium leading-relaxed">{t.seeYou.p3}</p>
+              <p className="font-mono body-text">{t.seeYou.p1}</p>
+              <p className="font-mono body-text">{t.seeYou.p2}</p>
+              <p className="font-mono body-text font-medium !text-foreground">{t.seeYou.p3}</p>
             </div>
           </ScrollReveal>
 
@@ -37,7 +30,7 @@ export default function SeeYouSection() {
             {cards.map((card, i) => (
               <StaggerItem key={i}>
                 <div className="bg-card border border-foreground/[0.07] p-5 rounded-sm hover:border-l-2 hover:border-l-primary transition-all group">
-                  <p className="font-display italic text-base text-muted-foreground mb-1">{card.top}</p>
+                  <p className="font-display italic body-text mb-1">{card.top}</p>
                   <p className="font-mono text-base text-primary">{card.bottom}</p>
                 </div>
               </StaggerItem>

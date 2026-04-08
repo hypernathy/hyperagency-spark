@@ -15,10 +15,10 @@ export default function QuoteFooter() {
         <ScrollReveal variant="scale-up" duration={0.9} className="max-w-3xl mx-auto px-4 text-center relative z-10">
           <span className="font-display text-[120px] text-primary/10 leading-none select-none">"</span>
           <p className="font-display italic text-3xl sm:text-4xl lg:text-5xl leading-snug -mt-16">
-            You were never too much.<br />
-            The world was just <span className="text-primary">too small.</span>
+            {t.quote.line1}<br />
+            {t.quote.line2} <span className="text-primary">{t.quote.em}</span>
           </p>
-          <p className="font-mono text-xs text-muted-foreground mt-6 tracking-wider">— The HyperAgency Principle</p>
+          <p className="font-mono text-xs text-muted-foreground mt-6 tracking-wider">{t.quote.attr}</p>
         </ScrollReveal>
       </section>
 
@@ -30,21 +30,21 @@ export default function QuoteFooter() {
               <p className="font-syne font-extrabold text-lg uppercase tracking-wider mb-4">
                 HYPER<span className="text-primary">AGENCY</span>
               </p>
-              <p className="font-mono text-sm text-muted-foreground leading-relaxed">{t.footer.bio}</p>
+              <p className="font-mono body-text">{t.footer.bio}</p>
             </div>
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary mb-4">{t.footer.workTitle}</p>
-              <ul className="space-y-2 font-mono text-sm text-muted-foreground">
-                <li>SPARK (Free)</li>
-                <li>HyperCompanion™ €19/mo</li>
+              <ul className="space-y-2 font-mono body-text">
+                <li>SPARK ({t.spark?.freePrice || 'Free'})</li>
+                <li>HyperCompanion™ €19/{t.spark?.paidPriceUnit?.replace('/', '') || 'mo'}</li>
                 <li>Power Hour €197</li>
-                <li>Full Build from €1,200</li>
+                <li>{t.services?.items?.[0]?.price || 'From €29'}</li>
                 <li>HyperOS™ Bundle</li>
               </ul>
             </div>
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary mb-4">{t.footer.findTitle}</p>
-              <ul className="space-y-2 font-mono text-sm text-muted-foreground">
+              <ul className="space-y-2 font-mono body-text">
                 <li><a href="https://instagram.com/hypernathy" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram @hypernathy</a></li>
                 <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
                 <li><a href="https://hyperagency.ch" className="hover:text-primary transition-colors">hyperagency.ch</a></li>
