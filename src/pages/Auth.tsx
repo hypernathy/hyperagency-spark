@@ -12,7 +12,7 @@ export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,19 +26,14 @@ export default function Auth() {
         setLoading(false);
         return;
       }
-      // Check if profile has archetype
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         const { data: profile } = await supabase
           .from('profiles')
-          .select('archetype_id, name')
+          .select('archetype_id')
           .eq('user_id', user.id)
           .single();
-        if (profile?.archetype_id) {
-          navigate('/dashboard');
-        } else {
-          navigate('/quiz');
-        }
+        navigate(profile?.archetype_id ? '/dashboard' : '/quiz');
       }
     } else {
       const { error } = await supabase.auth.signUp({ email, password });
@@ -47,10 +42,9 @@ export default function Auth() {
         setLoading(false);
         return;
       }
-      // Update profile with name
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        await supabase.from('profiles').update({ name }).eq('user_id', user.id);
+        await supabase.from('profiles').update({ name: nickname }).eq('user_id', user.id);
       }
       navigate('/quiz');
     }
@@ -100,13 +94,18 @@ export default function Auth() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
-              <Input
-                placeholder="Your name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                required={!isLogin}
-                className="h-12 bg-background border-foreground/10 font-mono"
-              />
+              <div>
+                <Input
+                  placeholder="What should SPARK call you? (Nathy, Juli, Alex...)"
+                  value={nickname}
+                  onChange={e => setNickname(e.target.value)}
+                  required={!isLogin}
+                  className="h-12 bg-background border-foreground/10 font-mono"
+                />
+                <p className="text-muted-foreground/60 font-mono text-[11px] mt-1.5 ml-1">
+                  No last name needed. Ever.
+                </p>
+              </div>
             )}
             <Input
               type="email"
