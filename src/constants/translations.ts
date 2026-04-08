@@ -136,7 +136,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "Hey 👋 I'm SPARK — Nathy's AI companion.\nTell me — what's the thing in your business that's eating your energy right now?",
-      placeholder: "Tell me what's going on...",
+      placeholder: "Tell SPARK what's on your mind...",
+      statusOnline: 'Online · Free AI companion',
       footer: 'Free · SPARK · EN · FR · PT · IT',
       error: 'Connection hiccup. Try again? ⚡',
     },
@@ -277,7 +278,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "Hey 👋 Moi c'est SPARK — le compagnon IA de Nathy.\nDis-moi — c'est quoi le truc dans ton business qui te bouffe l'énergie là maintenant ?",
-      placeholder: 'Dis-moi ce qui se passe...',
+      placeholder: 'Dis à SPARK ce qui te tracasse...',
+      statusOnline: 'En ligne · Compagnon IA gratuit',
       footer: 'Gratuit · SPARK · EN · FR · PT · IT',
       error: 'Problème de connexion. On réessaie ? ⚡',
     },
@@ -418,7 +420,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "E aí 👋 Eu sou o SPARK — companheiro IA da Nathy.\nMe conta — o que no seu negócio tá sugando sua energia agora?",
-      placeholder: 'Me conta o que tá rolando...',
+      placeholder: 'Conta pro SPARK o que tá na sua cabeça...',
+      statusOnline: 'Online · Companheiro IA grátis',
       footer: 'Grátis · SPARK · EN · FR · PT · IT',
       error: 'Deu ruim na conexão. Tenta de novo? ⚡',
     },
@@ -559,7 +562,8 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     chat: {
       greeting: "Hey 👋 Sono SPARK — il compagno IA di Nathy.\nDimmi — qual è la cosa nel tuo business che ti sta mangiando l'energia adesso?",
-      placeholder: 'Dimmi cosa sta succedendo...',
+      placeholder: 'Racconta a SPARK cosa hai in testa...',
+      statusOnline: 'Online · Compagno IA gratis',
       footer: 'Gratis · SPARK · EN · FR · PT · IT',
       error: 'Problema di connessione. Riproviamo? ⚡',
     },

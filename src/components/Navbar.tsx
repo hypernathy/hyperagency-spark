@@ -27,7 +27,7 @@ export default function Navbar() {
             <button
               key={key}
               onClick={() => scrollTo(key === 'about' ? 'see-you' : key === 'products' ? 'spark' : key)}
-              className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors"
+              className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors no-min-tap"
             >
               {t.nav[key]}
             </button>
@@ -42,7 +42,7 @@ export default function Navbar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 rounded transition-colors ${
+                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 rounded transition-colors no-min-tap ${
                   lang === l ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >

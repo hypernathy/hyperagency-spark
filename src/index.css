@@ -54,20 +54,40 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-mono;
     font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
   }
 
+  /* Mobile-first: 16px minimum for all readable text */
   p, li, span, label, textarea, input {
     line-height: 1.85;
+    font-size: 1rem; /* 16px minimum */
   }
+
+  @media (min-width: 640px) {
+    p, li, span, label, textarea, input {
+      font-size: inherit;
+    }
+  }
+
+  /* Headlines: min 32px on mobile */
+  h1 { font-size: clamp(2rem, 8vw, 6rem); }
+  h2 { font-size: clamp(2rem, 5vw, 3.75rem); }
 
   /* Body text utility — rgba(248,245,240,0.65) */
   .body-text {
@@ -80,6 +100,18 @@
     .body-text {
       font-size: 1.05rem;
     }
+  }
+
+  /* Minimum tap target */
+  button, a, [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Exceptions for inline/tiny elements */
+  .no-min-tap {
+    min-height: unset;
+    min-width: unset;
   }
 }
 
@@ -155,4 +187,10 @@
 }
 .pulse-dot {
   animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Prevent horizontal overflow globally */
+section, main, .max-w-7xl {
+  max-width: 100vw;
+  overflow-x: hidden;
 }

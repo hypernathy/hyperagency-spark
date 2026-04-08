@@ -16,7 +16,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
               src={nathyPortrait}
               alt={t.hero.photoAlt}
               className="w-full h-full object-cover object-top"
-              loading="eager"
+              loading="lazy"
             />
           </div>
         </ScrollReveal>
@@ -73,7 +73,7 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
                 src={nathyPortrait}
                 alt={t.hero.photoAlt}
                 className="w-full h-full object-cover object-top"
-                loading="eager"
+                loading="lazy"
               />
             </div>
           </div>
