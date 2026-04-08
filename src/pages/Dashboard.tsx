@@ -7,7 +7,8 @@ import { useMilestones } from '@/hooks/useMilestones';
 import { archetypes } from '@/constants/archetypes';
 import { useLang } from '@/contexts/LanguageContext';
 import { Lang } from '@/constants/translations';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import OnboardingTour from '@/components/OnboardingTour';
 import { Skeleton } from '@/components/ui/skeleton';
 import DashboardChat from '@/components/dashboard/DashboardChat';
 import DashboardRoadmap from '@/components/dashboard/DashboardRoadmap';
@@ -25,6 +26,7 @@ export default function Dashboard() {
   const { milestones, checkAutoMilestones } = useMilestones(user?.id);
   const [isAdmin, setIsAdmin] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const [showTour, setShowTour] = useState(false);
   const { t, setLang } = useLang();
   const d = t.dashboard;
 
@@ -57,8 +59,18 @@ export default function Dashboard() {
   useEffect(() => {
     if (profile && user) {
       checkAutoMilestones(profile);
+      // Show onboarding tour for first-time users
+      const tourKey = `onboarding_done_${user.id}`;
+      if (!localStorage.getItem(tourKey)) {
+        setShowTour(true);
+      }
     }
   }, [profile?.archetype_id, user?.id]);
+
+  const dismissTour = () => {
+    setShowTour(false);
+    if (user) localStorage.setItem(`onboarding_done_${user.id}`, '1');
+  };
 
   if (authLoading || profileLoading || !profile) {
     return (
@@ -73,7 +85,11 @@ export default function Dashboard() {
   const archetype = archetypes.find(a => a.id === profile.archetype_id);
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <AnimatePresence>
+        {showTour && <OnboardingTour onComplete={dismissTour} />}
+      </AnimatePresence>
+      <div className="min-h-screen bg-background">
       <div className="border-b border-[rgba(255,255,255,0.06)] bg-background/80 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="font-display text-lg font-bold text-foreground">
@@ -151,5 +167,6 @@ export default function Dashboard() {
         </Tabs>
       </div>
     </div>
+    </>
   );
 }

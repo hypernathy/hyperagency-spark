@@ -198,6 +198,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         done: 'done',
       },
     },
+    onboarding: {
+      skip: 'Skip tour',
+      next: 'Next',
+      done: "Let's go!",
+      step: 'Step {0} of {1}',
+      slides: [
+        { emoji: '🎯', title: 'Your Archetype', desc: "We just discovered your Solopreneur Archetype — your unique superpower profile. Everything in your dashboard is now tailored to how you think and build." },
+        { emoji: '🗺️', title: 'Your Roadmap', desc: "Your personalized 4-step action plan is ready. Check off each step as you go — your progress is saved automatically." },
+        { emoji: '⚡', title: 'Meet SPARK', desc: "SPARK is your AI co-pilot. Ask anything about your business, ideas, or next move. Every conversation is saved and gets smarter over time." },
+        { emoji: '👤', title: 'Your Profile', desc: "Set your language, timezone, and contact preferences so SPARK can reach you the way you prefer." },
+      ],
+    },
     profilePage: {
       title: 'Your Profile',
       dashboard: '← Dashboard',
@@ -416,6 +428,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         title: 'Ta feuille de route',
         done: 'fait',
       },
+    },
+    onboarding: {
+      skip: 'Passer le tour',
+      next: 'Suivant',
+      done: "C'est parti !",
+      step: 'Étape {0} sur {1}',
+      slides: [
+        { emoji: '🎯', title: 'Ton Archétype', desc: "On vient de découvrir ton Archétype de Solopreneur — ton profil de superpouvoir unique. Tout dans ton dashboard est maintenant adapté à ta façon de penser et construire." },
+        { emoji: '🗺️', title: 'Ta Feuille de Route', desc: "Ton plan d'action personnalisé en 4 étapes est prêt. Coche chaque étape au fur et à mesure — ta progression est sauvegardée automatiquement." },
+        { emoji: '⚡', title: 'Rencontre SPARK', desc: "SPARK est ton copilote IA. Pose n'importe quelle question sur ton business, tes idées ou ton prochain move. Chaque conversation est sauvée et devient plus intelligente." },
+        { emoji: '👤', title: 'Ton Profil', desc: "Règle ta langue, ton fuseau horaire et tes préférences de contact pour que SPARK te contacte comme tu préfères." },
+      ],
     },
     profilePage: {
       title: 'Ton Profil',
@@ -636,6 +660,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         done: 'feito',
       },
     },
+    onboarding: {
+      skip: 'Pular tour',
+      next: 'Próximo',
+      done: 'Bora!',
+      step: 'Passo {0} de {1}',
+      slides: [
+        { emoji: '🎯', title: 'Seu Arquétipo', desc: 'A gente acabou de descobrir seu Arquétipo de Solopreneur — seu perfil de superpoder único. Tudo no seu dashboard agora é feito sob medida pro seu jeito de pensar e construir.' },
+        { emoji: '🗺️', title: 'Seu Roteiro', desc: 'Seu plano de ação personalizado em 4 passos tá pronto. Marque cada passo conforme avança — seu progresso é salvo automaticamente.' },
+        { emoji: '⚡', title: 'Conheça o SPARK', desc: 'SPARK é seu copiloto de IA. Pergunte qualquer coisa sobre seu negócio, ideias ou próximo passo. Cada conversa é salva e fica mais inteligente com o tempo.' },
+        { emoji: '👤', title: 'Seu Perfil', desc: 'Configure seu idioma, fuso horário e preferências de contato pra que o SPARK te alcance do jeito que você prefere.' },
+      ],
+    },
     profilePage: {
       title: 'Seu Perfil',
       dashboard: '← Painel',
@@ -854,6 +890,18 @@ export const translations: Record<Lang, Record<string, any>> = {
         title: 'La tua roadmap',
         done: 'fatto',
       },
+    },
+    onboarding: {
+      skip: 'Salta il tour',
+      next: 'Avanti',
+      done: 'Andiamo!',
+      step: 'Passo {0} di {1}',
+      slides: [
+        { emoji: '🎯', title: 'Il tuo Archetipo', desc: 'Abbiamo appena scoperto il tuo Archetipo da Solopreneur — il tuo profilo di superpotere unico. Tutto nella tua dashboard è ora su misura per come pensi e costruisci.' },
+        { emoji: '🗺️', title: 'La tua Roadmap', desc: "Il tuo piano d'azione personalizzato in 4 passi è pronto. Spunta ogni passo man mano — i tuoi progressi vengono salvati automaticamente." },
+        { emoji: '⚡', title: 'Incontra SPARK', desc: 'SPARK è il tuo copilota IA. Chiedi qualsiasi cosa sul tuo business, le tue idee o il tuo prossimo passo. Ogni conversazione viene salvata e diventa più intelligente.' },
+        { emoji: '👤', title: 'Il tuo Profilo', desc: 'Imposta la tua lingua, il fuso orario e le preferenze di contatto così SPARK può raggiungerti come preferisci.' },
+      ],
     },
     profilePage: {
       title: 'Il tuo Profilo',
