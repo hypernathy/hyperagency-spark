@@ -85,7 +85,11 @@ export default function Dashboard() {
   const archetype = archetypes.find(a => a.id === profile.archetype_id);
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <AnimatePresence>
+        {showTour && <OnboardingTour onComplete={dismissTour} />}
+      </AnimatePresence>
+      <div className="min-h-screen bg-background">
       <div className="border-b border-[rgba(255,255,255,0.06)] bg-background/80 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="font-display text-lg font-bold text-foreground">
