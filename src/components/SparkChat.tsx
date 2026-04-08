@@ -10,7 +10,7 @@ interface Message {
 
 const msgVariants = {
   hidden: { opacity: 0, y: 12, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.25, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.25, ease: 'easeOut' as const } },
 };
 
 export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
