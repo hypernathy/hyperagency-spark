@@ -51,53 +51,50 @@ export default function PostQuizProfile({ onSave, onSkip }: Props) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
-      className="bg-card border border-foreground/[0.07] rounded-xl p-6 max-w-md mx-auto mt-6"
+      className="bg-card border border-[rgba(255,255,255,0.07)] p-6 max-w-md mx-auto mt-6"
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-syne text-lg font-bold text-foreground">Help SPARK know you better</h3>
-        <button onClick={onSkip} className="text-xs font-mono text-muted-foreground hover:text-foreground">✕</button>
+        <button onClick={onSkip} className="text-[0.65rem] font-mono text-[rgba(248,245,240,0.35)] hover:text-foreground">✕</button>
       </div>
 
       <div className="space-y-5">
-        {/* Contact preference */}
         <div>
-          <label className="font-mono text-xs text-muted-foreground block mb-2">How should we reach you?</label>
+          <label className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider block mb-2">How should we reach you?</label>
           <RadioGroup value={contactType} onValueChange={(v: any) => setContactType(v)} className="flex gap-4 mb-2">
             <div className="flex items-center gap-2">
               <RadioGroupItem value="whatsapp" id="whatsapp" />
-              <Label htmlFor="whatsapp" className="font-mono text-sm cursor-pointer">WhatsApp</Label>
+              <Label htmlFor="whatsapp" className="font-syne text-sm cursor-pointer">WhatsApp</Label>
             </div>
             <div className="flex items-center gap-2">
               <RadioGroupItem value="telegram" id="telegram" />
-              <Label htmlFor="telegram" className="font-mono text-sm cursor-pointer">Telegram</Label>
+              <Label htmlFor="telegram" className="font-syne text-sm cursor-pointer">Telegram</Label>
             </div>
           </RadioGroup>
           <Input
             placeholder={contactType === 'whatsapp' ? '+55 11 99999-9999' : '@yourtelegram'}
             value={contactValue}
             onChange={e => setContactValue(e.target.value)}
-            className="h-11 bg-background border-foreground/10 font-mono text-sm"
+            className="h-12 bg-background border-[rgba(255,255,255,0.08)] font-syne"
           />
         </div>
 
-        {/* Social handle */}
         <div>
-          <label className="font-mono text-xs text-muted-foreground block mb-1.5">Instagram or LinkedIn (optional)</label>
+          <label className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider block mb-1.5">Instagram or LinkedIn (optional)</label>
           <Input
             placeholder="@yourhandle"
             value={socialHandle}
             onChange={e => setSocialHandle(e.target.value)}
-            className="h-11 bg-background border-foreground/10 font-mono text-sm"
+            className="h-12 bg-background border-[rgba(255,255,255,0.08)] font-syne"
           />
         </div>
 
-        {/* Timezone */}
         <div>
-          <label className="font-mono text-xs text-muted-foreground block mb-1.5">Timezone</label>
+          <label className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider block mb-1.5">Timezone</label>
           <select
             value={timezone}
             onChange={e => setTimezone(e.target.value)}
-            className="w-full h-11 bg-background border border-foreground/10 rounded-md px-3 font-mono text-sm text-foreground"
+            className="w-full h-12 bg-background border border-[rgba(255,255,255,0.08)] px-3 font-syne text-base text-foreground focus:border-primary focus:outline-none"
           >
             {TIMEZONES.map(tz => (
               <option key={tz} value={tz}>{tz}</option>
@@ -105,18 +102,17 @@ export default function PostQuizProfile({ onSave, onSkip }: Props) {
           </select>
         </div>
 
-        {/* Language */}
         <div>
-          <label className="font-mono text-xs text-muted-foreground block mb-2">Primary language</label>
+          <label className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider block mb-2">Primary language</label>
           <div className="flex gap-2">
             {LANGS.map(l => (
               <button
                 key={l.code}
                 onClick={() => setLang(l.code)}
-                className={`px-4 py-2 rounded-lg font-mono text-sm font-bold transition-all min-h-[44px] ${
+                className={`px-4 py-2 font-mono text-sm font-bold transition-all min-h-[44px] ${
                   lang === l.code
                     ? 'bg-primary text-primary-foreground'
-                    : 'bg-foreground/5 text-muted-foreground hover:bg-foreground/10'
+                    : 'bg-[rgba(255,255,255,0.05)] text-[rgba(248,245,240,0.35)] hover:bg-[rgba(255,255,255,0.1)]'
                 }`}
               >
                 {l.label}
@@ -126,10 +122,10 @@ export default function PostQuizProfile({ onSave, onSkip }: Props) {
         </div>
 
         <div className="flex flex-col gap-2 pt-2">
-          <Button onClick={handleSave} disabled={saving} className="h-12 font-mono">
+          <Button onClick={handleSave} disabled={saving} className="h-12">
             {saving ? 'Saving...' : 'Save'}
           </Button>
-          <button onClick={onSkip} className="text-sm font-mono text-muted-foreground hover:text-foreground py-2">
+          <button onClick={onSkip} className="text-sm font-syne text-[rgba(248,245,240,0.35)] hover:text-foreground py-2">
             Skip for now
           </button>
         </div>

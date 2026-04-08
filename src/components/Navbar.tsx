@@ -14,10 +14,10 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-foreground/[0.07]">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-[rgba(255,255,255,0.06)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
-        <button onClick={() => scrollTo('hero')} className="font-syne font-extrabold text-lg uppercase tracking-wider">
+        <button onClick={() => scrollTo('hero')} className="font-syne font-extrabold text-lg uppercase tracking-wider text-foreground">
           HYPER<span className="text-primary">AGENCY</span>
         </button>
 
@@ -27,7 +27,7 @@ export default function Navbar() {
             <button
               key={key}
               onClick={() => scrollTo(key === 'about' ? 'see-you' : key === 'products' ? 'spark' : key)}
-              className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors no-min-tap"
+              className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[rgba(248,245,240,0.35)] hover:text-primary transition-colors no-min-tap"
             >
               {t.nav[key]}
             </button>
@@ -42,8 +42,8 @@ export default function Navbar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 rounded transition-colors no-min-tap ${
-                  lang === l ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:text-foreground'
+                className={`font-mono text-[11px] uppercase px-1.5 py-0.5 transition-colors no-min-tap ${
+                  lang === l ? 'text-primary' : 'text-[rgba(248,245,240,0.35)] hover:text-foreground'
                 }`}
               >
                 {l}
@@ -54,7 +54,7 @@ export default function Navbar() {
           {/* CTA */}
           <button
             onClick={() => scrollTo('contact')}
-            className="bg-primary text-primary-foreground font-mono text-xs uppercase tracking-wider px-4 py-2 rounded-sm hover:bg-primary/90 transition-colors"
+            className="bg-primary text-primary-foreground font-mono text-[0.65rem] uppercase tracking-[0.18em] px-5 py-2.5 hover:bg-primary/90 transition-colors"
           >
             {t.nav.cta}
           </button>
@@ -70,12 +70,12 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-t border-foreground/[0.07] px-4 py-4 space-y-4">
+        <div className="md:hidden bg-background border-t border-[rgba(255,255,255,0.06)] px-4 py-4 space-y-4">
           {['about', 'services', 'products', 'contact'].map((key) => (
             <button
               key={key}
               onClick={() => scrollTo(key === 'about' ? 'see-you' : key === 'products' ? 'spark' : key)}
-              className="block font-mono text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-primary"
+              className="block font-mono text-sm uppercase tracking-[0.15em] text-[rgba(248,245,240,0.35)] hover:text-primary"
             >
               {t.nav[key]}
             </button>
@@ -85,8 +85,8 @@ export default function Navbar() {
               <button
                 key={l}
                 onClick={() => { setLang(l); setMobileOpen(false); }}
-                className={`font-mono text-xs uppercase px-2 py-1 rounded ${
-                  lang === l ? 'text-primary bg-primary/10' : 'text-muted-foreground'
+                className={`font-mono text-xs uppercase px-2 py-1 ${
+                  lang === l ? 'text-primary' : 'text-[rgba(248,245,240,0.35)]'
                 }`}
               >
                 {l}

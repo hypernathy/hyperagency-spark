@@ -30,21 +30,21 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-24 sm:py-32">
+    <section id="contact" className="py-14 sm:py-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary mb-4">{t.contact.label}</p>
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary mb-4">{t.contact.label}</p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-2">{t.contact.h2}</h2>
-          <p className="font-display italic text-primary text-xl mb-4">{t.contact.sub}</p>
-          <p className="font-mono body-text mb-12">{t.contact.intro}</p>
+          <p className="font-display italic text-[rgba(248,245,240,0.65)] text-xl mb-4">{t.contact.sub}</p>
+          <p className="body-text mb-12">{t.contact.intro}</p>
         </ScrollReveal>
 
         {submitted ? (
           <ScrollReveal variant="scale-up">
-            <div className="bg-card border border-foreground/[0.07] rounded-sm p-12 text-center">
+            <div className="bg-card border border-[rgba(255,255,255,0.07)] p-12 text-center">
               <span className="text-4xl mb-4 block">💫</span>
               <h3 className="font-display text-2xl font-bold mb-3">{t.contact.confirmTitle}</h3>
-              <p className="font-mono body-text">{t.contact.confirmText}</p>
+              <p className="body-text">{t.contact.confirmText}</p>
             </div>
           </ScrollReveal>
         ) : (
@@ -54,14 +54,14 @@ export default function ContactSection() {
                 <StaggerItem key={q.num}>
                   <div>
                     <label className="block mb-2">
-                      <span className="font-mono text-xs text-primary tracking-wider">{q.num} ——</span>{' '}
+                      <span className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] tracking-wider">{q.num} ——</span>{' '}
                       <span className="font-display italic text-base">{q.label}</span>
                     </label>
                     <textarea
                       name={`q${q.num}`}
                       placeholder={t.contact.placeholder}
                       rows={4}
-                      className="w-full bg-card border border-foreground/[0.07] rounded-sm px-4 py-3 font-mono text-base text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 resize-none transition-colors"
+                      className="w-full bg-background border border-[rgba(255,255,255,0.08)] px-4 py-3 font-syne text-base text-foreground placeholder:text-[rgba(248,245,240,0.3)] focus:outline-none focus:border-primary resize-none transition-colors"
                     />
                   </div>
                 </StaggerItem>
@@ -72,7 +72,7 @@ export default function ContactSection() {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={loading}
-                  className="bg-primary text-primary-foreground font-mono text-base px-8 py-3 rounded-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="bg-primary text-primary-foreground font-mono uppercase tracking-wider text-sm px-8 py-3.5 hover:bg-primary/90 transition-colors disabled:opacity-50 min-h-[48px]"
                 >
                   {loading ? '...' : t.contact.submit}
                 </motion.button>

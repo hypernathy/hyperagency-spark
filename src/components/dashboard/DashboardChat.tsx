@@ -78,15 +78,15 @@ export default function DashboardChat({ userId }: { userId: string }) {
   };
 
   return (
-    <div className="bg-card border border-foreground/[0.07] rounded-xl overflow-hidden">
+    <div className="bg-card border border-[rgba(255,255,255,0.07)] overflow-hidden">
       <div className="bg-primary px-4 py-3 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-[#5A2C8C] flex items-center justify-center">
-          <span className="font-syne font-extrabold text-xs text-white">S</span>
+        <div className="w-8 h-8 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+          <span className="font-syne font-extrabold text-xs text-primary-foreground">S</span>
         </div>
         <div>
           <p className="font-syne font-bold text-sm text-primary-foreground">SPARK</p>
           <p className="font-mono text-[10px] text-primary-foreground/60 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary-foreground/60 pulse-dot" />
             {s.online}
           </p>
         </div>
@@ -97,9 +97,9 @@ export default function DashboardChat({ userId }: { userId: string }) {
           <div className="space-y-3">
             {[1, 2, 3].map(i => (
               <div key={i} className="flex justify-start">
-                <div className="max-w-[85%] bg-foreground/5 rounded-xl px-4 py-3">
-                  <div className="h-4 w-48 bg-muted rounded animate-pulse mb-2" />
-                  <div className="h-4 w-32 bg-muted rounded animate-pulse" />
+                <div className="max-w-[85%] bg-card px-4 py-3" style={{ borderRadius: '0 12px 12px 12px' }}>
+                  <div className="h-4 w-48 bg-[rgba(255,255,255,0.06)] animate-pulse mb-2" />
+                  <div className="h-4 w-32 bg-[rgba(255,255,255,0.06)] animate-pulse" />
                 </div>
               </div>
             ))}
@@ -113,11 +113,16 @@ export default function DashboardChat({ userId }: { userId: string }) {
                 animate={{ opacity: 1, y: 0 }}
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                <div className={`max-w-[85%] px-[18px] py-[14px] text-sm font-mono leading-relaxed whitespace-pre-line ${
-                  msg.role === 'user'
-                    ? 'bg-primary text-primary-foreground rounded-tl-xl rounded-bl-xl rounded-br-xl'
-                    : 'bg-foreground/5 text-foreground rounded-tr-xl rounded-bl-xl rounded-br-xl'
-                }`}>
+                <div
+                  className={`max-w-[85%] px-[18px] py-[14px] text-base font-syne leading-relaxed whitespace-pre-line ${
+                    msg.role === 'user'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-[#111114] text-[rgba(248,245,240,0.85)]'
+                  }`}
+                  style={{
+                    borderRadius: msg.role === 'user' ? '12px 12px 0 12px' : '0 12px 12px 12px'
+                  }}
+                >
                   {msg.content}
                 </div>
               </motion.div>
@@ -126,7 +131,7 @@ export default function DashboardChat({ userId }: { userId: string }) {
         )}
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-foreground/5 px-[18px] py-[14px] rounded-tr-xl rounded-bl-xl rounded-br-xl flex gap-1.5">
+            <div className="bg-[#111114] px-[18px] py-[14px] flex gap-1.5" style={{ borderRadius: '0 12px 12px 12px' }}>
               <span className="w-2 h-2 rounded-full bg-primary typing-dot" />
               <span className="w-2 h-2 rounded-full bg-primary typing-dot" />
               <span className="w-2 h-2 rounded-full bg-primary typing-dot" />
@@ -135,7 +140,7 @@ export default function DashboardChat({ userId }: { userId: string }) {
         )}
       </div>
 
-      <div className="border-t border-foreground/[0.07] p-3">
+      <div className="border-t border-[rgba(255,255,255,0.06)] p-3">
         <div className="flex gap-2 items-end">
           <textarea
             ref={inputRef}
@@ -144,13 +149,13 @@ export default function DashboardChat({ userId }: { userId: string }) {
             onKeyDown={handleKey}
             placeholder={s.placeholder}
             rows={1}
-            className="flex-1 bg-background border border-foreground/[0.07] rounded-lg px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 resize-none min-h-[48px]"
+            className="flex-1 bg-background border border-[rgba(255,255,255,0.08)] px-4 py-3 font-syne text-base text-foreground placeholder:text-[rgba(248,245,240,0.3)] focus:outline-none focus:border-primary resize-none min-h-[48px]"
             style={{ maxHeight: '120px' }}
           />
           <button
             onClick={send}
             disabled={loading || !input.trim()}
-            className="bg-primary text-primary-foreground min-w-[48px] min-h-[48px] rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
+            className="bg-primary text-primary-foreground min-w-[48px] min-h-[48px] flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13" /><path d="M22 2L15 22L11 13L2 9L22 2Z" /></svg>
           </button>

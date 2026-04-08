@@ -6,7 +6,7 @@ export default function TickerStrip() {
 
   const content = [...items, ...items].map((item: string, i: number) => (
     <span key={i} className="flex items-center gap-4 whitespace-nowrap">
-      <span className="font-mono text-base font-medium tracking-wide text-primary-foreground">{item}</span>
+      <span className="font-syne text-base font-medium tracking-wide text-primary-foreground">{item}</span>
       <span className="text-primary-foreground/40">◆</span>
     </span>
   ));

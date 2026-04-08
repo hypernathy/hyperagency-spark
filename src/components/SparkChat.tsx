@@ -23,7 +23,6 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const prevLangRef = useRef(lang);
 
-  // Reset greeting when language changes
   useEffect(() => {
     if (prevLangRef.current !== lang) {
       setMessages([{ role: 'assistant', content: t.chat.greeting }]);
@@ -58,7 +57,6 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
     setInput('');
     setLoading(true);
 
-    // Reset textarea height
     if (inputRef.current) inputRef.current.style.height = 'auto';
 
     try {
@@ -92,7 +90,6 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
-    // Auto-resize
     const el = e.target;
     el.style.height = 'auto';
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
@@ -111,7 +108,7 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
         ) : (
           <>
             <span className="text-xl">💬</span>
-            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-violet rounded-full pulse-dot" />
+            <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-primary rounded-full pulse-dot" />
           </>
         )}
       </button>
@@ -124,17 +121,17 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 sm:w-[380px] sm:max-h-[520px] bg-background sm:border sm:border-foreground/[0.07] sm:rounded-lg overflow-hidden shadow-2xl flex flex-col"
+            className="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 z-50 sm:w-[380px] sm:max-h-[520px] bg-background sm:border sm:border-[rgba(255,255,255,0.07)] overflow-hidden shadow-2xl flex flex-col"
           >
             {/* Header */}
             <div className="bg-primary px-4 py-3.5 flex items-center gap-3 shrink-0" style={{ paddingTop: 'max(0.875rem, env(safe-area-inset-top, 0px))' }}>
-              <div className="w-9 h-9 rounded-full bg-violet flex items-center justify-center">
-                <span className="font-syne font-extrabold text-sm text-foreground">S</span>
+              <div className="w-9 h-9 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+                <span className="font-syne font-extrabold text-sm text-primary-foreground">S</span>
               </div>
               <div className="flex-1">
                 <p className="font-syne font-bold text-[15px] text-primary-foreground">SPARK</p>
                 <p className="font-mono text-[10px] text-primary-foreground/70 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-foreground/60 pulse-dot" />
                   {t.chat.statusOnline}
                 </p>
               </div>
@@ -145,12 +142,11 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
 
             {/* Messages */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
-              {/* Skeleton loader on initial load */}
               {initialLoad && messages.length === 0 && (
                 <div className="flex justify-start">
-                  <div className="max-w-[85%] bg-card rounded-tr-xl rounded-bl-xl rounded-br-xl px-[18px] py-[14px]">
-                    <div className="h-4 w-48 bg-muted rounded animate-pulse mb-2" />
-                    <div className="h-4 w-32 bg-muted rounded animate-pulse" />
+                  <div className="max-w-[85%] bg-card px-[18px] py-[14px]" style={{ borderRadius: '0 12px 12px 12px' }}>
+                    <div className="h-4 w-48 bg-[rgba(255,255,255,0.06)] animate-pulse mb-2" />
+                    <div className="h-4 w-32 bg-[rgba(255,255,255,0.06)] animate-pulse" />
                   </div>
                 </div>
               )}
@@ -165,11 +161,14 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] px-[18px] py-[14px] text-[15px] sm:text-sm font-mono leading-relaxed whitespace-pre-line ${
+                      className={`max-w-[85%] px-[18px] py-[14px] text-base font-syne leading-relaxed whitespace-pre-line ${
                         msg.role === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-tl-xl rounded-bl-xl rounded-br-xl'
-                          : 'bg-card text-foreground rounded-tr-xl rounded-bl-xl rounded-br-xl'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-card text-[rgba(248,245,240,0.85)]'
                       }`}
+                      style={{
+                        borderRadius: msg.role === 'user' ? '12px 12px 0 12px' : '0 12px 12px 12px'
+                      }}
                     >
                       {msg.content}
                     </div>
@@ -183,7 +182,7 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-card px-[18px] py-[14px] rounded-tr-xl rounded-bl-xl rounded-br-xl flex gap-1.5 items-center">
+                  <div className="bg-card px-[18px] py-[14px] flex gap-1.5 items-center" style={{ borderRadius: '0 12px 12px 12px' }}>
                     <span className="w-2 h-2 rounded-full bg-primary typing-dot" />
                     <span className="w-2 h-2 rounded-full bg-primary typing-dot" />
                     <span className="w-2 h-2 rounded-full bg-primary typing-dot" />
@@ -193,7 +192,7 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
             </div>
 
             {/* Input */}
-            <div className="border-t border-foreground/[0.07] p-3 shrink-0" style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0px))' }}>
+            <div className="border-t border-[rgba(255,255,255,0.06)] p-3 shrink-0" style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0px))' }}>
               <div className="flex gap-2 items-end">
                 <textarea
                   ref={inputRef}
@@ -202,18 +201,18 @@ export default function SparkChat({ isOpen, onToggle }: { isOpen: boolean; onTog
                   onKeyDown={handleKey}
                   placeholder={t.chat.placeholder}
                   rows={1}
-                  className="flex-1 bg-card border border-foreground/[0.07] rounded-lg px-4 py-3 font-mono text-[15px] sm:text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 resize-none min-h-[48px]"
+                  className="flex-1 bg-background border border-[rgba(255,255,255,0.08)] px-4 py-3 font-syne text-base text-foreground placeholder:text-[rgba(248,245,240,0.3)] focus:outline-none focus:border-primary resize-none min-h-[48px]"
                   style={{ maxHeight: '120px' }}
                 />
                 <button
                   onClick={send}
                   disabled={loading || !input.trim()}
-                  className="bg-primary text-primary-foreground min-w-[48px] min-h-[48px] rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
+                  className="bg-primary text-primary-foreground min-w-[48px] min-h-[48px] flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13" /><path d="M22 2L15 22L11 13L2 9L22 2Z" /></svg>
                 </button>
               </div>
-              <p className="font-mono text-[10px] text-muted-foreground/50 mt-2 text-center">{t.chat.footer}</p>
+              <p className="font-mono text-[10px] text-[rgba(248,245,240,0.35)] mt-2 text-center">{t.chat.footer}</p>
             </div>
           </motion.div>
         )}

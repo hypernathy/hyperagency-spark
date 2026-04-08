@@ -72,7 +72,7 @@ export default function Admin() {
       <div className="min-h-screen bg-background p-6 max-w-5xl mx-auto pt-16 space-y-6">
         <Skeleton className="h-10 w-48" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map(i => <Skeleton key={i} className="h-24 rounded-xl" />)}
+          {[1, 2, 3, 4].map(i => <Skeleton key={i} className="h-24" />)}
         </div>
       </div>
     );
@@ -111,14 +111,14 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="border-b border-foreground/[0.07] bg-background/80 backdrop-blur-sm sticky top-0 z-40">
+      <div className="border-b border-[rgba(255,255,255,0.06)] bg-background/80 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <h1 className="font-playfair text-lg font-bold text-foreground">Admin Dashboard</h1>
+          <h1 className="font-display text-lg font-bold text-foreground">Admin Dashboard</h1>
           <div className="flex gap-2">
-            <button onClick={() => navigate('/dashboard')} className="text-xs font-mono text-primary hover:underline min-h-[48px] px-3">
+            <button onClick={() => navigate('/dashboard')} className="text-[0.65rem] font-mono uppercase tracking-wider text-primary hover:underline min-h-[48px] px-3">
               My Dashboard
             </button>
-            <button onClick={async () => { await signOut(); navigate('/'); }} className="text-xs font-mono text-muted-foreground hover:text-foreground min-h-[48px] px-3">
+            <button onClick={async () => { await signOut(); navigate('/'); }} className="text-[0.65rem] font-mono uppercase tracking-wider text-[rgba(248,245,240,0.35)] hover:text-foreground min-h-[48px] px-3">
               Sign Out
             </button>
           </div>
@@ -129,14 +129,14 @@ export default function Admin() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Total Users', value: users.length, color: '#00C4B4' },
-            { label: 'New This Week', value: newThisWeek, color: '#E9C824' },
-            { label: 'Top Archetype', value: topArchetype?.name || '-', color: topArchetype?.color || '#fff' },
-            { label: 'Steps Completed', value: completedSteps, color: '#9B7FA6' },
+            { label: 'Total Users', value: users.length, isAccent: true },
+            { label: 'New This Week', value: newThisWeek, isAccent: false },
+            { label: 'Top Archetype', value: topArchetype?.name || '-', isAccent: false },
+            { label: 'Steps Completed', value: completedSteps, isAccent: false },
           ].map((s, i) => (
-            <div key={i} className="bg-card border border-foreground/[0.07] rounded-xl p-4">
-              <p className="font-mono text-xs text-muted-foreground mb-1">{s.label}</p>
-              <p className="font-syne text-xl font-bold" style={{ color: s.color }}>
+            <div key={i} className="bg-card border border-[rgba(255,255,255,0.07)] p-4">
+              <p className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider mb-1">{s.label}</p>
+              <p className={`font-syne text-xl font-bold ${s.isAccent ? 'text-primary' : 'text-foreground'}`}>
                 {s.value}
               </p>
             </div>
@@ -144,20 +144,20 @@ export default function Admin() {
         </div>
 
         {/* Chart */}
-        <div className="bg-card border border-foreground/[0.07] rounded-xl p-6">
+        <div className="bg-card border border-[rgba(255,255,255,0.07)] p-6">
           <h3 className="font-syne font-bold text-foreground mb-4">Archetype Distribution</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={archetypeCounts}>
-                <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#888' }} />
-                <YAxis tick={{ fontSize: 11, fill: '#888' }} allowDecimals={false} />
+                <XAxis dataKey="name" tick={{ fontSize: 11, fill: 'rgba(248,245,240,0.35)' }} />
+                <YAxis tick={{ fontSize: 11, fill: 'rgba(248,245,240,0.35)' }} allowDecimals={false} />
                 <Tooltip
-                  contentStyle={{ background: '#1a1a1a', border: '1px solid #333', borderRadius: 8 }}
-                  labelStyle={{ color: '#fff' }}
+                  contentStyle={{ background: '#111114', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 0 }}
+                  labelStyle={{ color: '#F8F5F0' }}
                 />
-                <Bar dataKey="count" radius={[6, 6, 0, 0]}>
+                <Bar dataKey="count" radius={[0, 0, 0, 0]}>
                   {archetypeCounts.map((entry, i) => (
-                    <Cell key={i} fill={entry.color} />
+                    <Cell key={i} fill={i === 0 ? '#00C4B4' : 'rgba(248,245,240,0.15)'} />
                   ))}
                 </Bar>
               </BarChart>
@@ -166,30 +166,30 @@ export default function Admin() {
         </div>
 
         {/* SPARK Activity */}
-        <div className="bg-card border border-foreground/[0.07] rounded-xl p-4 flex items-center justify-between">
+        <div className="bg-card border border-[rgba(255,255,255,0.07)] p-4 flex items-center justify-between">
           <div>
-            <p className="font-mono text-xs text-muted-foreground">SPARK Conversations This Week</p>
+            <p className="font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider">SPARK Conversations This Week</p>
             <p className="font-syne text-2xl font-bold text-primary">{totalConvos}</p>
           </div>
           <span className="text-3xl">💬</span>
         </div>
 
         {/* Users Table */}
-        <div className="bg-card border border-foreground/[0.07] rounded-xl overflow-hidden">
-          <div className="px-4 py-3 border-b border-foreground/[0.07] flex items-center justify-between">
+        <div className="bg-card border border-[rgba(255,255,255,0.07)] overflow-hidden">
+          <div className="px-4 py-3 border-b border-[rgba(255,255,255,0.06)] flex items-center justify-between">
             <h3 className="font-syne font-bold text-foreground">Users</h3>
             <div className="flex gap-2">
               <select
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value as any)}
-                className="bg-background border border-foreground/10 rounded-md px-2 py-1 text-xs font-mono text-foreground"
+                className="bg-background border border-[rgba(255,255,255,0.08)] px-2 py-1 text-[0.65rem] font-mono text-foreground focus:border-primary focus:outline-none"
               >
                 <option value="created_at">Newest</option>
                 <option value="name">Name</option>
               </select>
               <button
                 onClick={exportCSV}
-                className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-mono font-bold hover:bg-primary/90 min-h-[36px]"
+                className="bg-primary text-primary-foreground px-4 py-1 text-[0.65rem] font-mono uppercase tracking-wider hover:bg-primary/90 min-h-[36px]"
               >
                 Export CSV
               </button>
@@ -198,34 +198,37 @@ export default function Admin() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-foreground/[0.07]">
-                  <th className="text-left px-4 py-3 font-mono text-xs text-muted-foreground font-normal">Name</th>
-                  <th className="text-left px-4 py-3 font-mono text-xs text-muted-foreground font-normal">Email</th>
-                  <th className="text-left px-4 py-3 font-mono text-xs text-muted-foreground font-normal">Archetype</th>
-                  <th className="text-left px-4 py-3 font-mono text-xs text-muted-foreground font-normal">Joined</th>
-                  <th className="text-left px-4 py-3 font-mono text-xs text-muted-foreground font-normal">Last Active</th>
+                <tr className="border-b border-[rgba(255,255,255,0.06)]">
+                  <th className="text-left px-4 py-3 font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider font-normal">Name</th>
+                  <th className="text-left px-4 py-3 font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider font-normal">Email</th>
+                  <th className="text-left px-4 py-3 font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider font-normal">Archetype</th>
+                  <th className="text-left px-4 py-3 font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider font-normal">Joined</th>
+                  <th className="text-left px-4 py-3 font-mono text-[0.65rem] text-[rgba(248,245,240,0.35)] uppercase tracking-wider font-normal">Last Active</th>
                 </tr>
               </thead>
               <tbody>
-                {sortedUsers.map(u => (
-                  <tr key={u.user_id} className="border-b border-foreground/[0.05] hover:bg-foreground/[0.02]">
-                    <td className="px-4 py-3 font-mono text-foreground">{u.name || '—'}</td>
-                    <td className="px-4 py-3 font-mono text-muted-foreground">{u.email}</td>
-                    <td className="px-4 py-3 font-mono">
-                      {u.archetype_id ? (
-                        <span style={{ color: archetypes.find(a => a.id === u.archetype_id)?.color }}>
-                          {archetypes.find(a => a.id === u.archetype_id)?.emoji} {u.archetype_name}
-                        </span>
-                      ) : '—'}
-                    </td>
-                    <td className="px-4 py-3 font-mono text-muted-foreground text-xs">
-                      {new Date(u.created_at).toLocaleDateString()}
-                    </td>
-                    <td className="px-4 py-3 font-mono text-muted-foreground text-xs">
-                      {new Date(u.updated_at).toLocaleDateString()}
-                    </td>
-                  </tr>
-                ))}
+                {sortedUsers.map(u => {
+                  const arch = archetypes.find(a => a.id === u.archetype_id);
+                  return (
+                    <tr key={u.user_id} className="border-b border-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.02)]">
+                      <td className="px-4 py-3 font-syne text-foreground">{u.name || '—'}</td>
+                      <td className="px-4 py-3 font-syne text-[rgba(248,245,240,0.65)]">{u.email}</td>
+                      <td className="px-4 py-3 font-syne">
+                        {arch ? (
+                          <span style={{ color: arch.color }}>
+                            {arch.emoji} {u.archetype_name}
+                          </span>
+                        ) : '—'}
+                      </td>
+                      <td className="px-4 py-3 font-mono text-[rgba(248,245,240,0.35)] text-[0.65rem]">
+                        {new Date(u.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-4 py-3 font-mono text-[rgba(248,245,240,0.35)] text-[0.65rem]">
+                        {new Date(u.updated_at).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
