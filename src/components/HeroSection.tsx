@@ -7,6 +7,7 @@ import nathyPortrait from '@/assets/nathy-portrait.jpg';
 
 export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   const { t } = useLang();
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
