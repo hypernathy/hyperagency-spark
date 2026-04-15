@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <button onClick={() => scrollTo('hero')} className="font-syne font-extrabold text-lg uppercase tracking-wider text-foreground">
-          HYPER<span className="text-primary">YOU</span>
+          HYPER<span className="text-primary">AGENCY</span>
         </button>
 
         {/* Center links - desktop only */}

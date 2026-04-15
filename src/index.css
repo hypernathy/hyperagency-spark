@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,46 +7,46 @@
 @layer base {
   :root {
     --background: 0 0% 3.1%;
-    --foreground: 34 47% 95%;
+    --foreground: 30 33% 95%;
 
     --card: 240 5% 7.5%;
-    --card-foreground: 34 47% 95%;
+    --card-foreground: 30 33% 95%;
 
     --popover: 240 5% 7.5%;
-    --popover-foreground: 34 47% 95%;
+    --popover-foreground: 30 33% 95%;
 
-    --primary: 49 80% 53%;
+    --primary: 174 100% 38%;
     --primary-foreground: 0 0% 3.1%;
 
     --secondary: 240 5% 7.5%;
-    --secondary-foreground: 34 47% 95%;
+    --secondary-foreground: 30 33% 95%;
 
     --muted: 240 5% 10%;
-    --muted-foreground: 34 47% 70%;
+    --muted-foreground: 30 33% 70%;
 
-    --accent: 49 80% 53%;
+    --accent: 174 100% 38%;
     --accent-foreground: 0 0% 3.1%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 34 47% 95%;
+    --destructive-foreground: 30 33% 95%;
 
     --border: 0 0% 100% / 0.07;
     --input: 0 0% 100% / 0.08;
-    --ring: 49 80% 53%;
+    --ring: 174 100% 38%;
 
     --radius: 0rem;
 
     --surface: 240 5% 7.5%;
-    --teal: 49 80% 53%;
+    --teal: 174 100% 38%;
 
     --sidebar-background: 0 0% 3.1%;
-    --sidebar-foreground: 34 47% 95%;
-    --sidebar-primary: 49 80% 53%;
+    --sidebar-foreground: 30 33% 95%;
+    --sidebar-primary: 174 100% 38%;
     --sidebar-primary-foreground: 0 0% 3.1%;
     --sidebar-accent: 240 5% 10%;
-    --sidebar-accent-foreground: 34 47% 95%;
+    --sidebar-accent-foreground: 30 33% 95%;
     --sidebar-border: 0 0% 100% / 0.07;
-    --sidebar-ring: 49 80% 53%;
+    --sidebar-ring: 174 100% 38%;
   }
 }
 
@@ -69,8 +69,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
-    color: #F8F4EF;
+    font-family: 'Playfair Display', serif;
+    color: #F8F5F0;
   }
 
   /* Body text: Syne, 16px minimum */
@@ -136,7 +136,7 @@
 
 /* Hero glow — only hero section */
 .hero-glow {
-  background: radial-gradient(ellipse 50% 40% at 20% 70%, rgba(233,200,36,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 50% 40% at 20% 70%, rgba(0,196,180,0.06) 0%, transparent 70%);
 }
 
 /* Ticker animation */
@@ -192,7 +192,7 @@ section, main, .max-w-7xl {
 .custom-cursor {
   width: 10px;
   height: 10px;
-  background: hsl(49 80% 53%);
+  background: hsl(174 100% 38%);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -203,7 +203,7 @@ section, main, .max-w-7xl {
 .cursor-ring {
   width: 36px;
   height: 36px;
-  border: 1.5px solid hsl(49 80% 53% / 0.4);
+  border: 1.5px solid hsl(174 100% 38% / 0.4);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
