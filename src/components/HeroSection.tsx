@@ -81,6 +81,14 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
               >
                 {t.hero.cta2}
               </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => navigate('/neuryou')}
+                className="font-mono uppercase tracking-wider text-sm px-7 py-3.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors min-h-[48px]"
+              >
+                DISCOVER YOUR BUILDER IDENTITY →
+              </motion.button>
             </div>
           </ScrollReveal>
         </div>
