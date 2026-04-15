@@ -1,4 +1,5 @@
 import { useLang } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 import ScrollReveal from '@/components/motion/ScrollReveal';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
