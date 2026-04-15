@@ -24,20 +24,22 @@ const App = () => (
       <Toaster />
       <Sonner />
       <LanguageProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/neuryou" element={<NeuryouIndex />} />
-            <Route path="/cupidyou" element={<CupidoIndex />} />
-            <Route path="/horsyou" element={<CavalloIndex />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <QuizLanguageProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/neuryou" element={<NeuryouIndex />} />
+              <Route path="/cupidyou" element={<CupidoIndex />} />
+              <Route path="/horsyou" element={<CavalloIndex />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </QuizLanguageProvider>
       </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
