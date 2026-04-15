@@ -80,7 +80,7 @@ const CavalloResultScreen = ({ result: d, userName, intake, scores, secondaryEle
               <span className="flex-1 h-px bg-cream-12" />
             </div>
             <div className="grid grid-cols-5 sm:grid-cols-5 gap-1 mb-4">
-              {Object.entries(CAVALLO_ELEMENTS).map(([key, name]) => (
+              {Object.entries(CAVALLO_ELEMENTS).map(([key, name]: [string, any]) => (
                 <div key={key} className={`text-center p-2.5 border ${domKey === key ? 'border-current' : 'border-cream-15'}`} style={domKey === key ? { borderColor: d.color, background: d.cd, color: d.color } : {}}>
                   <div className="text-lg mb-1">{CAVALLO_ICONS[key]}</div>
                   <div className="font-mono text-[8px] tracking-[0.12em] uppercase">{name}</div>

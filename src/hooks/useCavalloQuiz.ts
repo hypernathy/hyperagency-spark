@@ -82,7 +82,7 @@ export function useCavalloQuiz() {
     setResult(rd);
 
     // Save to database then sync to external
-    supabase.from('quiz_submissions').insert([{
+    (supabase.from('quiz_submissions' as any) as any).insert([{
       quiz_type: 'horsyou' as const,
       email,
       name: name || null,

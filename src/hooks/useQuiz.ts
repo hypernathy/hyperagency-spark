@@ -70,7 +70,7 @@ export function useQuiz() {
     const rd = results[dominant];
     setResult(rd);
 
-    supabase.from('quiz_submissions').insert([{
+    (supabase.from('quiz_submissions' as any) as any).insert([{
       quiz_type: 'neuryou' as const,
       email,
       name: name || null,
