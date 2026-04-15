@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider as QuizLanguageProvider } from "@/i18n";
 import Index from "./pages/Index.tsx";
 import Auth from "./pages/Auth.tsx";
 import Quiz from "./pages/Quiz.tsx";
@@ -23,20 +24,22 @@ const App = () => (
       <Toaster />
       <Sonner />
       <LanguageProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/neuryou" element={<NeuryouIndex />} />
-            <Route path="/cupidyou" element={<CupidoIndex />} />
-            <Route path="/horsyou" element={<CavalloIndex />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <QuizLanguageProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/neuryou" element={<NeuryouIndex />} />
+              <Route path="/cupidyou" element={<CupidoIndex />} />
+              <Route path="/horsyou" element={<CavalloIndex />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </QuizLanguageProvider>
       </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
