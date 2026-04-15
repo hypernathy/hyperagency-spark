@@ -84,10 +84,10 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => navigate('/neuryou')}
+                onClick={() => navigate('/quiz')}
                 className="font-mono uppercase tracking-wider text-sm px-7 py-3.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors min-h-[48px]"
               >
-                DISCOVER YOUR BUILDER IDENTITY →
+                Discover your Hyper Identity →
               </motion.button>
             </div>
           </ScrollReveal>
