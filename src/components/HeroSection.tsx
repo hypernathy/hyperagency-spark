@@ -1,4 +1,5 @@
 import { useLang } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 import ScrollReveal from '@/components/motion/ScrollReveal';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
@@ -6,6 +7,7 @@ import nathyPortrait from '@/assets/nathy-portrait.jpg';
 
 export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   const { t } = useLang();
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -78,6 +80,14 @@ export default function HeroSection({ onOpenChat }: { onOpenChat: () => void }) 
                 className="font-mono uppercase tracking-wider text-sm px-7 py-3.5 border border-[rgba(255,255,255,0.2)] text-foreground hover:border-primary hover:text-primary transition-colors min-h-[48px]"
               >
                 {t.hero.cta2}
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => navigate('/neuryou')}
+                className="font-mono uppercase tracking-wider text-sm px-7 py-3.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors min-h-[48px]"
+              >
+                DISCOVER YOUR BUILDER IDENTITY →
               </motion.button>
             </div>
           </ScrollReveal>

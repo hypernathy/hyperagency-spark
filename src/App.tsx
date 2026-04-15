@@ -11,6 +11,9 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Profile from "./pages/Profile.tsx";
 import Admin from "./pages/Admin.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import NeuryouIndex from "./pages/NeuryouIndex.tsx";
+import CupidoIndex from "./pages/CupidoIndex.tsx";
+import CavalloIndex from "./pages/CavalloIndex.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +31,9 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin" element={<Admin />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/neuryou" element={<NeuryouIndex />} />
+            <Route path="/cupidyou" element={<CupidoIndex />} />
+            <Route path="/horsyou" element={<CavalloIndex />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

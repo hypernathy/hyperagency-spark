@@ -152,6 +152,42 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          intake: Json | null
+          name: string | null
+          quiz_type: string
+          result_key: string
+          result_label: string | null
+          scores: Json | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          intake?: Json | null
+          name?: string | null
+          quiz_type: string
+          result_key: string
+          result_label?: string | null
+          scores?: Json | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          intake?: Json | null
+          name?: string | null
+          quiz_type?: string
+          result_key?: string
+          result_label?: string | null
+          scores?: Json | null
+        }
+        Relationships: []
+      }
       roadmap_progress: {
         Row: {
           completed: boolean | null
