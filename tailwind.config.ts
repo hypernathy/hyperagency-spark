@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
+        display: ['"Cormorant Garamond"', 'serif'],
         mono: ['"DM Mono"', 'monospace'],
         syne: ['"Syne"', 'sans-serif'],
         body: ['"Syne"', 'sans-serif'],
