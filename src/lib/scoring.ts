@@ -176,7 +176,7 @@ export function calculateAxes(answers: QuizAnswer[]): CognitiveAxes {
         ? Math.round(total / counts[axis as keyof CognitiveAxes])
         : 50,
     ])
-  ) as CognitiveAxes
+  ) as unknown as CognitiveAxes
 }
 
 // ─────────────────────────────────────────────────────────────
