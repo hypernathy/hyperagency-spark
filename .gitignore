@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Scraped artifacts (videos / transcripts / slides) — do not commit
+scraped/
