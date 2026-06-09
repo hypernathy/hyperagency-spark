@@ -1,3 +1,4 @@
+// ⚠️ MIRROR — source canonique = repo hyperyou-systems (CONNEXA-HQ D-014a). Ne pas éditer le contenu quiz ici ; synchroniser depuis hyperyou-systems. Voir ./README.md
 export interface Answer {
   t: 'V' | 'K' | 'C' | 'D' | 'S';
   text: string;

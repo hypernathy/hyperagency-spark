@@ -1,3 +1,4 @@
+// ⚠️ MIRROR — source canonique = repo hyperyou-systems (CONNEXA-HQ D-014a). Ne pas éditer le contenu quiz ici ; synchroniser depuis hyperyou-systems. Voir ./README.md
 // Gender-specific text overlays for CupidYou results
 // Overrides: name, tagline, intro, desc, rel per gender
 

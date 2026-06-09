@@ -1,3 +1,4 @@
+// ⚠️ MIRROR — source canonique = repo hyperyou-systems (CONNEXA-HQ D-014a). Ne pas éditer le contenu quiz ici ; synchroniser depuis hyperyou-systems. Voir ./README.md
 import type { GenderOverlay } from './cupidoGenderOverlays';
 
 export const CUPIDO_GENDER_OVERLAYS_PT: Record<string, Record<string, GenderOverlay>> = {

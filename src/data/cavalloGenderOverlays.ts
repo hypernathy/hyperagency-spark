@@ -1,3 +1,4 @@
+// ⚠️ MIRROR — source canonique = repo hyperyou-systems (CONNEXA-HQ D-014a). Ne pas éditer le contenu quiz ici ; synchroniser depuis hyperyou-systems. Voir ./README.md
 export const CAVALLO_GENDER_OVERLAYS: Record<string, Record<string, Partial<{ name: string; tagline: string; intro: string; desc: string; cosmicMsg: string; biz: string }>>> = {
   F:{
     donna:{
