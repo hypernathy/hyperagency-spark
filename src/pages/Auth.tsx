@@ -29,7 +29,7 @@ const authStrings: Record<Lang, {
   googleFail: string;
 }> = {
   en: {
-    joinTitle: 'Join HyperAgency',
+    joinTitle: 'Join Connexa',
     welcomeTitle: 'Welcome Back',
     joinSub: 'Discover your Solopreneur Archetype',
     welcomeSub: 'Sign in to your dashboard',
@@ -48,7 +48,7 @@ const authStrings: Record<Lang, {
     googleFail: 'Google login failed',
   },
   fr: {
-    joinTitle: 'Rejoignez HyperAgency',
+    joinTitle: 'Rejoignez Connexa',
     welcomeTitle: 'Bon retour',
     joinSub: 'Découvrez votre Archétype de Solopreneur',
     welcomeSub: 'Connectez-vous à votre dashboard',
@@ -67,7 +67,7 @@ const authStrings: Record<Lang, {
     googleFail: 'Échec de la connexion Google',
   },
   pt: {
-    joinTitle: 'Entre na HyperAgency',
+    joinTitle: 'Entre na Connexa',
     welcomeTitle: 'Bem-vindo de volta',
     joinSub: 'Descubra seu Arquétipo de Solopreneur',
     welcomeSub: 'Acesse seu dashboard',
@@ -86,7 +86,7 @@ const authStrings: Record<Lang, {
     googleFail: 'Falha no login com Google',
   },
   it: {
-    joinTitle: 'Unisciti a HyperAgency',
+    joinTitle: 'Unisciti a Connexa',
     welcomeTitle: 'Bentornato',
     joinSub: 'Scopri il tuo Archetipo da Solopreneur',
     welcomeSub: 'Accedi alla tua dashboard',

@@ -1,7 +1,7 @@
 {
-  "name": "SPARK by HyperAgency",
+  "name": "SPARK by Connexa",
   "short_name": "SPARK",
-  "description": "Your AI companion — powered by HyperAgency",
+  "description": "Your AI companion — powered by Connexa",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#00C4B4",

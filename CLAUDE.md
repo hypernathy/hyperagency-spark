@@ -20,9 +20,10 @@
 - `data/` : quiz data + gender overlays (cupido/cavallo) en 4 langues.
 - `integrations/supabase/` : client + types **auto-générés** (ne pas éditer).
 
-## ⚠️ Chevauchement & questions ouvertes (NE PAS inventer la réponse)
-1. **Doublon de code quiz avec `hyperyou-systems`** : les parcours `neuryou`/`cupido`/`cavallo` (internes : `neuro`/`cupido`/`cavallo`) existent **dans les deux repos**, sur **deux projets Supabase différents**. → Décision founder requise : lequel est canonique ? SPARK *importe-t-il* de HyperYou ou en est-il un fork assumé ? **En attendant : ne pas diverger davantage le contenu quiz.**
-2. **Marque « HyperAgency »** : dans `CONNEXA-HQ` (D-007), l'agence de Nathy = **« Connexa »**, *jamais « HyperAgency »*. Le nom de ce repo/produit (« SPARK by HyperAgency ») est donc un **point de réconciliation de marque** ouvert. Ne pas propager « HyperAgency » comme nom d'agence sans validation.
+## ✅ Réconciliation cross-repo — TRANCHÉ (CONNEXA-HQ D-014 · 2026-06-09)
+1. **Quiz HyperYou = source unique `hyperyou-systems`.** Les parcours `neuryou`/`cupido`/`cavallo` (internes : `neuro`/`cupido`/`cavallo`) existent dans les 2 repos (Supabase différents : ici `eyrxsrmjcadaaumzhvpy`, HyperYou `pddbftpsdozyasxitpqy`). **`hyperyou-systems` fait foi pour le contenu quiz. Ici on REFLÈTE / synchronise — ne plus éditer le contenu quiz dans ce repo** (sinon on re-diverge). SPARK reste un produit distinct (compagnon IA + comptes).
+2. **Marque = « SPARK by Connexa ».** « HyperAgency » est **retiré** (D-007 + D-014 : l'agence = Connexa, jamais HyperAgency). **Appliqué 2026-06-09** : 34 occurrences `HyperAgency → Connexa` (translations 4 langues, sparkPrompt, edge fn `spark-chat`, Auth, manifest, index.html). Le sprint B2B = « Connexa Strategy Sprint ». (Renommage du *repo* différé pour continuité MCP.)
+   - ⚠️ **À trancher** : le domaine **`hyperagency.ch`** subsiste dans les footers (`translations.ts`) — laissé tel quel car je ne devine pas ton domaine Connexa. Donne-le et je remplace.
 
 ## 🎨 Brand / design (hérité de l'univers HyperYou)
 - Dark luxury : near-black ink, cream, accents **gold** + **violet**. Coins nets (radius 0). Pas de drop-shadows.
@@ -37,4 +38,4 @@
 ## 🎯 Owner
 **Nathalie (Connexa)** — founder.
 
-*Une fois (1) et (2) tranchés, les inscrire ici et dans `CONNEXA-HQ/_SYSTEM/DECISIONS.md`.*
+*(1) et (2) tranchés le 2026-06-09 → `CONNEXA-HQ/_SYSTEM/DECISIONS.md` D-014.*

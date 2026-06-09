@@ -222,7 +222,7 @@ export interface QuizResult {
   archetype: HyperArchetype     // primary archetype (the result)
   secondary: HyperArchetype     // second-highest (used in AI report for nuance)
   hyper_id: string              // e.g. ⚡VS-7429
-  agency_signal: boolean        // true = show HyperAgency upsell on result page
+  agency_signal: boolean        // true = show Connexa upsell on result page
 }
 
 export function scoreQuiz(answers: QuizAnswer[]): QuizResult {
@@ -238,7 +238,7 @@ export function scoreQuiz(answers: QuizAnswer[]): QuizResult {
   const hyper_id = generateHyperID(archetype.code)
 
   // Step 4 — agency signal
-  // VS and SA users are most likely to benefit from HyperAgency
+  // VS and SA users are most likely to benefit from Connexa
   const agency_signal = archetype.code === "VS" || archetype.code === "SA"
 
   return {
