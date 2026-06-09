@@ -104,7 +104,7 @@ export default function Admin() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'hyperagency-users.csv';
+    a.download = 'connexa-users.csv';
     a.click();
     URL.revokeObjectURL(url);
   };

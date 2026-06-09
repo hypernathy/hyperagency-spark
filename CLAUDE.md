@@ -23,7 +23,7 @@
 ## ✅ Réconciliation cross-repo — TRANCHÉ (CONNEXA-HQ D-014 · 2026-06-09)
 1. **Quiz HyperYou = source unique `hyperyou-systems`.** Les parcours `neuryou`/`cupido`/`cavallo` (internes : `neuro`/`cupido`/`cavallo`) existent dans les 2 repos (Supabase différents : ici `eyrxsrmjcadaaumzhvpy`, HyperYou `pddbftpsdozyasxitpqy`). **`hyperyou-systems` fait foi pour le contenu quiz. Ici on REFLÈTE / synchronise — ne plus éditer le contenu quiz dans ce repo** (sinon on re-diverge). SPARK reste un produit distinct (compagnon IA + comptes).
 2. **Marque = « SPARK by Connexa ».** « HyperAgency » est **retiré** (D-007 + D-014 : l'agence = Connexa, jamais HyperAgency). **Appliqué 2026-06-09** : 34 occurrences `HyperAgency → Connexa` (translations 4 langues, sparkPrompt, edge fn `spark-chat`, Auth, manifest, index.html). Le sprint B2B = « Connexa Strategy Sprint ». (Renommage du *repo* différé pour continuité MCP.)
-   - ⚠️ **À trancher** : le domaine **`hyperagency.ch`** subsiste dans les footers (`translations.ts`) — laissé tel quel car je ne devine pas ton domaine Connexa. Donne-le et je remplace.
+   - ✅ Domaine : `hyperagency.ch` → **`connexa.ch`** partout (footers, QuoteFooter, export CSV). Plus aucune trace « hyperagency » dans le code.
 
 ## 🎨 Brand / design (hérité de l'univers HyperYou)
 - Dark luxury : near-black ink, cream, accents **gold** + **violet**. Coins nets (radius 0). Pas de drop-shadows.

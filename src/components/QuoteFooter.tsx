@@ -46,7 +46,7 @@ export default function QuoteFooter() {
               <ul className="space-y-2 body-text">
                 <li><a href="https://instagram.com/hypernathy" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram @hypernathy</a></li>
                 <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
-                <li><a href="https://hyperagency.ch" className="hover:text-primary transition-colors">hyperagency.ch</a></li>
+                <li><a href="https://connexa.ch" className="hover:text-primary transition-colors">connexa.ch</a></li>
                 <li><a href="https://hypernathy.ch" className="hover:text-primary transition-colors">hypernathy.ch</a></li>
               </ul>
             </div>

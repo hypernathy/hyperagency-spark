@@ -141,7 +141,7 @@ export const translations: Record<Lang, Record<string, any>> = {
       bio: 'Built by Nathy — Swiss-Brazilian-Italian, quadrilingual, ADHD, and running systems across three countries. This is AI infrastructure with a human at the center.',
       workTitle: 'Work with me',
       findTitle: 'Find me',
-      copy: '© 2026 Connexa · hyperagency.ch — Built with intensity. Deployed with paz.',
+      copy: '© 2026 Connexa · connexa.ch — Built with intensity. Deployed with paz.',
     },
     chat: {
       greeting: "Hey 👋 I'm SPARK — Nathy's AI companion.\nTell me — what's the thing in your business that's eating your energy right now?",
@@ -382,7 +382,7 @@ export const translations: Record<Lang, Record<string, any>> = {
       bio: 'Construit par Nathy — Suisse-Brésilienne-Italienne, quadrilingue, TDAH, et qui gère des systèmes dans trois pays. C\'est de l\'infrastructure IA avec un humain au centre.',
       workTitle: 'Bosser avec moi',
       findTitle: 'Me trouver',
-      copy: '© 2026 Connexa · hyperagency.ch — Construit avec intensité. Déployé avec paz.',
+      copy: '© 2026 Connexa · connexa.ch — Construit avec intensité. Déployé avec paz.',
     },
     chat: {
       greeting: "Hey 👋 Moi c'est SPARK — le compagnon IA de Nathy.\nDis-moi — c'est quoi le truc dans ton business qui te bouffe l'énergie là maintenant ?",
@@ -623,7 +623,7 @@ export const translations: Record<Lang, Record<string, any>> = {
       bio: 'Feito pela Nathy — Suíça-Brasileira-Italiana, quadrilíngue, TDAH, e rodando sistemas em três países. Infraestrutura de IA com um ser humano no centro.',
       workTitle: 'Trabalha comigo',
       findTitle: 'Me encontra',
-      copy: '© 2026 Connexa · hyperagency.ch — Construído com intensidade. Deployed com paz.',
+      copy: '© 2026 Connexa · connexa.ch — Construído com intensidade. Deployed com paz.',
     },
     chat: {
       greeting: "E aí 👋 Eu sou o SPARK — companheiro IA da Nathy.\nMe conta — o que no seu negócio tá sugando sua energia agora?",
@@ -864,7 +864,7 @@ export const translations: Record<Lang, Record<string, any>> = {
       bio: 'Costruito da Nathy — Svizzera-Brasiliana-Italiana, quadrilingue, ADHD, e che gestisce sistemi in tre paesi. Infrastruttura IA con un essere umano al centro.',
       workTitle: 'Lavora con me',
       findTitle: 'Trovami',
-      copy: '© 2026 Connexa · hyperagency.ch — Costruito con intensità. Deployed con paz.',
+      copy: '© 2026 Connexa · connexa.ch — Costruito con intensità. Deployed con paz.',
     },
     chat: {
       greeting: "Hey 👋 Sono SPARK — il compagno IA di Nathy.\nDimmi — qual è la cosa nel tuo business che ti sta mangiando l'energia adesso?",
