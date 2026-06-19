@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNV — Cockpit Pilotage · Nathalie × Pedro</title>
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --lake: #2E7FA0;
+    --red: #D32F2F;
+    --gold: #C8A44A;
+    --cream: #F5F0E8;
+    --light: #ffffff;
+    --grey: #e8e8e8;
+    --dark-grey: #6b6b6b;
+    --green: #2e7d32;
+    --orange: #f57c00;
+    --done-bg: #e8f5e9;
+    --blocked-bg: #ffebee;
+    --inprog-bg: #fff8e1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.5;
+    padding: 0;
+  }
+  header {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 24px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  header .sub {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  .countdown {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 12px;
+    font-size: 13px;
+  }
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+  section {
+    background: var(--light);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    border-top: 4px solid var(--lake);
+  }
+  section.tech { border-top-color: var(--lake); }
+  section.crea { border-top-color: var(--gold); }
+  section.joint { border-top-color: var(--red); }
+  section.gantt { border-top-color: var(--navy); }
+  section.access { border-top-color: var(--green); }
+  section h2 {
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  section h2 .badge {
+    display: inline-block;
+    font-size: 11px;
+    background: var(--cream);
+    color: var(--navy);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  section h2 .progress {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark-grey);
+  }
+  section .desc {
+    font-size: 13px;
+    color: var(--dark-grey);
+    margin-bottom: 16px;
+  }
+  ul.tasks {
+    list-style: none;
+  }
+  ul.tasks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    border: 1px solid var(--grey);
+    transition: all 0.15s;
+    cursor: pointer;
+    background: white;
+  }
+  ul.tasks li:hover {
+    border-color: var(--lake);
+    background: #f9fcfe;
+  }
+  ul.tasks li.status-done {
+    background: var(--done-bg);
+    border-color: #a5d6a7;
+    text-decoration: line-through;
+    opacity: 0.75;
+  }
+  ul.tasks li.status-blocked {
+    background: var(--blocked-bg);
+    border-color: #ef9a9a;
+  }
+  ul.tasks li.status-inprog {
+    background: var(--inprog-bg);
+    border-color: #ffe082;
+  }
+  .status-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background: var(--grey);
+    color: var(--dark-grey);
+    flex-shrink: 0;
+    min-width: 64px;
+    text-align: center;
+    cursor: pointer;
+  }
+  li.status-done .status-pill { background: var(--green); color: white; }
+  li.status-blocked .status-pill { background: var(--red); color: white; }
+  li.status-inprog .status-pill { background: var(--orange); color: white; }
+  .task-content {
+    flex: 1;
+  }
+  .task-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .task-meta {
+    font-size: 12px;
+    color: var(--dark-grey);
+    margin-top: 2px;
+  }
+  .task-day {
+    display: inline-block;
+    background: var(--navy);
+    color: white;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  /* Gantt */
+  .gantt-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  table.gantt {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    min-width: 900px;
+  }
+  table.gantt th, table.gantt td {
+    border: 1px solid #ddd;
+    padding: 6px 4px;
+    text-align: center;
+  }
+  table.gantt th {
+    background: var(--navy);
+    color: var(--cream);
+    font-weight: 600;
+    font-size: 11px;
+    position: sticky;
+    top: 0;
+  }
+  table.gantt th.day-weekend { background: #4a5a72; }
+  table.gantt th.day-baptism { background: var(--red); }
+  table.gantt th.day-launch { background: var(--gold); color: var(--navy); }
+  table.gantt td.track {
+    background: var(--cream);
+    text-align: left;
+    font-weight: 600;
+    width: 180px;
+    padding-left: 12px;
+  }
+  table.gantt td.bar {
+    padding: 0;
+    position: relative;
+  }
+  .bar-pedro { background: linear-gradient(90deg, var(--lake), #4a9bbc); color: white; padding: 4px 6px; font-size: 10px; }
+  .bar-nat { background: linear-gradient(90deg, var(--gold), #d4b770); color: var(--navy); padding: 4px 6px; font-size: 10px; font-weight: 600; }
+  .bar-joint { background: linear-gradient(90deg, var(--red), #e57373); color: white; padding: 4px 6px; font-size: 10px; }
+  .bar-comite { background: linear-gradient(90deg, #6b7c95, #94a3b8); color: white; padding: 4px 6px; font-size: 10px; }
+  .bar-milestone {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 4px 6px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  /* Decisions */
+  table.decisions {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.decisions th, table.decisions td {
+    border-bottom: 1px solid var(--grey);
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.decisions th {
+    background: var(--cream);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--navy);
+  }
+  table.decisions tr.closed td { opacity: 0.5; text-decoration: line-through; }
+  .who {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .who-pedro { background: var(--lake); color: white; }
+  .who-nat { background: var(--gold); color: var(--navy); }
+  .who-eric { background: var(--navy); color: white; }
+  .who-jacques { background: #6b7c95; color: white; }
+  .who-cla { background: #708090; color: white; }
+  .who-joint { background: var(--red); color: white; }
+  /* Two-col layout for parallel tracks */
+  .tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 900px) {
+    .tracks { grid-template-columns: 1fr; }
+    header { padding: 16px; }
+    header h1 { font-size: 16px; }
+    main { padding: 16px 8px; }
+    section { padding: 16px; }
+  }
+  /* KPI strip */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kpi {
+    background: white;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-bottom: 3px solid var(--lake);
+  }
+  .kpi .value {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .kpi .label {
+    font-size: 11px;
+    color: var(--dark-grey);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .kpi.urgent { border-bottom-color: var(--red); }
+  .kpi.urgent .value { color: var(--red); }
+  /* Notes */
+  .note {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  /* Buttons / interactive */
+  .controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  button.tab {
+    background: white;
+    border: 1px solid var(--grey);
+    color: var(--navy);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button.tab.active {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+  }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  /* Sync protocol */
+  .sync-card {
+    background: linear-gradient(135deg, var(--navy), var(--lake));
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  .sync-card h3 { font-size: 16px; margin-bottom: 10px; }
+  .sync-card p { font-size: 13px; opacity: 0.95; line-height: 1.6; }
+  /* Risk */
+  .risks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .risk-card {
+    background: #fff;
+    border-left: 4px solid var(--red);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .risk-card .risk-name { font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .risk-card .risk-mit { font-size: 12px; color: var(--dark-grey); margin-top: 6px; }
+  /* Print */
+  @media print {
+    header { position: static; }
+    section { page-break-inside: avoid; box-shadow: none; }
+    .controls, .reset-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>UNV — Cockpit Pilotage Sprint Final
+    <span class="countdown" id="countdown">13 jours restants</span>
+  </h1>
+  <div class="sub">Nathalie (HyperAgency) × Pedro (Garcan Digital) · Union Nautique de Vidy · Livraison semaine du 29 juin 2026</div>
+</header>
+
+<main>
+
+<!-- KPIs -->
+<div class="kpis">
+  <div class="kpi"><div class="value" id="kpi-pedro">0%</div><div class="label">Track Pedro</div></div>
+  <div class="kpi"><div class="value" id="kpi-nat">0%</div><div class="label">Track Nathalie</div></div>
+  <div class="kpi"><div class="value" id="kpi-decisions">0/10</div><div class="label">Décisions fermées</div></div>
+  <div class="kpi urgent"><div class="value">CHF 2'800</div><div class="label">Contrat signé</div></div>
+  <div class="kpi"><div class="value">29 juin</div><div class="label">Deadline</div></div>
+</div>
+
+<!-- ACCESS STATUS -->
+<section class="access">
+  <h2>🔑 Accès & Setup <span class="progress" id="access-progress"></span></h2>
+  <div class="desc">État des accès récupérés chez Eric + setup initial. À cocher en live.</div>
+  <ul class="tasks" id="access-list">
+    <li data-key="acc1"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Invitation Infomaniak collaborateur Admin · Pedro + Nathalie</div><div class="task-meta">✅ Acquis ce matin chez Eric</div></div></li>
+    <li data-key="acc2"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Login WP admin transmis à Pedro</div><div class="task-meta">Compte `info@unv.ch` actuel — Pedro créera son compte nominatif</div></div></li>
+    <li data-key="acc3"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Mdp boîte email `info@unv.ch` (Infomaniak Mail)</div><div class="task-meta">Pour recevoir reset password & notifications WP</div></div></li>
+    <li data-key="acc4"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Ticket Infomaniak ouvert (PHP 8.3 + MariaDB 10.6 + Memcached)</div><div class="task-meta">Pedro peut l'ouvrir lui-même depuis son login Admin</div></div></li>
+    <li data-key="acc5"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Sauvegarde UpdraftPlus de moins de 24h vérifiée</div><div class="task-meta">Avant toute touche structurelle</div></div></li>
+    <li data-key="acc6"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Compte Google UNV identifié ou créé</div><div class="task-meta">Pour Drive embed (espace comité PV + docs)</div></div></li>
+    <li data-key="acc7"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Numéro WhatsApp Business identifié</div><div class="task-meta">Fixe Club House ou achat via Wassenger</div></div></li>
+    <li data-key="acc8"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">Scans Statuts UNV + CI Eric + mandat email Meta</div><div class="task-meta">Pour vérification Meta Business Manager</div></div></li>
+    <li data-key="acc9"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">SMS envoyé à Jacques (photos, tarifs, horaires, n° fixe)</div><div class="task-meta">Deadline : mercredi 18 juin</div></div></li>
+    <li data-key="acc10"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title">SMS envoyé à Claude-Alain (call CSV Banana)</div><div class="task-meta">Call à programmer cette semaine</div></div></li>
+  </ul>
+</section>
+
+<!-- GANTT -->
+<section class="gantt">
+  <h2>📅 Gantt 13 jours · 16 → 29 juin</h2>
+  <div class="desc">Vue d'ensemble. <span style="color:var(--lake);font-weight:700">■ Pedro</span> · <span style="color:var(--gold);font-weight:700">■ Nathalie</span> · <span style="color:var(--red);font-weight:700">■ Joint</span> · <span style="color:#6b7c95;font-weight:700">■ Comité</span></div>
+  <div class="gantt-wrap">
+    <table class="gantt">
+      <thead>
+        <tr>
+          <th class="track">Track</th>
+          <th>L 16</th>
+          <th>M 17</th>
+          <th>M 18</th>
+          <th>J 19</th>
+          <th>V 20</th>
+          <th class="day-weekend">S 21</th>
+          <th class="day-weekend">D 22</th>
+          <th>L 23</th>
+          <th>M 24</th>
+          <th>M 25</th>
+          <th>J 26</th>
+          <th class="day-baptism">V 27<br><span style="font-size:9px">BAPTÊME</span></th>
+          <th class="day-weekend">S 28</th>
+          <th class="day-launch">D 29<br><span style="font-size:9px">LAUNCH</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="track">Infomaniak</td>
+          <td colspan="2" class="bar"><div class="bar-pedro">Ticket + setup</div></td>
+          <td colspan="2" class="bar"><div class="bar-pedro">PHP/DB upgrade</div></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">WP + Kadence</td>
+          <td></td>
+          <td colspan="2" class="bar"><div class="bar-pedro">Install Kadence</div></td>
+          <td colspan="3" class="bar"><div class="bar-pedro">10 pages structure</div></td>
+          <td></td>
+          <td colspan="3" class="bar"><div class="bar-pedro">Integration copy</div></td>
+          <td colspan="2" class="bar"><div class="bar-pedro">Tests + corrections</div></td>
+          <td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Espaces privés</td>
+          <td></td><td></td><td></td>
+          <td colspan="3" class="bar"><div class="bar-pedro">PMP + Passwordless</div></td>
+          <td></td>
+          <td colspan="2" class="bar"><div class="bar-pedro">Membre + Comité UI</div></td>
+          <td colspan="2" class="bar"><div class="bar-pedro">Banana importer</div></td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">nLPD + Conformité</td>
+          <td></td>
+          <td colspan="3" class="bar"><div class="bar-nat">Impressum + Politique conf</div></td>
+          <td colspan="2" class="bar"><div class="bar-nat">RAT + DPA</div></td>
+          <td></td>
+          <td colspan="2" class="bar"><div class="bar-joint">Intégration WP</div></td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Copy 10 pages</td>
+          <td></td>
+          <td colspan="4" class="bar"><div class="bar-nat">Rédaction Nathalie</div></td>
+          <td></td><td></td>
+          <td colspan="2" class="bar"><div class="bar-joint">Relecture + ajustements</div></td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Meta + Wassenger</td>
+          <td></td>
+          <td colspan="2" class="bar"><div class="bar-nat">BM vérif + n° WA</div></td>
+          <td colspan="2" class="bar"><div class="bar-nat">Templates submit</div></td>
+          <td></td><td></td>
+          <td colspan="2" class="bar"><div class="bar-nat">Wassenger setup</div></td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Bot logique + Make</td>
+          <td></td><td></td><td></td>
+          <td colspan="2" class="bar"><div class="bar-nat">Scénarios Make</div></td>
+          <td></td><td></td>
+          <td colspan="2" class="bar"><div class="bar-nat">Câblage + bot</div></td>
+          <td colspan="2" class="bar"><div class="bar-joint">Webhook test WP↔WA</div></td>
+          <td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Visuels + IA</td>
+          <td></td>
+          <td colspan="3" class="bar"><div class="bar-nat">Génération visuels</div></td>
+          <td colspan="2" class="bar"><div class="bar-nat">Placeholders galerie</div></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Contenu comité</td>
+          <td colspan="2" class="bar"><div class="bar-comite">SMS Jacques/Claude-Alain</div></td>
+          <td colspan="3" class="bar"><div class="bar-comite">Photos + tarifs + CSV</div></td>
+          <td></td><td></td>
+          <td colspan="2" class="bar"><div class="bar-comite">Validation copy</div></td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="track">Tests + Mise en ligne</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          <td colspan="2" class="bar"><div class="bar-joint">Tests cross-browser</div></td>
+          <td class="bar"><div class="bar-milestone">Validation comité</div></td>
+          <td></td>
+          <td class="bar"><div class="bar-milestone">🚀 MEP + Formation Jacques</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><strong>Jalons clés :</strong> Mer 18 = contenu comité reçu · Jeu 19 = templates Meta soumis · Lun 23 = nLPD intégrée · Mer 25 = scénarios Make testés · Ven 27 = validation comité (jour du Baptême) · Dim 29 = mise en ligne + formation Jacques.</div>
+</section>
+
+<!-- TRACKS PARALLELES -->
+<div class="tracks">
+
+  <!-- PEDRO -->
+  <section class="tech">
+    <h2>🛠️ Track Pedro · Tech & WordPress <span class="progress" id="pedro-progress"></span></h2>
+    <div class="desc">Garcan Digital. Tout ce qui touche WordPress, le code, l'infra, les plugins, les webhooks côté WP.</div>
+    <ul class="tasks" id="pedro-list">
+      <li data-key="p1"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D1-D2</span>Ticket Infomaniak ouvert (PHP 8.3 + MariaDB 10.6 + Memcached)</div></div></li>
+      <li data-key="p2"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D3</span>Backup UpdraftPlus vérifié + sauvegarde manuelle préalable</div></div></li>
+      <li data-key="p3"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D3</span>2FA + durcissement Really Simple Security activés</div></div></li>
+      <li data-key="p4"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D3</span>Cloudflare CDN configuré + WP Super Cache configuré</div></div></li>
+      <li data-key="p5"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D4</span>Comptes admin nominatifs créés (Pedro + Nathalie)</div></div></li>
+      <li data-key="p6"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D4</span>Installation Kadence · Désinstallation Divi + Twenty*</div></div></li>
+      <li data-key="p7"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D5</span>10 pages publiques avec slugs propres + redirections 301</div></div></li>
+      <li data-key="p8"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D4</span>Plugins installés (Fluent Forms, Events Calendar, PMP, Passwordless Login, Yoast, Wordfence, UpdraftPlus, Modula Lite, User Role Editor)</div></div></li>
+      <li data-key="p9"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D4-D5</span>Widget météo Open-Meteo + iframe webcam + Windspot</div></div></li>
+      <li data-key="p10"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D5</span>The Events Calendar configuré + 3 events publiés + iCal feed</div></div></li>
+      <li data-key="p11"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D5</span>Migration vidéo 40s → YouTube embed</div></div></li>
+      <li data-key="p12"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D5</span>Publication des 13 brouillons d'articles existants</div></div></li>
+      <li data-key="p13"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D6-D8</span>Setup Paid Memberships Pro + rôles (Membre / Comité)</div></div></li>
+      <li data-key="p14"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D6-D8</span>Authentification Passwordless Login configurée</div></div></li>
+      <li data-key="p15"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D7-D9</span>Espace membre : page perso, cotisations, profile, idée event, résiliation</div></div></li>
+      <li data-key="p16"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D7-D9</span>Espace comité : PV (Drive iframe), gestion docs, tableau formulaires</div></div></li>
+      <li data-key="p17"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D8-D10</span>Page admin import CSV Banana + table `unv_member_dues` + endpoint REST</div></div></li>
+      <li data-key="p18"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D8-D10</span>Webhook WP ↔ Wassenger (côté WordPress)</div></div></li>
+      <li data-key="p19"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D6-D7</span>Intégration Impressum + Politique conf + bannière cookies (Complianz reconfig)</div></div></li>
+      <li data-key="p20"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D6</span>En-têtes sécurité (HSTS, X-Content-Type, Referrer-Policy, Permissions-Policy)</div></div></li>
+      <li data-key="p21"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D6</span>Retrait mobiles dirigeants + obfuscation email Cloudflare</div></div></li>
+      <li data-key="p22"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D10-D11</span>Tests cross-browser (Chrome, Firefox, Safari, Edge) + mobile</div></div></li>
+      <li data-key="p23"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D11</span>Ménage : Sample Page · COMING SOON · SERVICES · Privacy Policy brouillon · plugins inactifs</div></div></li>
+      <li data-key="p24"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D12-D13</span>Mise en ligne · DNS Cloudflare · Suppression compte info@unv.ch · Formation Jacques 1h</div></div></li>
+    </ul>
+  </section>
+
+  <!-- NATHALIE -->
+  <section class="crea">
+    <h2>🎨 Track Nathalie · IA, Créatif & WhatsApp <span class="progress" id="nat-progress"></span></h2>
+    <div class="desc">HyperAgency. Copy, ton de voix, IA générative, conformité nLPD, ALL Meta/WhatsApp/Make, formation utilisateur.</div>
+    <ul class="tasks" id="nat-list">
+      <li data-key="n1"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D1</span>Google Doc partagé créé · Mandat email Eric reçu</div></div></li>
+      <li data-key="n2"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2</span>Compte Meta Business Manager créé · UNV ajouté · vérification entreprise lancée (ETA J+5)</div></div></li>
+      <li data-key="n3"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2</span>Page Facebook UNV créée ou récupérée + liée au BM</div></div></li>
+      <li data-key="n4"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D3</span>Compte Wassenger ouvert + numéro WhatsApp Business validé</div></div></li>
+      <li data-key="n5"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D4</span>Rédaction des 8-10 templates Meta WhatsApp (rappel cotisation, confirmation event, etc.)</div></div></li>
+      <li data-key="n6"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D4-D5</span>Templates Meta soumis pour pré-approbation (~24-48h chacun)</div></div></li>
+      <li data-key="n7"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D3</span>Rédaction Impressum complet (Allée du Bornan 10A · 1007 Lausanne · Responsable Eric Schmaltz · Hébergeur Infomaniak)</div></div></li>
+      <li data-key="n8"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D3</span>Rédaction Politique de confidentialité nLPD complète</div></div></li>
+      <li data-key="n9"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D4</span>RAT (Registre Activités de Traitement) rédigé</div></div></li>
+      <li data-key="n10"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D4</span>DPA fournisseurs pré-remplis (Infomaniak, Cloudflare, Wassenger, Make, Google, Spreadshirt)</div></div></li>
+      <li data-key="n11"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D4</span>Bannière cookies wording (4 catégories : essentiels, fonctionnels, analytics, marketing)</div></div></li>
+      <li data-key="n12"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D5</span>Copy 10 pages publiques (Accueil, Le Club, Activités, Calendrier, Ports, Bénévolats, Galerie, Actualités, Devenir Membre, Contact)</div></div></li>
+      <li data-key="n13"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D2-D5</span>Ton de voix UNV (charte) + microcopy formulaires + emails transactionnels</div></div></li>
+      <li data-key="n14"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D3-D5</span>Visuels IA hero + galerie placeholders (DALL·E / Midjourney / Higgsfield)</div></div></li>
+      <li data-key="n15"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D5-D6</span>13 brouillons articles relus + finalisés pour Pedro publication</div></div></li>
+      <li data-key="n16"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D4-D5</span>Logique conversationnelle bot WhatsApp détaillée (3 use cases membre + admin)</div></div></li>
+      <li data-key="n17"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D5-D6</span>Compte Make.com ouvert · scénarios drafts</div></div></li>
+      <li data-key="n18"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D8-D10</span>Scénarios Make.com câblés : notif nouveau event · rappel J-7 · rappel J-1 · alerte trésorier hebdo</div></div></li>
+      <li data-key="n19"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D9-D10</span>Templates Meta approuvés → activation dans Wassenger</div></div></li>
+      <li data-key="n20"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D10-D11</span>Bot testé end-to-end avec numéro test</div></div></li>
+      <li data-key="n21"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D6-D8</span>Procédures internes nLPD (notification violation 72h, retrait données, etc.)</div></div></li>
+      <li data-key="n22"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D11-D12</span>Guide PDF utilisateur final (édition page · ajout event · import CSV Banana · upload PV · WhatsApp)</div></div></li>
+      <li data-key="n23"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D12</span>Brief formation Jacques (talking points 1h)</div></div></li>
+      <li data-key="n24"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D13</span>Atelier formation Jacques 1h (site + espaces privés + Banana import)</div></div></li>
+      <li data-key="n25"><span class="status-pill">À FAIRE</span><div class="task-content"><div class="task-title"><span class="task-day">D13</span>Atelier formation WhatsApp 1h (gestion bot + diffusion)</div></div></li>
+    </ul>
+  </section>
+
+</div>
+
+<!-- JOINT DEPENDENCIES -->
+<section class="joint">
+  <h2>🔗 Dépendances Joint · Ce qu'on attend l'un de l'autre</h2>
+  <div class="desc">Ce qui bloque l'autre si pas livré. À discuter en réu.</div>
+  <table class="decisions">
+    <thead>
+      <tr><th>Owner</th><th>Livrable</th><th>Pour qui</th><th>Deadline</th><th>Impact si retard</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="who who-nat">Nathalie</span></td><td>Copy 10 pages publiques</td><td>Pedro (intégration Kadence)</td><td>D5 ven 20</td><td>Bloque S2 intégration</td></tr>
+      <tr><td><span class="who who-nat">Nathalie</span></td><td>Impressum + Politique nLPD + bannière cookies</td><td>Pedro (publication WP)</td><td>D6 sam 21</td><td>Bloque mise en ligne</td></tr>
+      <tr><td><span class="who who-nat">Nathalie</span></td><td>Templates Meta APPROUVÉS par Meta</td><td>Pedro (test webhook) + Make</td><td>D9 mar 24</td><td>Bloque bot fonctionnel</td></tr>
+      <tr><td><span class="who who-nat">Nathalie</span></td><td>Visuels héros + galerie placeholders</td><td>Pedro (Kadence)</td><td>D6 sam 21</td><td>Site sans visuel</td></tr>
+      <tr><td><span class="who who-pedro">Pedro</span></td><td>WordPress prêt + endpoint REST exposé</td><td>Nathalie (câblage Make)</td><td>D8 lun 23</td><td>Bloque scénarios Make</td></tr>
+      <tr><td><span class="who who-pedro">Pedro</span></td><td>Webhook WP ↔ Wassenger documenté (URL + secret)</td><td>Nathalie (Make wire-up)</td><td>D10 mer 25</td><td>Bloque test bot E2E</td></tr>
+      <tr><td><span class="who who-pedro">Pedro</span></td><td>Pages publiques live en staging</td><td>Nathalie (relecture finale + visuels)</td><td>D10 mer 25</td><td>Bloque QA</td></tr>
+      <tr><td><span class="who who-comite">Jacques</span></td><td>Photos comité + 10-20 photos events</td><td>Pedro (intégration galerie)</td><td>D3 mer 18</td><td>Galerie placeholders</td></tr>
+      <tr><td><span class="who who-comite">Jacques</span></td><td>Tarifs cotisation + horaires Club House + n° fixe</td><td>Nathalie (copy)</td><td>D3 mer 18</td><td>Pages incomplètes</td></tr>
+      <tr><td><span class="who who-comite">Claude-Alain</span></td><td>Sample CSV Banana de test</td><td>Pedro (importeur)</td><td>D5 ven 20</td><td>Espace cotisations vide</td></tr>
+      <tr><td><span class="who who-comite">Eric</span></td><td>Validation comité finale (copy + design)</td><td>Joint</td><td>D12 ven 27</td><td>Bloque mise en ligne</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- DECISIONS -->
+<section>
+  <h2>⚖️ Décisions à fermer aujourd'hui en réu</h2>
+  <div class="desc">10 questions ouvertes du dev-handoff de mai. Tap row to mark closed.</div>
+  <table class="decisions" id="decisions-table">
+    <thead>
+      <tr><th>#</th><th>Question</th><th>Owner</th><th>Délai</th><th>Décision</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Stack final confirmé : 100% WP (contrat signé) — pas de Next.js V2 ?</td><td><span class="who who-joint">Joint</span></td><td>D1</td><td>__</td></tr>
+      <tr><td>2</td><td>Rythme Banana CSV : mensuel (contrat) ou hebdo si Claude-Alain prêt ?</td><td><span class="who who-cla">Claude-A</span></td><td>D5</td><td>__</td></tr>
+      <tr><td>3</td><td>Numéro WhatsApp Business : fixe Club House OU achat Wassenger ?</td><td><span class="who who-eric">Eric</span></td><td>D2</td><td>__</td></tr>
+      <tr><td>4</td><td>URL webcam Vidy : Club House OU webcam publique Lausanne ?</td><td><span class="who who-jacques">Jacques</span></td><td>D5</td><td>__</td></tr>
+      <tr><td>5</td><td>Compte Google UNV existe ou à créer ? (Drive embed)</td><td><span class="who who-eric">Eric</span></td><td>D1</td><td>__</td></tr>
+      <tr><td>6</td><td>Spreadshop : ouverture compte UNV maintenant ou après MEP ?</td><td><span class="who who-eric">Eric</span></td><td>D6</td><td>__</td></tr>
+      <tr><td>7</td><td>Gallery plugin : Modula Lite (gratuit) ou Envira (CHF 89/an) ?</td><td><span class="who who-pedro">Pedro</span></td><td>D4</td><td>__</td></tr>
+      <tr><td>8</td><td>Webhook WP ↔ Wassenger : qui code la couche middleware ?</td><td><span class="who who-joint">Joint</span></td><td>D1</td><td>__</td></tr>
+      <tr><td>9</td><td>Compte Make.com : ouvert au nom de qui (Nathalie / UNV / Pedro) ?</td><td><span class="who who-joint">Joint</span></td><td>D1</td><td>__</td></tr>
+      <tr><td>10</td><td>Daily sync : quelle heure, quel canal (WhatsApp/Slack/email) ?</td><td><span class="who who-joint">Joint</span></td><td>D1</td><td>__</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SYNC PROTOCOL -->
+<section>
+  <h2>📞 Protocole de synchronisation</h2>
+  <div class="sync-card">
+    <h3>Recommandation</h3>
+    <p>
+      <strong>Daily écrit 8h00</strong> sur un groupe WhatsApp à 3 (Pedro + Nathalie + ce thread).<br>
+      Format Slack-style : <em>Hier ✅ · Aujourd'hui 🔥 · Bloqueurs 🚧</em>.<br><br>
+      <strong>Live sync 30 min</strong> 2× / semaine (mar + ven 12h) en visio pour les bloquants.<br><br>
+      <strong>Canal urgence</strong> : appel direct, pas de WhatsApp si > 30 min sans réponse.<br><br>
+      <strong>Validation comité</strong> : Nathalie owner. Pedro fournit le lien staging avec login démo, Nathalie prépare la présentation au comité.
+    </p>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section>
+  <h2>🚧 Risques majeurs · 13 jours</h2>
+  <div class="risks">
+    <div class="risk-card">
+      <div class="risk-name">Vérif Meta Business Manager > 5j</div>
+      <div>Bloquant pour templates approuvés → bloque bot fonctionnel.</div>
+      <div class="risk-mit"><strong>Mitigation :</strong> lancer DEMAIN matin · si > J+5, basculer sur Twilio WhatsApp (payant ~CHF 0.005/msg)</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-name">Ticket Infomaniak > 5j</div>
+      <div>PHP/MariaDB upgrade retardé → tout le code attend.</div>
+      <div class="risk-mit"><strong>Mitigation :</strong> escalade téléphonique J+3 si pas de réponse · contact direct manager.infomaniak.com/support</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-name">Photos / contenu comité tardif</div>
+      <div>Jacques + Claude-Alain pas toujours dispo.</div>
+      <div class="risk-mit"><strong>Mitigation :</strong> avatars initiales OK fallback · photos publiables ajoutables post-MEP</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-name">Templates Meta refusés</div>
+      <div>Meta rejette si trop commercial ou ambigu.</div>
+      <div class="risk-mit"><strong>Mitigation :</strong> formulation conservatrice · 2 versions soumises en parallèle</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-name">Banana CSV format imprévu</div>
+      <div>Si CSV de Claude-Alain ne mappe pas au schéma attendu.</div>
+      <div class="risk-mit"><strong>Mitigation :</strong> sample en D3 max · Pedro itère sur format réel</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-name">Domaine unv.ch Nenad Sestan</div>
+      <div>Propriétaire WHOIS pas le comité actuel.</div>
+      <div class="risk-mit"><strong>Mitigation :</strong> non bloquant pour MEP · à régler post-MEP en hors urgence</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER ACTIONS -->
+<section>
+  <h2>🎯 Top 3 ACTIONS APRÈS LA RÉU</h2>
+  <ul class="tasks">
+    <li><span class="status-pill" style="background:var(--red);color:white">P1</span><div class="task-content"><div class="task-title">Pedro ouvre le ticket Infomaniak (PHP+MariaDB+Memcached) ce soir</div></div></li>
+    <li><span class="status-pill" style="background:var(--red);color:white">P1</span><div class="task-content"><div class="task-title">Nathalie démarre la vérif Meta Business Manager ce soir</div></div></li>
+    <li><span class="status-pill" style="background:var(--red);color:white">P1</span><div class="task-content"><div class="task-title">Eric envoie SMS à Jacques + Claude-Alain (photos, tarifs, CSV Banana, call)</div></div></li>
+  </ul>
+  <div class="note" style="margin-top: 20px;">
+    <strong>Note :</strong> Cocher les tâches en cliquant sur la pastille de statut (cycle : À FAIRE → EN COURS → BLOQUÉ → FAIT). Tout est sauvegardé en local dans ton navigateur. Imprimable en PDF (Ctrl/Cmd + P).<br>
+    <button class="reset-btn" onclick="if(confirm('Reset all status?')){localStorage.removeItem('unv-cockpit-state');location.reload();}">Reset tous les statuts</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // Status cycling: à faire → en cours → bloqué → fait → à faire
+  const STATUS_CYCLE = ['todo', 'inprog', 'blocked', 'done'];
+  const STATUS_LABELS = { todo: 'À FAIRE', inprog: 'EN COURS', blocked: 'BLOQUÉ', done: 'FAIT' };
+  const STORAGE_KEY = 'unv-cockpit-state';
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
+  }
+  function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+  const state = loadState();
+
+  function applyStatus(li, status) {
+    li.className = li.className.replace(/status-\w+/g, '').trim();
+    li.classList.add('status-' + status);
+    const pill = li.querySelector('.status-pill');
+    if (pill) pill.textContent = STATUS_LABELS[status];
+  }
+
+  function updateProgress(listId, progressId) {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    const items = list.querySelectorAll('li');
+    const done = list.querySelectorAll('li.status-done').length;
+    const total = items.length;
+    const pct = total ? Math.round(done/total*100) : 0;
+    const progEl = document.getElementById(progressId);
+    if (progEl) progEl.textContent = `${done}/${total} · ${pct}%`;
+    return { done, total, pct };
+  }
+
+  function updateKPIs() {
+    const p = updateProgress('pedro-list', 'pedro-progress');
+    const n = updateProgress('nat-list', 'nat-progress');
+    const a = updateProgress('access-list', 'access-progress');
+    if (p) document.getElementById('kpi-pedro').textContent = p.pct + '%';
+    if (n) document.getElementById('kpi-nat').textContent = n.pct + '%';
+  }
+
+  // Init all task items
+  document.querySelectorAll('ul.tasks li[data-key]').forEach(li => {
+    const key = li.dataset.key;
+    const status = state[key] || 'todo';
+    applyStatus(li, status);
+    li.addEventListener('click', () => {
+      const cur = state[li.dataset.key] || 'todo';
+      const next = STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur) + 1) % STATUS_CYCLE.length];
+      state[li.dataset.key] = next;
+      saveState(state);
+      applyStatus(li, next);
+      updateKPIs();
+    });
+  });
+
+  // Countdown
+  function updateCountdown() {
+    const deadline = new Date('2026-06-29T00:00:00');
+    const today = new Date();
+    const days = Math.ceil((deadline - today) / (1000*60*60*24));
+    const el = document.getElementById('countdown');
+    if (el) el.textContent = days > 0 ? `${days} jours restants` : (days === 0 ? 'AUJOURD\'HUI' : `${-days}j de retard`);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  updateKPIs();
+</script>
+
+</body>
+</html>
