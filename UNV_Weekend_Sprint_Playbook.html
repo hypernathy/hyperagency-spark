@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNV — Weekend Sprint Playbook · 16-22 juin</title>
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --lake: #2E7FA0;
+    --red: #D32F2F;
+    --gold: #C8A44A;
+    --cream: #F5F0E8;
+    --light: #ffffff;
+    --grey: #e8e8e8;
+    --dark-grey: #6b6b6b;
+    --green: #2e7d32;
+    --orange: #f57c00;
+    --done-bg: #e8f5e9;
+    --inprog-bg: #fff8e1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy), var(--lake));
+    color: var(--cream);
+    padding: 28px 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  header h1 { font-size: 22px; letter-spacing: -0.3px; line-height: 1.3; }
+  header .meta { font-size: 13px; opacity: 0.85; margin-top: 6px; }
+  header .badges { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+  header .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  header .badge.red { background: var(--red); border-color: var(--red); }
+  header .badge.gold { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+  section {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-top: 5px solid var(--lake);
+  }
+  section.go { border-top-color: var(--green); }
+  section.wait { border-top-color: var(--red); }
+  section.dec { border-top-color: var(--gold); }
+  section.deps { border-top-color: var(--lake); }
+  section.show { border-top-color: var(--navy); }
+  section.daybyday { border-top-color: var(--red); }
+  section h2 {
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  section .lead {
+    font-size: 13px;
+    color: var(--dark-grey);
+    margin-bottom: 18px;
+  }
+  /* Checklist style */
+  .check {
+    list-style: none;
+  }
+  .check li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    border: 1px solid var(--grey);
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .check li:hover { background: #f9fcfe; border-color: var(--lake); }
+  .check li.done {
+    background: var(--done-bg);
+    border-color: #a5d6a7;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+  .check li .box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--navy);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+  }
+  .check li.done .box {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check li.done .box::after { content: "✓"; }
+  .item {
+    flex: 1;
+  }
+  .item .title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .item .desc {
+    font-size: 12px;
+    color: var(--dark-grey);
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+  .item .meta {
+    font-size: 11px;
+    color: var(--dark-grey);
+    margin-top: 4px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 4px;
+    letter-spacing: 0.3px;
+  }
+  .tag-eff { background: var(--cream); color: var(--navy); }
+  .tag-blocked { background: var(--red); color: white; }
+  .tag-now { background: var(--green); color: white; }
+  .tag-need { background: var(--lake); color: white; }
+  .tag-pedro { background: var(--lake); color: white; }
+  .tag-nat { background: var(--gold); color: var(--navy); }
+  .tag-comite { background: #6b7c95; color: white; }
+  /* Inventory grid */
+  .inv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .inv-card {
+    background: white;
+    border-radius: 8px;
+    padding: 14px;
+    border: 1px solid var(--grey);
+    border-left: 4px solid var(--green);
+  }
+  .inv-card.partial { border-left-color: var(--orange); }
+  .inv-card.missing { border-left-color: var(--red); }
+  .inv-card h3 {
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .inv-card .status {
+    font-size: 10px;
+    background: var(--green);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .inv-card.partial .status { background: var(--orange); }
+  .inv-card.missing .status { background: var(--red); }
+  .inv-card p { font-size: 12px; color: var(--dark-grey); }
+  .inv-card .file {
+    font-family: monospace;
+    background: var(--cream);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    color: var(--navy);
+    display: inline-block;
+    margin-top: 4px;
+  }
+  /* Day-by-day */
+  .day {
+    background: white;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--navy);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .day h3 {
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .day h3 .when {
+    background: var(--navy);
+    color: white;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .day .deliv {
+    background: var(--cream);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    margin-top: 8px;
+    color: var(--navy);
+  }
+  .day .deliv strong { color: var(--green); }
+  /* Decisions table */
+  table.decisions {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  table.decisions th, table.decisions td {
+    border-bottom: 1px solid var(--grey);
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.decisions th {
+    background: var(--cream);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  table.decisions td.q { font-weight: 500; }
+  table.decisions td.who { width: 110px; }
+  /* Dependencies cards */
+  .deps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 800px) {
+    .deps-grid { grid-template-columns: 1fr; }
+  }
+  .deps-card {
+    background: white;
+    border-radius: 8px;
+    padding: 18px;
+    border: 1px solid var(--grey);
+  }
+  .deps-card h3 {
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--cream);
+  }
+  .deps-card ul {
+    list-style: none;
+  }
+  .deps-card li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--grey);
+    font-size: 13px;
+  }
+  .deps-card li:last-child { border-bottom: none; }
+  .deps-card li small {
+    color: var(--dark-grey);
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+  }
+  /* Templates section */
+  .template {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 14px 16px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  .template strong { color: var(--navy); display: block; margin-bottom: 4px; font-size: 14px; }
+  .template em { color: var(--dark-grey); }
+  /* Reset btn */
+  .reset {
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+  @media print {
+    header { background: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { box-shadow: none; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>UNV — Weekend Sprint Playbook</h1>
+  <div class="meta">Nathalie · Sans password Meta jusqu'à lundi 22 juin · Sprint final livraison 29 juin</div>
+  <div class="badges">
+    <span class="badge red">⛔ Meta bloqué 4 jours</span>
+    <span class="badge gold">✅ Tout le reste possible</span>
+    <span class="badge">📋 23 tâches "starter NOW"</span>
+    <span class="badge">📁 9 livrables déjà prêts pour Pedro</span>
+  </div>
+</header>
+
+<main>
+
+<!-- WHAT'S ALREADY READY -->
+<section class="show">
+  <h2>📁 Ce que tu as DÉJÀ à montrer à Pedro</h2>
+  <p class="lead">Inventaire de ce qui est dans ton Drive UNV (créé en mars-mai 2026). Tu peux les ouvrir avec Pedro en réu pour qu'il voie le scope et la vision.</p>
+
+  <div class="inv-grid">
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>UNV_Site_Demo.html</strong></p>
+      <p>Prototype interactif visuel avec Open-Meteo live, GSAP, Lucide icons. Hero · météo · webcam · windspot · calendrier · galerie · comité.</p>
+      <span class="file">~/Drive/UNV/UNV_Site_Demo.html</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>UNV_360_Cockpit.html</strong></p>
+      <p>Cockpit 13 sections (présentation comité). État, diagnostic 8 axes, matrice décision, concurrents, archi, stack, bot, Banana, roadmap.</p>
+      <span class="file">UNV_360_Cockpit.html</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>unv_redesign_preview.html</strong></p>
+      <p>Preview responsive du site refondu, navy/gold/lake palette, toutes les sections.</p>
+      <span class="file">unv_redesign_preview.html</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>UNV_Decision_Interface.html</strong></p>
+      <p>Matrice 60-items votable par le comité avec boutons ✓/✗ et notes.</p>
+      <span class="file">UNV_Decision_Interface.html</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>UNV_DEV_HANDOFF_PEDRO.md/docx/pdf</strong></p>
+      <p>Handoff technique 36KB — mapping des 15 points du cahier de charges → stack → vague → tasks Pedro vs tasks Nathalie.</p>
+      <span class="file">UNV_DEV_HANDOFF_PEDRO.pdf</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>MASTER_AUDIT.md</strong></p>
+      <p>Audit complet 60 problèmes + audit interne WP (Section 12) — la base de tous les fixes.</p>
+      <span class="file">MASTER_AUDIT.md</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>CAHIER_DE_CHARGES_V2.md</strong></p>
+      <p>Analyse multi-angle des 15 points (Banana, stack, espaces privés, etc.) — référence pour les décisions techniques.</p>
+      <span class="file">CAHIER_DE_CHARGES_V2.md</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>UNV_PROPOSITION_PEDRO.md/docx/pdf</strong></p>
+      <p>Proposition formelle 10 sections (Mai 2026, le doc qui a précédé l'offre signée).</p>
+      <span class="file">UNV_PROPOSITION_PEDRO.pdf</span>
+    </div>
+    <div class="inv-card">
+      <h3><span class="status">PRÊT</span></h3>
+      <p><strong>Contrat signé 11 juin</strong></p>
+      <p>Offre Garcan signée CHF 2'800. Le doc référence final qui fait foi du scope.</p>
+      <span class="file">offre_UNV_SiteWeb-AgentIA_11062026_gGARCAN_signed.pdf</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 18px; padding: 12px 16px; background: var(--cream); border-radius: 4px; font-size: 13px; border-left: 3px solid var(--gold);">
+    💡 <strong>Astuce réu :</strong> ouvre <em>UNV_Site_Demo.html</em> en plein écran. Pedro voit le rendu visuel cible en 30 sec, comprend la palette, le ton. Ensuite ouvre le cockpit pour piloter.
+  </div>
+</section>
+
+<!-- WHAT YOU CAN START NOW -->
+<section class="go">
+  <h2>🟢 Ce que tu peux ATTAQUER MAINTENANT (sans Meta)</h2>
+  <p class="lead">23 tâches débloquées. À faire entre maintenant et lundi soir (~3.5 jours de travail). Coche en cliquant.</p>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin: 16px 0 8px;">🅰 LOT COPY (10-12h de travail)</h3>
+  <ul class="check">
+    <li data-key="g1"><span class="box"></span><div class="item"><div class="title">Ton de voix UNV (charte 1 page)</div><div class="desc">Maritime · chaleureux · sobre · 62 ans d'histoire · pas hipster, pas guindé. Tu peux le faire en 1h.</div><div class="meta"><span class="tag tag-eff">1h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g2"><span class="box"></span><div class="item"><div class="title">Copy page Accueil</div><div class="desc">Hero, sous-titre, météo card label, prochains événements teaser, CTA "Devenir membre", section Le club en 1 paragraphe.</div><div class="meta"><span class="tag tag-eff">1.5h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g3"><span class="box"></span><div class="item"><div class="title">Copy page Le Club (histoire 1962, Comité, Avantages, Tarifs)</div><div class="desc">⚠ Tarifs cotisation = en attente Jacques. Mets `[TARIF À CONFIRMER]` en placeholder.</div><div class="meta"><span class="tag tag-eff">2h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g4"><span class="box"></span><div class="item"><div class="title">Copy page Activités + Baptême annuel</div><div class="desc">Liste des activités, descriptifs, tradition du Baptême des bateaux, dates clés.</div><div class="meta"><span class="tag tag-eff">1.5h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g5"><span class="box"></span><div class="item"><div class="title">Copy page Devenir Membre + Bénévolat</div><div class="desc">Conditions, étapes du formulaire 5 étapes, microcopy de chaque étape, bénévolat ouverture non-membres.</div><div class="meta"><span class="tag tag-eff">2h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g6"><span class="box"></span><div class="item"><div class="title">Copy pages techniques (Calendrier, Ports, Contact, Galerie, Actualités)</div><div class="desc">Plus courtes. Microcopy + intro paragraphe + CTAs.</div><div class="meta"><span class="tag tag-eff">2h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g7"><span class="box"></span><div class="item"><div class="title">Emails transactionnels (confirmation adhésion, magic link login, accusé résiliation)</div><div class="desc">Templates wording pour Pedro à intégrer dans WP. 5 emails minimum.</div><div class="meta"><span class="tag tag-eff">1.5h</span><span class="tag tag-now">NOW</span></div></div></li>
+  </ul>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin: 16px 0 8px;">🅱 LOT NLPD (4-5h de travail)</h3>
+  <ul class="check">
+    <li data-key="g8"><span class="box"></span><div class="item"><div class="title">Impressum / Mentions légales complet</div><div class="desc">Allée du Bornan 10A · 1007 Lausanne · Responsable Eric Schmaltz · IDE UNV · Hébergeur Infomaniak (Genève). 1 page A4.</div><div class="meta"><span class="tag tag-eff">45min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g9"><span class="box"></span><div class="item"><div class="title">Politique de confidentialité nLPD</div><div class="desc">Données collectées, finalités, durée conservation, droits d'accès/rectif/effacement, sous-traitants, transferts internationaux, contact DPO informel.</div><div class="meta"><span class="tag tag-eff">2h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g10"><span class="box"></span><div class="item"><div class="title">RAT (Registre Activités de Traitement)</div><div class="desc">Tableau Excel : finalité, base légale, catégories données, destinataires, durée. ~6-8 traitements pour UNV (adhésion, cotisations, événements, photos, etc.)</div><div class="meta"><span class="tag tag-eff">1.5h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g11"><span class="box"></span><div class="item"><div class="title">Bannière cookies wording (4 catégories)</div><div class="desc">Essentiels · Fonctionnels · Analytics · Marketing. Texte clair, opt-in granulaire. Pedro configure Complianz avec ces textes.</div><div class="meta"><span class="tag tag-eff">30min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g12"><span class="box"></span><div class="item"><div class="title">Procédure interne notification violation 72h</div><div class="desc">Process de quoi faire si fuite de données : qui notifier PFPDT, dans quel délai, contenu de la notif. Doc interne 1 page.</div><div class="meta"><span class="tag tag-eff">45min</span><span class="tag tag-now">NOW</span></div></div></li>
+  </ul>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin: 16px 0 8px;">🅲 LOT META TEMPLATES DRAFTS (3-4h)</h3>
+  <p style="font-size: 12px; color: var(--dark-grey); margin: -4px 0 8px;">Tu peux RÉDIGER les templates et les avoir prêts à soumettre dès lundi quand t'as accès Meta. Ça gagne 1-2 jours.</p>
+  <ul class="check">
+    <li data-key="g13"><span class="box"></span><div class="item"><div class="title">Template 1 — Confirmation inscription événement</div><div class="desc">Variables : {nom_event} {date} {lieu}. Ton chaleureux, max 1024 caractères. À pré-formater au format Meta.</div><div class="meta"><span class="tag tag-eff">20min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g14"><span class="box"></span><div class="item"><div class="title">Template 2 — Rappel événement J-7</div><div class="desc">Variables : {nom_event} {date} {heure}. Inclut bouton "Confirmer ma présence".</div><div class="meta"><span class="tag tag-eff">15min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g15"><span class="box"></span><div class="item"><div class="title">Template 3 — Rappel événement J-1</div><div class="desc">Plus court, plus informatif (météo, parking, contact urgence).</div><div class="meta"><span class="tag tag-eff">15min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g16"><span class="box"></span><div class="item"><div class="title">Template 4 — Alerte trésorier cotisations en retard</div><div class="desc">Variables : {nb_retard} {total_chf}. Format admin, factuel.</div><div class="meta"><span class="tag tag-eff">15min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g17"><span class="box"></span><div class="item"><div class="title">Template 5 — Nouveau événement publié (notification membres)</div><div class="desc">Annonce d'un nouvel event au calendrier. Avec lien et CTA.</div><div class="meta"><span class="tag tag-eff">15min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g18"><span class="box"></span><div class="item"><div class="title">Template 6 — Magic link login (auth WordPress)</div><div class="desc">Envoi du lien de connexion sans mot de passe. 1-time use.</div><div class="meta"><span class="tag tag-eff">10min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g19"><span class="box"></span><div class="item"><div class="title">Templates 7-10 — Bot button-driven menus</div><div class="desc">Menu principal · "Prochain événement" · "Ma cotisation est-elle payée ?" · "Contacter le comité" — chaque template avec sa logique conversationnelle.</div><div class="meta"><span class="tag tag-eff">1.5h</span><span class="tag tag-now">NOW</span></div></div></li>
+  </ul>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin: 16px 0 8px;">🅳 LOT VISUELS IA (3-4h)</h3>
+  <ul class="check">
+    <li data-key="g20"><span class="box"></span><div class="item"><div class="title">3 visuels héros candidats (DALL·E / Midjourney / Higgsfield)</div><div class="desc">Prompts : "Lac Léman, voilier en lever de soleil, atmosphère sereine, palette navy-gold, photographie cinématique 16:9". À montrer à Eric/Jacques pour validation.</div><div class="meta"><span class="tag tag-eff">1h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g21"><span class="box"></span><div class="item"><div class="title">10 placeholders galerie (IA stylisée + sourcing libre)</div><div class="desc">Catégories : Régates · Événements · Port · Bateaux. Pendant que Jacques fournit les vraies photos.</div><div class="meta"><span class="tag tag-eff">1.5h</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g22"><span class="box"></span><div class="item"><div class="title">Bannière Open Graph (partage social)</div><div class="desc">1200×630 px avec logo UNV + tagline + visuel Léman. Sera réutilisée sur toutes les pages.</div><div class="meta"><span class="tag tag-eff">30min</span><span class="tag tag-now">NOW</span></div></div></li>
+    <li data-key="g23"><span class="box"></span><div class="item"><div class="title">Favicon optimisé (32×32 + 192×192 + Apple Touch 180×180)</div><div class="desc">À partir du logo UNV. Le favicon actuel est mal nommé et mal cropé.</div><div class="meta"><span class="tag tag-eff">15min</span><span class="tag tag-now">NOW</span></div></div></li>
+  </ul>
+</section>
+
+<!-- WHAT'S BLOCKED -->
+<section class="wait">
+  <h2>🔴 Ce qui ATTEND lundi (Meta password)</h2>
+  <p class="lead">Tu ne peux PAS faire ça avant d'avoir le password Meta. Tout est prêt à exécuter dès lundi matin.</p>
+  <ul class="check">
+    <li data-key="w1"><span class="box"></span><div class="item"><div class="title">Création Meta Business Manager UNV</div><div class="desc">business.facebook.com → New Business → UNV. 10 min de setup.</div><div class="meta"><span class="tag tag-blocked">BLOCKED until Lun</span></div></div></li>
+    <li data-key="w2"><span class="box"></span><div class="item"><div class="title">Vérification entreprise UNV chez Meta</div><div class="desc">Upload Statuts + carte ID Eric + mandat. Délai Meta : 3-5 jours ouvrés.</div><div class="meta"><span class="tag tag-blocked">BLOCKED until Lun</span></div></div></li>
+    <li data-key="w3"><span class="box"></span><div class="item"><div class="title">Soumission templates Meta pour pré-approbation</div><div class="desc">10 templates × 24-48h chacun. À soumettre en batch.</div><div class="meta"><span class="tag tag-blocked">BLOCKED until Lun</span></div></div></li>
+    <li data-key="w4"><span class="box"></span><div class="item"><div class="title">Setup compte Wassenger + numéro WhatsApp Business</div><div class="desc">Dépend de la vérification Meta BM.</div><div class="meta"><span class="tag tag-blocked">BLOCKED until Lun</span></div></div></li>
+    <li data-key="w5"><span class="box"></span><div class="item"><div class="title">Câblage final scénarios Make.com (avec auth Wassenger)</div><div class="desc">Tu peux DRAFT les scénarios sur papier maintenant, câblage live = lundi+.</div><div class="meta"><span class="tag tag-blocked">BLOCKED until Lun</span></div></div></li>
+  </ul>
+  <div style="margin-top: 12px; padding: 12px 16px; background: var(--cream); border-radius: 4px; font-size: 12px; border-left: 3px solid var(--orange);">
+    ⚡ <strong>Mitigation :</strong> Si vérif Meta > 5 jours ouvrés (= jeudi 25 juin), bascule sur Twilio WhatsApp en plan B. Moins clean mais plus rapide. À discuter avec Pedro en décision #4 ci-dessous.
+  </div>
+</section>
+
+<!-- DECISIONS TODAY -->
+<section class="dec">
+  <h2>⚖️ Décisions à FERMER aujourd'hui en réu Pedro</h2>
+  <p class="lead">10 décisions ouvertes à clore EN RÉUNION. Notez les réponses dans le doc partagé.</p>
+  <table class="decisions">
+    <thead>
+      <tr><th style="width:30px">#</th><th>Question</th><th class="who">Owner</th><th>Action attendue</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="q"><strong>Webhook WP ↔ Wassenger : qui code ?</strong><br><small style="color:var(--dark-grey)">Côté WP = Pedro. Côté Wassenger config + secret = toi. Mais qui code la couche middleware Make.com qui parle aux deux ?</small></td><td><span class="tag tag-pedro">Pedro</span> + <span class="tag tag-nat">Nat</span></td><td>Décider : Pedro expose REST endpoint, Nathalie câble Make.com par-dessus.</td></tr>
+      <tr><td>2</td><td class="q"><strong>Compte Make.com : ouvert au nom de qui ?</strong><br><small style="color:var(--dark-grey)">UNV (info@unv.ch) ? Nathalie ? Pedro ? Impact = qui paye si dépassement palier gratuit.</small></td><td><span class="tag tag-nat">Nat</span></td><td>Recommandation : ouvrir avec `info@unv.ch` pour que ça appartienne à UNV à terme.</td></tr>
+      <tr><td>3</td><td class="q"><strong>Rythme daily sync : à quelle heure et sur quel canal ?</strong><br><small style="color:var(--dark-grey)">Recommandation cockpit : WhatsApp groupe à 3, daily écrit 8h00, live visio mar+ven 12h.</small></td><td><span class="tag tag-pedro">Pedro</span> + <span class="tag tag-nat">Nat</span></td><td>Décider HEURE précise + créer le groupe WhatsApp pendant la réu.</td></tr>
+      <tr><td>4</td><td class="q"><strong>Plan B si Meta vérif > 5 jours ouvrés ?</strong><br><small style="color:var(--dark-grey)">Bascule Twilio WhatsApp (payant ~CHF 0.005/msg) OU on attend.</small></td><td><span class="tag tag-pedro">Pedro</span> + <span class="tag tag-nat">Nat</span></td><td>Décider trigger : "si vérif pas reçue le 25 juin midi → on bascule Twilio".</td></tr>
+      <tr><td>5</td><td class="q"><strong>Gallery plugin : Modula Lite (gratuit) ou Envira Pro (CHF 89/an) ?</strong><br><small style="color:var(--dark-grey)">Modula Lite suffit MVP. Envira utile si Jacques veut watermark + albums auto.</small></td><td><span class="tag tag-pedro">Pedro</span></td><td>Décider sur le plugin : si budget buffer dispo, Envira. Sinon Modula.</td></tr>
+      <tr><td>6</td><td class="q"><strong>Numéro WhatsApp Business : acheté via Wassenger ou fixe Club House ?</strong><br><small style="color:var(--dark-grey)">Dépend de la réponse d'Eric sur l'existence d'un fixe propre au club.</small></td><td><span class="tag tag-comite">Eric</span> + <span class="tag tag-nat">Nat</span></td><td>Confirmer en réu : si fixe Club House existe, Eric autorise par écrit. Sinon achat via Wassenger.</td></tr>
+      <tr><td>7</td><td class="q"><strong>URL webcam Vidy : laquelle on intègre ?</strong><br><small style="color:var(--dark-grey)">Cam Club House existante ou webcam publique SDIS/Lausanne ?</small></td><td><span class="tag tag-comite">Jacques</span></td><td>SMS direct à Jacques en réu pour décision rapide.</td></tr>
+      <tr><td>8</td><td class="q"><strong>Spreadshop boutique : on ouvre en S2 ou post-MEP ?</strong><br><small style="color:var(--dark-grey)">Si ouvert en S2 = page boutique fonctionnelle J1. Si post-MEP = lien vide à J1.</small></td><td><span class="tag tag-pedro">Pedro</span> + <span class="tag tag-nat">Nat</span></td><td>Recommandation : page sas vers Spreadshop post-MEP. Pas critique J1.</td></tr>
+      <tr><td>9</td><td class="q"><strong>13 brouillons articles : tous publiés ou triés ?</strong><br><small style="color:var(--dark-grey)">Audit dit qu'il y a des doublons (Baptême 2024 ×2, Vide Bateau ×2).</small></td><td><span class="tag tag-nat">Nat</span></td><td>Nathalie fait le tri ce weekend. Pedro publie les retenus en S1.</td></tr>
+      <tr><td>10</td><td class="q"><strong>Wireframes des espaces privés membre+comité : qui les fait ?</strong><br><small style="color:var(--dark-grey)">Pedro suit shadcn-style ou Nathalie fait des wireframes Figma rapides ?</small></td><td><span class="tag tag-pedro">Pedro</span></td><td>Recommandation : Pedro suit les patterns Paid Memberships Pro out-of-the-box. Pas de Figma nécessaire MVP.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- DEPENDENCIES -->
+<section class="deps">
+  <h2>🔗 Dépendances : qui livre à qui</h2>
+  <div class="deps-grid">
+    <div class="deps-card">
+      <h3>🛠️ Ce que tu attends de PEDRO</h3>
+      <ul>
+        <li>
+          <strong>Confirmation que ticket Infomaniak est ouvert</strong>
+          <small>D'ici ce soir 18 juin. Bloque tout son S1 si pas fait.</small>
+        </li>
+        <li>
+          <strong>URL staging WordPress avec Kadence en place</strong>
+          <small>D'ici jeudi 18 juin soir. Te permet de tester ton copy en live.</small>
+        </li>
+        <li>
+          <strong>10 pages skeleton créées (slugs propres)</strong>
+          <small>D'ici samedi 20 juin. Tu peux remplir avec ton copy directement.</small>
+        </li>
+        <li>
+          <strong>URL webhook WP + secret signature</strong>
+          <small>D'ici lundi 22 juin. Te permet de câbler Make.com dès que tu as Meta.</small>
+        </li>
+        <li>
+          <strong>Endpoint REST `/wp-json/unv/v1/dues/{member_id}` exposé</strong>
+          <small>D'ici mardi 23 juin. Pour bot "Ma cotisation".</small>
+        </li>
+        <li>
+          <strong>Compte test membre + comité en staging</strong>
+          <small>D'ici mardi 23 juin. Pour tester les rôles et les espaces privés avant validation comité.</small>
+        </li>
+      </ul>
+    </div>
+    <div class="deps-card">
+      <h3>🎨 Ce que PEDRO attend de toi</h3>
+      <ul>
+        <li>
+          <strong>Copy 10 pages publiques</strong>
+          <small>Deadline : vendredi 20 juin soir. Bloque son intégration Kadence S2.</small>
+        </li>
+        <li>
+          <strong>Impressum + Politique conf + bannière cookies wording</strong>
+          <small>Deadline : samedi 21 juin. Bloque la conformité nLPD.</small>
+        </li>
+        <li>
+          <strong>Visuels héros + galerie placeholders</strong>
+          <small>Deadline : samedi 21 juin. Sinon le site est nu à J1.</small>
+        </li>
+        <li>
+          <strong>13 brouillons articles relus/finalisés</strong>
+          <small>Deadline : dimanche 22 juin. Il les publie tous d'un coup.</small>
+        </li>
+        <li>
+          <strong>Microcopy formulaires (5 étapes adhésion, réservation Club House, bénévolat, résiliation)</strong>
+          <small>Deadline : lundi 23 juin. Bloque les formulaires Fluent Forms.</small>
+        </li>
+        <li>
+          <strong>Templates Meta APPROUVÉS</strong>
+          <small>Deadline : mercredi 24 juin. Lui faut juste l'URL Wassenger + secret pour brancher webhook.</small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DAY BY DAY -->
+<section class="daybyday">
+  <h2>📆 Plan jour-par-jour vendredi → lundi</h2>
+  <p class="lead">Si tu démarres maintenant à 14h30 le lundi 16 juin (après réu Pedro), voici ton roadmap.</p>
+
+  <div class="day">
+    <h3>Lundi 16 juin <span class="when">Aujourd'hui · Soir</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Ton de voix + Impressum + Bannière cookies wording — <em>déposés dans Drive UNV</em>
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>Après réu Pedro (16h30+) : 30 min de débrief, ranger le doc partagé</li>
+      <li>17h-19h : ton de voix UNV + brief style → 1 page</li>
+      <li>20h-22h : Impressum complet + bannière cookies wording → 2 livrables</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Mardi 17 juin <span class="when">Jour complet</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Politique de confidentialité nLPD + RAT + Copy pages Accueil + Le Club
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>9h-12h : Politique nLPD complète (~2h) + RAT Excel (~1h)</li>
+      <li>13h-15h : Copy Accueil</li>
+      <li>15h-18h : Copy Le Club (histoire + comité + avantages + tarifs avec placeholders)</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Mercredi 18 juin <span class="when">Jour complet</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Copy pages Activités + Devenir Membre + Bénévolats. Visuels héros candidats générés.
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>9h-12h : Copy Activités + Baptême + page Devenir Membre (5 étapes)</li>
+      <li>13h-15h : Génération 3 visuels héros IA (Midjourney/DALL-E)</li>
+      <li>15h-17h : Copy Bénévolats + page Contact</li>
+      <li>17h : envoi de l'avancée à Pedro (sync daily)</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Jeudi 19 juin <span class="when">Jour complet</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Copy pages restantes + Emails transactionnels + Templates Meta DRAFTS 1-6
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>9h-12h : Copy Galerie + Calendrier + Ports du Léman + Actualités (intros)</li>
+      <li>13h-15h : Emails transactionnels (5 emails minimum)</li>
+      <li>15h-17h : Templates Meta drafts 1-6 (formats prêts à submit lundi)</li>
+      <li>17h : sync daily Pedro</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Vendredi 20 juin <span class="when">Jour complet</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Templates Meta drafts 7-10 + Logique conversationnelle bot + 10 placeholders galerie + 13 brouillons triés
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>9h-12h : Templates Meta drafts 7-10 (bot menus) + logique conversationnelle complète</li>
+      <li>13h-15h : 10 placeholders galerie IA + OG banner + favicon</li>
+      <li>15h-17h : Tri + finalisation des 13 brouillons articles existants</li>
+      <li>17h : Livraison à Pedro de TOUT (copy 10 pages + nLPD + visuels)</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Samedi 21 juin <span class="when">Demi-journée</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Procédures internes nLPD + DPA pré-remplis + Tri 13 brouillons (suite/fin) + Microcopy formulaires
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>9h-12h : Procédure violation 72h + DPA pré-remplis fournisseurs (Infomaniak, Cloudflare, Wassenger, Make, Google, Spreadshirt)</li>
+      <li>13h-15h : Microcopy formulaires (5 étapes adhésion, réservation, bénévolat, résiliation, contact)</li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <h3>Dimanche 22 juin <span class="when">Off / rattrapage</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Tampon de sécurité. Rattrapages, relecture, polish.
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>Si t'es en retard : rattrapage</li>
+      <li>Si t'es à jour : relecture + polish + finalisation guide PDF utilisateur (draft)</li>
+    </ul>
+  </div>
+
+  <div class="day" style="border-left-color: var(--gold);">
+    <h3>Lundi 23 juin — Meta unlocked 🔓 <span class="when">Jour complet</span></h3>
+    <div class="deliv">
+      <strong>Livrable :</strong> Meta Business Manager créé · UNV vérif lancée · 10 templates soumis · Wassenger ouvert
+    </div>
+    <ul style="margin-top: 10px; padding-left: 24px; font-size: 13px;">
+      <li>9h-10h : Création Meta Business Manager UNV + ajout page FB</li>
+      <li>10h-11h : Lancement vérification entreprise (upload statuts + ID Eric + mandat)</li>
+      <li>11h-13h : Soumission des 10 templates Meta drafts → file pré-approbation</li>
+      <li>14h-16h : Ouverture compte Wassenger + numéro WhatsApp Business validé</li>
+      <li>16h-18h : Draft scénarios Make.com (sans connecter encore Wassenger qui attend vérif Meta)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- READY-TO-USE STARTERS -->
+<section>
+  <h2>🚀 Starters prêts à utiliser maintenant</h2>
+  <p class="lead">Boilerplates pour démarrer chaque livrable. Copy → adapter → poster dans le Drive.</p>
+
+  <div class="template">
+    <strong>Ton de voix UNV — squelette à remplir</strong>
+    <em>Personnalité : maritime traditionnelle, chaleureuse, ancrée. Pas hipster, pas guindée.<br>
+    Mots à privilégier : convivial · communauté · port · navigation · lac · Léman · tradition · 1962<br>
+    Mots à éviter : engaging · digital · solution · synergie · disrupter<br>
+    Tu / Vous : <strong>Vous</strong> (respect de l'âge moyen du club) sauf microcopy CTA mobile où "Tu" peut faire plus chaleureux<br>
+    Niveau de formalité : 6/10 (poli mais pas guindé)</em>
+  </div>
+
+  <div class="template">
+    <strong>Impressum — squelette</strong>
+    <em>Union Nautique de Vidy<br>
+    Association à but non lucratif fondée en 1962<br>
+    Siège social : Allée du Bornan 10A, 1007 Lausanne, Suisse<br>
+    IDE / N° entreprise : [à confirmer Eric]<br>
+    Responsable de publication : Eric Schmaltz, Président<br>
+    Contact : info@unv.ch · [n° fixe Club House à confirmer]<br>
+    Hébergement : Infomaniak Network SA · Rue Eugène-Marziano 25 · 1227 Les Acacias-Genève · Suisse · infomaniak.com<br>
+    Crédits : Conception et développement par Garcan Digital (Pedro Garcia Candido, Les Cullayes) · Stratégie et contenu par HyperAgency (Nathalie Jungi)<br>
+    Droit applicable : droit suisse — for juridique à Lausanne (VD)</em>
+  </div>
+
+  <div class="template">
+    <strong>Politique de confidentialité — sections à couvrir</strong>
+    <em>1. Identité du responsable de traitement (Eric Schmaltz, UNV)<br>
+    2. Données collectées (cat. 1 visiteurs site / cat. 2 membres / cat. 3 candidats adhésion)<br>
+    3. Finalités (gestion adhésion · cotisations · événements · communications · obligations légales)<br>
+    4. Base légale (consentement art. 6 · exécution contrat art. 31 · obligation légale)<br>
+    5. Durées de conservation (3 ans après fin adhésion sauf compta = 10 ans)<br>
+    6. Destinataires (comité · trésorier · sous-traitants techniques listés)<br>
+    7. Sous-traitants + transferts (Infomaniak CH · Cloudflare US · Wassenger ES · Make UK · Google US · Spreadshirt DE)<br>
+    8. Droits des personnes (accès · rectif · effacement · opposition · portabilité)<br>
+    9. Procédure d'exercice des droits (email info@unv.ch · réponse 30 j max)<br>
+    10. Réclamation : PFPDT (Préposé Fédéral à la Protection des Données et à la Transparence) · adresse postale<br>
+    11. Cookies → renvoi vers bannière granulaire<br>
+    12. Mineurs (UNV juniors) → consentement parental requis<br>
+    13. Date dernière mise à jour · historique des versions</em>
+  </div>
+
+  <div class="template">
+    <strong>Hero Accueil — proposition 1</strong>
+    <em>« <strong>Un endroit convivial au bord de notre magnifique Lac Léman.</strong> »<br>
+    Depuis 1962, l'Union Nautique de Vidy rassemble les passionnés de navigation au Port de Vidy, à Lausanne. Club House, terrasse, régates, formations, événements — venez découvrir notre communauté.<br>
+    <strong>CTA :</strong> [Devenir membre] · [Voir les prochains événements]</em>
+  </div>
+
+  <div class="template">
+    <strong>Template Meta WhatsApp #2 — Rappel événement J-7 (format exact à submit)</strong>
+    <em>Catégorie : UTILITY · Langue : fr<br>
+    Nom : <strong>event_reminder_j7</strong><br>
+    Corps :<br>
+    « Bonjour {{1}},<br><br>
+    Petit rappel : l'événement *{{2}}* aura lieu dans 7 jours, le {{3}} à {{4}}.<br><br>
+    Vous êtes inscrit·e — au plaisir de vous y voir !<br><br>
+    Union Nautique de Vidy »<br><br>
+    Variables : {{1}}=prénom · {{2}}=nom event · {{3}}=date · {{4}}=heure<br>
+    Footer : Pour vous désinscrire des notifications, répondez STOP</em>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section>
+  <h2>📋 Récap actions critiques</h2>
+  <ul class="check">
+    <li data-key="r1"><span class="box"></span><div class="item"><div class="title">PENDANT LA RÉU : fermer 10 décisions ouvertes</div></div></li>
+    <li data-key="r2"><span class="box"></span><div class="item"><div class="title">PENDANT LA RÉU : créer groupe WhatsApp à 3 + caler horaire daily sync</div></div></li>
+    <li data-key="r3"><span class="box"></span><div class="item"><div class="title">PENDANT LA RÉU : Pedro confirme qu'il ouvre le ticket Infomaniak ce soir</div></div></li>
+    <li data-key="r4"><span class="box"></span><div class="item"><div class="title">CE SOIR : ton de voix + Impressum + bannière cookies wording → Drive</div></div></li>
+    <li data-key="r5"><span class="box"></span><div class="item"><div class="title">MARDI : Politique nLPD + RAT + Accueil + Le Club</div></div></li>
+    <li data-key="r6"><span class="box"></span><div class="item"><div class="title">VENDREDI 20 : livraison Pedro de TOUT le copy + nLPD + visuels</div></div></li>
+    <li data-key="r7"><span class="box"></span><div class="item"><div class="title">LUNDI 23 : password Meta reçu → 9h sharp démarrer la chaîne Meta</div></div></li>
+  </ul>
+  <button class="reset" onclick="if(confirm('Reset all checkboxes?')){localStorage.removeItem('unv-weekend-state');location.reload();}">Reset tous les statuts</button>
+</section>
+
+</main>
+
+<script>
+  const STORAGE_KEY = 'unv-weekend-state';
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) {}
+
+  document.querySelectorAll('ul.check li[data-key]').forEach(li => {
+    const key = li.dataset.key;
+    if (state[key]) li.classList.add('done');
+    li.addEventListener('click', () => {
+      const isDone = li.classList.toggle('done');
+      state[key] = isDone;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    });
+  });
+</script>
+
+</body>
+</html>
