@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNV — Brand Book v1 · Union Nautique de Vidy</title>
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --lake: #2E7FA0;
+    --red: #D32F2F;
+    --gold: #C8A44A;
+    --cream: #F5F0E8;
+    --light: #ffffff;
+    --grey: #e8e8e8;
+    --dark-grey: #6b6b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.6;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, .display { font-family: 'Bodoni Moda', serif; font-weight: 700; letter-spacing: -0.5px; }
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, #122d54 100%);
+    color: var(--cream);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -100px;
+    width: 400px; height: 400px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: var(--lake);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .cover-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; width: 100%; }
+  .eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .cover h1 {
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+  .cover .tagline {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-size: 20px;
+    opacity: 0.85;
+    margin-bottom: 32px;
+    max-width: 600px;
+    line-height: 1.4;
+  }
+  .cover .meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    opacity: 0.7;
+    padding-top: 28px;
+    border-top: 1px solid rgba(245, 240, 232, 0.2);
+  }
+  /* Main */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 32px;
+  }
+  section {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 40px 48px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 4px rgba(11, 31, 58, 0.08);
+  }
+  section h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  section h2::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 14px;
+  }
+  section .section-lead {
+    font-size: 16px;
+    color: var(--dark-grey);
+    margin-bottom: 32px;
+    max-width: 700px;
+    line-height: 1.55;
+  }
+  section h3 {
+    font-size: 20px;
+    color: var(--navy);
+    margin: 28px 0 12px;
+  }
+  p { margin-bottom: 14px; }
+  /* Brand essence */
+  .essence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .essence-card {
+    background: var(--cream);
+    padding: 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--gold);
+  }
+  .essence-card h4 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--lake);
+    margin-bottom: 8px;
+  }
+  .essence-card p { font-size: 14px; color: var(--navy); margin: 0; line-height: 1.5; }
+  /* Colors */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .color-swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--grey);
+  }
+  .swatch {
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    color: white;
+    font-weight: 600;
+  }
+  .swatch.cream-sw { color: var(--navy); }
+  .swatch.gold-sw { color: var(--navy); }
+  .color-info {
+    padding: 14px 16px;
+    background: white;
+    font-size: 12px;
+  }
+  .color-info .name { font-weight: 700; color: var(--navy); display: block; margin-bottom: 4px; }
+  .color-info .hex { font-family: monospace; color: var(--dark-grey); display: block; margin-bottom: 2px; }
+  .color-info .role { color: var(--dark-grey); font-size: 11px; }
+  .color-usage {
+    background: var(--cream);
+    padding: 16px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 18px;
+    color: var(--navy);
+  }
+  .color-usage strong { color: var(--lake); }
+  /* Typo */
+  .typo-spec {
+    background: var(--cream);
+    padding: 32px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+  .typo-spec .display-demo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .typo-spec .body-demo {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+  .typo-spec .specs { display: flex; gap: 24px; font-size: 12px; color: var(--dark-grey); margin-top: 12px; }
+  /* Typography scale */
+  .type-scale {
+    display: grid;
+    grid-template-columns: 80px 1fr 200px;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--grey);
+    font-size: 14px;
+  }
+  .type-scale .size { font-family: monospace; color: var(--dark-grey); }
+  .type-scale .example { font-weight: 600; }
+  .type-scale .use { color: var(--dark-grey); font-size: 12px; }
+  .h1-demo { font-family: 'Bodoni Moda', serif; font-size: 40px; line-height: 1.1; }
+  .h2-demo { font-family: 'Bodoni Moda', serif; font-size: 28px; line-height: 1.15; }
+  .h3-demo { font-family: 'Bodoni Moda', serif; font-size: 20px; line-height: 1.2; }
+  .lead-demo { font-size: 18px; }
+  .body-demo-row { font-size: 16px; }
+  .small-demo { font-size: 13px; }
+  .micro-demo { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  /* Voice */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 700px) { .voice-grid { grid-template-columns: 1fr; } }
+  .voice-card {
+    padding: 24px;
+    border-radius: 8px;
+  }
+  .voice-card.do {
+    background: #e8f5e9;
+    border-left: 4px solid #2e7d32;
+  }
+  .voice-card.dont {
+    background: #ffebee;
+    border-left: 4px solid var(--red);
+  }
+  .voice-card h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .voice-card.do h4 { color: #2e7d32; }
+  .voice-card.dont h4 { color: var(--red); }
+  .voice-card ul { list-style: none; padding: 0; }
+  .voice-card li { padding: 6px 0; font-size: 14px; }
+  .voice-card li::before { content: '— '; color: var(--dark-grey); }
+  /* Microcopy */
+  .microcopy-example {
+    background: var(--cream);
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--gold);
+  }
+  .microcopy-example .ctx { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--dark-grey); margin-bottom: 6px; font-weight: 600; }
+  .microcopy-example .text { font-size: 15px; color: var(--navy); font-style: italic; }
+  /* Stakeholders */
+  .stake-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .stake {
+    background: var(--cream);
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .stake strong { display: block; font-size: 15px; color: var(--navy); margin-bottom: 4px; font-family: 'Bodoni Moda', serif; font-weight: 600; }
+  .stake .role { color: var(--lake); font-size: 12px; margin-bottom: 8px; font-weight: 600; }
+  .stake .contact { font-family: monospace; font-size: 11px; color: var(--dark-grey); }
+  /* Icon principles */
+  .icon-rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .icon-card {
+    text-align: center;
+    background: var(--cream);
+    padding: 20px 12px;
+    border-radius: 8px;
+  }
+  .icon-card .icon-display {
+    font-size: 32px;
+    color: var(--lake);
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .icon-card .icon-label {
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: 600;
+  }
+  /* Photo principles */
+  .photo-principles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 700px) { .photo-principles { grid-template-columns: 1fr; } }
+  .photo-card {
+    background: var(--cream);
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .photo-card h4 { font-family: 'Inter', sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--lake); margin-bottom: 10px; }
+  .photo-card ul { list-style: none; padding: 0; font-size: 13px; }
+  .photo-card li { padding: 4px 0; }
+  .photo-card li::before { content: '✓ '; color: #2e7d32; font-weight: bold; }
+  .photo-card.avoid li::before { content: '✗ '; color: var(--red); }
+  /* Application */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+  }
+  .app-card {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 24px;
+    border-radius: 8px;
+  }
+  .app-card h4 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--gold);
+  }
+  .app-card p { font-size: 13px; opacity: 0.85; margin: 0; line-height: 1.5; }
+  /* Logo placeholder */
+  .logo-mark {
+    background: var(--cream);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px dashed var(--gold);
+  }
+  .logo-mark .logo-text {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    color: var(--navy);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .logo-mark .logo-sub {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--lake);
+    font-weight: 600;
+  }
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 600px) { .logo-grid { grid-template-columns: 1fr; } }
+  .logo-variant {
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .logo-variant.dark { background: var(--navy); color: var(--cream); }
+  .logo-variant.cream { background: var(--cream); color: var(--navy); }
+  .logo-variant.gold { background: var(--gold); color: var(--navy); }
+  .logo-variant.lake { background: var(--lake); color: var(--cream); }
+  .logo-variant .lt {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .logo-variant .ls { font-size: 9px; text-transform: uppercase; letter-spacing: 2.5px; }
+  /* Footer */
+  footer {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 40px 32px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  footer p { font-size: 13px; opacity: 0.7; margin: 0; }
+  footer .footer-mark { font-family: 'Bodoni Moda', serif; font-size: 24px; color: var(--gold); margin-bottom: 8px; }
+  /* Decorative */
+  .wave-divider {
+    height: 30px;
+    background: linear-gradient(180deg, transparent, var(--cream));
+    margin: -20px -32px 24px;
+  }
+  @media print {
+    section { box-shadow: none; page-break-inside: avoid; }
+    .cover { min-height: 50vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="eyebrow">⚓ Brand Identity Book · v1.0 · Juin 2026</div>
+    <h1>Union Nautique<br>de Vidy</h1>
+    <div class="tagline">« Un endroit convivial au bord de notre magnifique Lac Léman »</div>
+    <div class="meta">
+      <span>Fondée en 1962 · Port de Vidy · Lausanne</span>
+      <span>·</span>
+      <span>Direction créative — HyperAgency (Nathalie Jungi)</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- BRAND ESSENCE -->
+<section>
+  <h2>Notre essence</h2>
+  <p class="section-lead">Avant de parler couleurs et typographie, il faut savoir ce qu'on incarne. L'UNV n'est pas un yacht club exclusif — c'est un port de famille au bord du lac, ancré depuis 62 ans dans le tissu lausannois.</p>
+
+  <div class="essence-grid">
+    <div class="essence-card">
+      <h4>Mission</h4>
+      <p>Faire vivre la passion nautique en communauté, transmettre la tradition lacustre lémanique, offrir un Club House accueillant face au lac.</p>
+    </div>
+    <div class="essence-card">
+      <h4>Héritage</h4>
+      <p>62 ans d'histoire continue. Une des plus anciennes associations nautiques de Vidy. Tradition, ancrage, continuité.</p>
+    </div>
+    <div class="essence-card">
+      <h4>Promesse</h4>
+      <p>La convivialité avant tout. Pas d'élitisme. Le lac est à tout le monde, le club aussi.</p>
+    </div>
+    <div class="essence-card">
+      <h4>Audience cœur</h4>
+      <p>Navigateurs amateurs et passionnés · familles locales · personnes 50+ qui veulent un lieu de respiration · juniors en formation.</p>
+    </div>
+  </div>
+
+  <h3>Valeurs cardinales</h3>
+  <p style="font-size: 14px;"><strong style="color: var(--lake);">CONVIVIALITÉ</strong> — Le mot officiel du club. Pas guindé, pas froid, pas business. On accueille, on prend le temps. <br>
+  <strong style="color: var(--lake);">ANCRAGE</strong> — 1962, Port de Vidy, Club House physique : on est là, on reste là. <br>
+  <strong style="color: var(--lake);">TRANSMISSION</strong> — Formation à la navigation, juniors, savoirs partagés entre membres expérimentés et nouveaux. <br>
+  <strong style="color: var(--lake);">RESPECT DU LAC</strong> — Le Léman au centre, écosystème respecté, sécurité avant tout (parité avec Sauvetage d'Ouchy).</p>
+</section>
+
+<!-- LOGO SYSTEM -->
+<section>
+  <h2>Le logo</h2>
+  <p class="section-lead">Le logo officiel UNV existe et reste verrouillé. Cette section documente son usage et ses variantes.</p>
+
+  <div class="logo-mark">
+    <div class="logo-text">UNV</div>
+    <div class="logo-sub">Union Nautique de Vidy · 1962</div>
+    <p style="font-size: 11px; color: var(--dark-grey); margin-top: 18px; font-style: italic;">Placeholder — le logo officiel actuel (téléchargé dans <code>assets/logo-unv.png</code>) sera substitué ici. Une version SVG haute résolution est à demander à Eric Schmaltz.</p>
+  </div>
+
+  <h3>Variantes d'application</h3>
+  <div class="logo-grid">
+    <div class="logo-variant dark"><div class="lt">UNV</div><div class="ls">Sur navy · primary</div></div>
+    <div class="logo-variant cream"><div class="lt">UNV</div><div class="ls">Sur cream · papier</div></div>
+    <div class="logo-variant gold"><div class="lt">UNV</div><div class="ls">Sur or · premium</div></div>
+    <div class="logo-variant lake"><div class="lt">UNV</div><div class="ls">Sur lac · digital</div></div>
+  </div>
+
+  <h3>Règles d'usage</h3>
+  <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
+    <li><strong>Espace de garde minimum :</strong> hauteur d'un U autour du logo, jamais moins.</li>
+    <li><strong>Taille minimum :</strong> 32px de hauteur en web · 12mm en print.</li>
+    <li><strong>Ne jamais :</strong> étirer, déformer, faire pivoter, changer les couleurs hors palette officielle, mettre une ombre portée, ajouter un effet 3D.</li>
+    <li><strong>Sur photo :</strong> uniquement sur une zone calme avec un overlay navy 30% si lisibilité compromise.</li>
+    <li><strong>Toujours accompagner</strong> de la mention « Fondée en 1962 » dans les contextes officiels (lettre, contrat, communiqué).</li>
+  </ul>
+</section>
+
+<!-- COULEURS -->
+<section>
+  <h2>Palette</h2>
+  <p class="section-lead">Cinq couleurs codifient l'identité UNV. Trois sont fondamentales (navy, lake, cream) et constituent 80% du visuel. Deux sont des accents (red, gold) à utiliser avec parcimonie.</p>
+
+  <div class="palette">
+    <div class="color-swatch">
+      <div class="swatch" style="background: #0B1F3A;">Navy</div>
+      <div class="color-info">
+        <span class="name">Navy</span>
+        <span class="hex">#0B1F3A · RGB 11/31/58</span>
+        <span class="role">Primary · backgrounds · texte sur cream · header</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch" style="background: #2E7FA0;">Lake</div>
+      <div class="color-info">
+        <span class="name">Lake</span>
+        <span class="hex">#2E7FA0 · RGB 46/127/160</span>
+        <span class="role">Secondary · liens · accents · icons · état actif</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch cream-sw" style="background: #F5F0E8;">Cream</div>
+      <div class="color-info">
+        <span class="name">Cream</span>
+        <span class="hex">#F5F0E8 · RGB 245/240/232</span>
+        <span class="role">Backgrounds · papier · sections claires · cards</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch gold-sw" style="background: #C8A44A;">Gold</div>
+      <div class="color-info">
+        <span class="name">Gold</span>
+        <span class="hex">#C8A44A · RGB 200/164/74</span>
+        <span class="role">Accent premium · CTAs · badges · highlights rares</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch" style="background: #D32F2F;">Red</div>
+      <div class="color-info">
+        <span class="name">Red</span>
+        <span class="hex">#D32F2F · RGB 211/47/47</span>
+        <span class="role">Ancre / maritime alert · urgent · jamais comme couleur dominante</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="color-usage">
+    <strong>Ratio d'utilisation recommandé :</strong> 50% cream · 25% navy · 15% lake · 7% gold · 3% red. La règle : si tu doutes, c'est probablement trop. Le gold s'utilise comme un bouton ou un accent ponctuel, jamais en aplat.
+  </div>
+
+  <h3>Couleurs fonctionnelles (UI uniquement)</h3>
+  <div class="palette" style="margin-top: 12px;">
+    <div class="color-swatch">
+      <div class="swatch" style="background: #2e7d32; height: 100px;">Success</div>
+      <div class="color-info"><span class="name">#2E7D32</span><span class="role">Statut validé</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch" style="background: #f57c00; height: 100px;">Warning</div>
+      <div class="color-info"><span class="name">#F57C00</span><span class="role">Statut en attente</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch" style="background: #6b6b6b; height: 100px;">Muted</div>
+      <div class="color-info"><span class="name">#6B6B6B</span><span class="role">Texte secondaire</span></div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch" style="background: #e8e8e8; height: 100px; color: var(--navy);">Border</div>
+      <div class="color-info"><span class="name">#E8E8E8</span><span class="role">Séparateurs · borders</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHIE -->
+<section>
+  <h2>Typographie</h2>
+  <p class="section-lead">Deux familles, deux rôles. Bodoni Moda pour la voix officielle (titres, héros, signature). Inter pour la voix du quotidien (texte courant, UI, microcopy).</p>
+
+  <div class="typo-spec">
+    <div class="display-demo">L'art de la voile depuis 1962</div>
+    <div class="specs">
+      <span><strong>Bodoni Moda</strong></span>
+      <span>Display · Serif</span>
+      <span>Weights : 400, 500, 700, 800</span>
+      <span>No italic</span>
+      <span>Letter-spacing : -0.5px</span>
+    </div>
+  </div>
+
+  <div class="typo-spec">
+    <div class="body-demo">Depuis plus de soixante ans, l'Union Nautique de Vidy rassemble les passionnés de navigation au Port de Vidy. Régates, formations, événements conviviaux — venez rejoindre notre communauté.</div>
+    <div class="specs">
+      <span><strong>Inter</strong></span>
+      <span>Body · Sans-serif</span>
+      <span>Weights : 300, 400, 500, 600, 700</span>
+      <span>Line-height : 1.6</span>
+    </div>
+  </div>
+
+  <h3>Échelle typographique</h3>
+  <div class="type-scale"><div class="size">H1</div><div class="example h1-demo">Un endroit convivial</div><div class="use">Hero homepage</div></div>
+  <div class="type-scale"><div class="size">H2</div><div class="example h2-demo">Nos activités</div><div class="use">Section header</div></div>
+  <div class="type-scale"><div class="size">H3</div><div class="example h3-demo">Le Baptême annuel</div><div class="use">Sub-section</div></div>
+  <div class="type-scale"><div class="size">Lead</div><div class="example lead-demo">Une journée dédiée à la tradition.</div><div class="use">Intro paragraphe</div></div>
+  <div class="type-scale"><div class="size">Body</div><div class="example body-demo-row">Texte courant. Inter 16px, line-height 1.6.</div><div class="use">Texte général</div></div>
+  <div class="type-scale"><div class="size">Small</div><div class="example small-demo">Mentions légales, copyright, dates.</div><div class="use">Footer · notes</div></div>
+  <div class="type-scale"><div class="size">Micro</div><div class="example micro-demo">Devenir membre</div><div class="use">Eyebrows · CTAs · badges</div></div>
+
+  <h3>Règles</h3>
+  <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
+    <li><strong>Pas d'italique sur Bodoni Moda</strong> — italique sur Inter uniquement, pour les citations.</li>
+    <li><strong>Pas de tracking exagéré</strong> — letter-spacing négatif léger sur les titres (-0.5px), normal partout ailleurs.</li>
+    <li><strong>Hiérarchie respectée</strong> — un seul H1 par page, H2 ensuite, jamais sauter de H1 à H3.</li>
+    <li><strong>Texte centré rare</strong> — surtout en aligné gauche. Centré seulement pour les héros et les CTAs finaux.</li>
+    <li><strong>Lecture senior-friendly</strong> — texte courant à 17px minimum sur le site (audience 70+).</li>
+  </ul>
+</section>
+
+<!-- VOIX -->
+<section>
+  <h2>Voix de marque</h2>
+  <p class="section-lead">Chaleureuse, ancrée, sobre. On parle comme un membre du comité accueillerait un nouveau au Club House : avec respect, sans formalisme excessif, en prenant le temps.</p>
+
+  <div class="voice-grid">
+    <div class="voice-card do">
+      <h4>✓ On dit</h4>
+      <ul>
+        <li>Convivial / convivialité</li>
+        <li>Port de Vidy · le lac · le Léman</li>
+        <li>Notre communauté · notre tradition</li>
+        <li>Bienvenue à bord</li>
+        <li>Depuis 1962 / 62 ans</li>
+        <li>Membre · sympathisant · junior</li>
+        <li>Larguer les amarres</li>
+        <li>Cap sur, mettre le cap, prendre le large</li>
+        <li>Le souffle du vent · l'odeur du lac</li>
+      </ul>
+    </div>
+    <div class="voice-card dont">
+      <h4>✗ On évite</h4>
+      <ul>
+        <li>Disrupter · solution · synergie</li>
+        <li>Hub · cluster · écosystème (corporate)</li>
+        <li>Engaging · digital · stratégique</li>
+        <li>Premium · exclusivité · luxe</li>
+        <li>Tu (sauf microcopy mobile)</li>
+        <li>Excessif d'anglicismes</li>
+        <li>Émojis (sauf WhatsApp bot)</li>
+        <li>Familier-vulgaire · trop start-up</li>
+        <li>« Bienvenue dans la team »</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Règles de personne</h3>
+  <p style="font-size: 14px;"><strong>Vouvoiement par défaut</strong> sur le site (respect de l'âge moyen, ton officiel club). <strong>Tutoiement permis</strong> en microcopy mobile court (CTAs FAB) et sur le bot WhatsApp pour rester chaleureux. <strong>« Nous »</strong> pour parler du club (« Nous accueillons », « Notre Club House »). Jamais « je » au nom du club.</p>
+
+  <h3>Exemples de microcopy</h3>
+
+  <div class="microcopy-example">
+    <div class="ctx">Bouton CTA hero</div>
+    <div class="text">« Devenir membre »</div>
+    <p style="font-size: 11px; color: var(--dark-grey); margin-top: 6px;">Court, direct, vouvoiement implicite. Pas « Rejoignez-nous » (trop léger), pas « Adhérer » (trop technique).</p>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Confirmation après inscription événement</div>
+    <div class="text">« C'est noté — votre place est réservée. À très vite sur le ponton. »</div>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Email magic link (subject)</div>
+    <div class="text">« Votre lien de connexion — Union Nautique de Vidy »</div>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">État vide (calendrier sans event)</div>
+    <div class="text">« Aucun événement prévu pour l'instant. Le prochain calendrier sera publié sous peu. »</div>
+    <p style="font-size: 11px; color: var(--dark-grey); margin-top: 6px;">Jamais « Pas d'entrées » comme MYCL. On rassure.</p>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Bot WhatsApp salutation</div>
+    <div class="text">« Bonjour, je suis l'assistant de l'UNV. Je peux vous aider sur trois sujets : les prochains événements, votre cotisation, ou pour contacter le comité. »</div>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Footer (signature de marque)</div>
+    <div class="text">« Union Nautique de Vidy · Port de Vidy · Lausanne · Fondée en 1962 »</div>
+  </div>
+</section>
+
+<!-- ICONOGRAPHIE -->
+<section>
+  <h2>Iconographie</h2>
+  <p class="section-lead">Une seule famille d'icônes : <strong>Lucide</strong> (open source MIT). Line icons minimalistes, cohérence visuelle parfaite, pas de skeuomorphisme.</p>
+
+  <h3>Icônes signature UNV</h3>
+  <div class="icon-rules">
+    <div class="icon-card"><div class="icon-display">⚓</div><div class="icon-label">Anchor · ancrage</div></div>
+    <div class="icon-card"><div class="icon-display">⛵</div><div class="icon-label">Sailboat · navigation</div></div>
+    <div class="icon-card"><div class="icon-display">🌊</div><div class="icon-label">Waves · lac</div></div>
+    <div class="icon-card"><div class="icon-display">🧭</div><div class="icon-label">Compass · cap</div></div>
+    <div class="icon-card"><div class="icon-display">🌬️</div><div class="icon-label">Wind · windspot</div></div>
+    <div class="icon-card"><div class="icon-display">📍</div><div class="icon-label">Pin · localisation</div></div>
+  </div>
+
+  <h3>Règles d'usage</h3>
+  <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
+    <li><strong>Stroke width</strong> : 1.5px (Lucide default). Jamais 2px ou plus.</li>
+    <li><strong>Taille en ligne avec texte</strong> : 1em (taille du texte courant).</li>
+    <li><strong>Couleur</strong> : lake (#2E7FA0) par défaut. Navy pour les états neutres. Gold uniquement pour les CTAs premium.</li>
+    <li><strong>Pas d'emoji</strong> dans les textes officiels du site (sauf WhatsApp où c'est attendu).</li>
+    <li><strong>Pas d'icônes décoratives sans label</strong> à côté.</li>
+  </ul>
+</section>
+
+<!-- PHOTO -->
+<section>
+  <h2>Photographie</h2>
+  <p class="section-lead">Le lac est le héros visuel. Tout part de l'eau, du ciel, et des moments humains autour du Port de Vidy. Pas de stock photos génériques.</p>
+
+  <div class="photo-principles">
+    <div class="photo-card">
+      <h4>Direction artistique</h4>
+      <ul>
+        <li>Lumière naturelle, contre-jour bienvenu</li>
+        <li>Heures dorées (matin / fin d'après-midi)</li>
+        <li>Wide shots sur le lac · plans serrés sur les mains au cordage</li>
+        <li>Tons cool (bleus, gris-vert), warm dans les ors couchant</li>
+        <li>Humains présents mais pas posés : capture du naturel</li>
+        <li>Détails maritimes (cordages, voiles, hublots, écumes)</li>
+        <li>Format 16:9 pour héros · 4:5 pour galerie · 1:1 pour social</li>
+      </ul>
+    </div>
+    <div class="photo-card avoid">
+      <h4>À éviter</h4>
+      <ul>
+        <li>Stock photos génériques (yacht clubs anonymes)</li>
+        <li>Filtres saturés type Instagram années 2010</li>
+        <li>Poses formelles type « photo classe »</li>
+        <li>Marques de bateaux non-UNV visibles (sponsors)</li>
+        <li>Mineurs identifiables sans consentement écrit</li>
+        <li>Selfies / photos téléphone basse résolution</li>
+        <li>Logos d'autres clubs ou marques en arrière-plan</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Couverture minimale à produire</h3>
+  <ul style="padding-left: 20px; font-size: 14px; line-height: 1.8;">
+    <li>10-15 photos du Port de Vidy par toutes saisons</li>
+    <li>5-10 photos du Club House (intérieur, terrasse, vue)</li>
+    <li>1 photo par membre du comité (portraits 5:4 informels, fond uni ou lac)</li>
+    <li>15-20 photos d'activités (régates, formations, événements sociaux)</li>
+    <li>5-10 close-ups maritimes (cordages, voiles, mains à l'œuvre)</li>
+    <li>3-5 vues drone du Port (post-shooting pro)</li>
+  </ul>
+</section>
+
+<!-- APPLICATIONS -->
+<section>
+  <h2>Applications</h2>
+  <p class="section-lead">Comment la marque se déploie sur les surfaces clés. À enrichir au fur et à mesure des supports créés.</p>
+
+  <div class="app-grid">
+    <div class="app-card">
+      <h4>🌐 Site web</h4>
+      <p>Palette officielle. Bodoni Moda pour héros, Inter pour body 17px. Icônes Lucide. Animations GSAP subtiles. Footer toujours : « UNV · Port de Vidy · Lausanne · 1962 ».</p>
+    </div>
+    <div class="app-card">
+      <h4>📧 Email</h4>
+      <p>Signature : Bodoni Moda 18px pour le nom · Inter 13px pour le rôle + contact. Logo en haut, signature de marque en bas (gold accent). Réponses : Inter only, sobre.</p>
+    </div>
+    <div class="app-card">
+      <h4>📱 WhatsApp Bot</h4>
+      <p>Ton chaleureux, vouvoiement, emojis nautiques mesurés (⚓ ⛵ 🌊). Pas de markdown lourd. Messages courts (< 80 mots). Toujours signer « UNV ».</p>
+    </div>
+    <div class="app-card">
+      <h4>📰 Newsletter</h4>
+      <p>Header navy + logo gold. Hero photo lac. Body Inter 16px. 3-5 sections max. Footer obligatoire avec opt-out clair. Format : 600px width.</p>
+    </div>
+    <div class="app-card">
+      <h4>📋 Print (papier en-tête)</h4>
+      <p>Logo navy en haut gauche. Adresse Allée du Bornan 10A en font Inter 9pt en pied. Marges 25mm. Papier cream légèrement texturé. Pas de gradient en print.</p>
+    </div>
+    <div class="app-card">
+      <h4>📢 Social (Instagram / LinkedIn)</h4>
+      <p>Templates carrés 1080×1080. Photo dominante + bandeau navy avec logo + 1 phrase Bodoni Moda. Gold pour les CTAs. Cohérence palette stricte (pas de filtres tiers).</p>
+    </div>
+  </div>
+</section>
+
+<!-- STAKEHOLDERS -->
+<section>
+  <h2>Comité 2026</h2>
+  <p class="section-lead">Les visages humains de la marque. Toujours nommés avec leur rôle officiel, jamais avec des titres familiers ou des surnoms (référence à l'audit qui mentionnait « Couteau Suisse » comme rôle informel — à corriger).</p>
+
+  <div class="stake-grid">
+    <div class="stake">
+      <strong>Eric Schmalz</strong>
+      <div class="role">Président</div>
+      <div class="contact">info@bati-conseils.ch</div>
+    </div>
+    <div class="stake">
+      <strong>Jacques Jungi</strong>
+      <div class="role">Vice-Président</div>
+      <div class="contact">jungi.jacques@gmail.com</div>
+    </div>
+    <div class="stake">
+      <strong>Claude-Alain Chapalay</strong>
+      <div class="role">Trésorier</div>
+      <div class="contact">c-a.chapalay@citycable.ch · 078 661 32 09</div>
+    </div>
+    <div class="stake">
+      <strong>Laurence Chapalay</strong>
+      <div class="role">Secrétaire</div>
+      <div class="contact">À confirmer</div>
+    </div>
+    <div class="stake">
+      <strong>Yannick Morand</strong>
+      <div class="role">Événements & Matériel</div>
+      <div class="contact">À confirmer</div>
+    </div>
+  </div>
+
+  <h3>Photographies du comité</h3>
+  <p style="font-size: 14px;">Format unique : 5:4 portrait, fond neutre (papier kraft, mur cream, ou Léman flouté). Lumière naturelle. Tenue libre mais évitez logos d'autres marques. Sourires naturels. Pas de fond vert criard ni studio formel.</p>
+</section>
+
+<!-- POSITIONING -->
+<section>
+  <h2>Positionnement</h2>
+  <p class="section-lead">UNV par rapport au paysage nautique lausannois. Identifier la place qu'on occupe et qu'on défend.</p>
+
+  <h3>L'arène concurrentielle</h3>
+  <p style="font-size: 14px;"><strong style="color: var(--lake);">Sauvetage d'Ouchy</strong> — vocation différente (urgence et sauvetage), mais référence visuelle locale. Webcam + météo intégrées, hero émotionnel. C'est la barre haute à atteindre côté qualité présence en ligne.<br><br>
+  <strong style="color: var(--lake);">MYCL Motor Yacht Club Léman</strong> — concurrent direct mais en délabrement éditorial (lorem ipsum en prod, politique conf 404, calendrier vide). Notre opportunité.<br><br>
+  <strong style="color: var(--lake);">Cercle Nautique Lausannois</strong> — proche géographiquement, plus orienté voile sportive.<br><br>
+  <strong style="color: var(--lake);">Yacht Club Bielersee</strong> — référence design clean qu'on regarde de loin.<br><br>
+  <strong style="color: var(--lake);">Société Nautique de Genève</strong> — l'institution prestige du Léman, hors notre catégorie mais utile en référence.</p>
+
+  <h3>Notre place</h3>
+  <p style="font-size: 14px;">UNV n'est pas le club le plus prestigieux du lac. Pas le plus sportif. Pas le plus jeune. <strong>Mais c'est le plus ancré humainement</strong> — 62 ans d'histoire continue, un Club House physique, une communauté qui se voit régulièrement. <strong>Notre positionnement = la communauté chaleureuse du Port de Vidy</strong>. Pas l'élite, pas le sport, pas la nouveauté : la continuité humaine maritime.</p>
+
+  <h3>Notre différenciateur</h3>
+  <p style="font-size: 14px;">Après refonte 2026 : <strong>l'UNV sera le seul club nautique du Léman 100% conforme nLPD dès J1</strong>, avec espace membre digital, bot WhatsApp et webcam intégrée — sans renoncer à son ADN convivial. C'est un avantage compétitif et un argument de recrutement.</p>
+</section>
+
+<!-- TAGLINES -->
+<section>
+  <h2>Taglines & signatures</h2>
+  <p class="section-lead">Plusieurs façons de signer selon le contexte. La principale reste verrouillée par le comité.</p>
+
+  <div class="microcopy-example">
+    <div class="ctx">Tagline officielle (verrouillée comité)</div>
+    <div class="text">« Un endroit convivial au bord de notre magnifique Lac Léman »</div>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Signature courte (footer, social)</div>
+    <div class="text">« Naviguons ensemble depuis 1962. »</div>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Signature CTA hero</div>
+    <div class="text">« Prêt à larguer les amarres ? »</div>
+  </div>
+
+  <div class="microcopy-example">
+    <div class="ctx">Signature institutionnelle</div>
+    <div class="text">« Union Nautique de Vidy — fondée en 1962, ancrée au Port de Vidy depuis toujours. »</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-mark">UNV</div>
+  <p>Brand Identity Book v1.0 · Juin 2026</p>
+  <p style="margin-top: 6px;">Préparé par HyperAgency — Nathalie Jungi</p>
+</footer>
+
+</body>
+</html>

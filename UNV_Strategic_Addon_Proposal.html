@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNV — Proposition stratégique complémentaire · HyperAgency</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+  :root {
+    --navy: #0B1F3A;
+    --lake: #2E7FA0;
+    --red: #D32F2F;
+    --gold: #C8A44A;
+    --cream: #F5F0E8;
+    --light: #ffffff;
+    --grey: #e8e8e8;
+    --dark-grey: #6b6b6b;
+    --green: #2e7d32;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.6;
+  }
+  h1, h2, h3, .display { font-family: 'Bodoni Moda', serif; letter-spacing: -0.5px; font-weight: 700; }
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, #122d54 60%, var(--lake) 100%);
+    color: var(--cream);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 10%; right: -100px;
+    width: 350px; height: 350px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(40px);
+  }
+  .cover-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; width: 100%; }
+  .eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+  .cover h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 22px;
+  }
+  .cover .sub {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 640px;
+    margin-bottom: 38px;
+    font-weight: 300;
+  }
+  .cover .meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    opacity: 0.75;
+    padding-top: 28px;
+    border-top: 1px solid rgba(245, 240, 232, 0.2);
+  }
+  /* Main */
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 32px 80px;
+  }
+  section {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 48px 56px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(11, 31, 58, 0.06);
+  }
+  section h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  section h2::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 16px;
+  }
+  section .lead {
+    font-size: 17px;
+    color: var(--dark-grey);
+    margin-bottom: 28px;
+    line-height: 1.5;
+    max-width: 720px;
+  }
+  section h3 {
+    font-size: 22px;
+    color: var(--navy);
+    margin: 28px 0 12px;
+  }
+  /* Pull quote */
+  .pullquote {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--navy);
+    border-left: 4px solid var(--gold);
+    padding: 8px 24px;
+    margin: 28px 0;
+    font-style: italic;
+    max-width: 780px;
+  }
+  /* Constat grid */
+  .constat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .constat-card {
+    background: var(--cream);
+    padding: 22px 24px;
+    border-radius: 8px;
+    border-left: 4px solid var(--lake);
+  }
+  .constat-card .num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 38px;
+    color: var(--lake);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .constat-card .label {
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+  /* Axes */
+  .axes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 28px;
+  }
+  @media (max-width: 700px) { .axes { grid-template-columns: 1fr; } }
+  .axe {
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 10px;
+    padding: 30px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .axe.alt { background: var(--cream); color: var(--navy); border: 1px solid var(--grey); }
+  .axe .axe-num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .axe h4 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+  .axe.alt h4 { color: var(--navy); }
+  .axe p { font-size: 14px; opacity: 0.92; line-height: 1.5; margin-bottom: 12px; }
+  .axe ul { list-style: none; padding: 0; font-size: 13px; }
+  .axe li { padding: 4px 0; line-height: 1.5; }
+  .axe li::before { content: '— '; color: var(--gold); }
+  .axe.alt li::before { color: var(--lake); }
+  /* Pricing */
+  .pricing-intro {
+    background: linear-gradient(135deg, var(--cream), #fbf7f0);
+    padding: 32px;
+    border-radius: 12px;
+    margin: 24px 0;
+    border-left: 4px solid var(--gold);
+  }
+  .pricing-intro p { font-size: 15px; color: var(--navy); margin-bottom: 0; }
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+  @media (max-width: 800px) { .pricing { grid-template-columns: 1fr; } }
+  .pkg {
+    background: white;
+    border: 2px solid var(--grey);
+    border-radius: 12px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .pkg.recommended {
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(200, 164, 74, 0.18);
+  }
+  .pkg.recommended::before {
+    content: 'RECOMMANDÉ';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 12px;
+    letter-spacing: 1.5px;
+  }
+  .pkg .pkg-name {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .pkg .pkg-tag {
+    font-size: 12px;
+    color: var(--lake);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .pkg .pkg-price {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 38px;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pkg .pkg-currency { font-size: 14px; color: var(--dark-grey); font-family: 'Inter', sans-serif; font-weight: 600; }
+  .pkg .pkg-period { font-size: 12px; color: var(--dark-grey); margin-bottom: 20px; }
+  .pkg ul {
+    list-style: none;
+    padding: 0;
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  .pkg li {
+    padding: 8px 0;
+    font-size: 13px;
+    border-bottom: 1px dashed var(--grey);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .pkg li:last-child { border-bottom: none; }
+  .pkg li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pkg-cta {
+    background: var(--navy);
+    color: var(--cream);
+    border: none;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: auto;
+  }
+  .pkg.recommended .pkg-cta { background: var(--gold); color: var(--navy); }
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-top: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gold);
+  }
+  .tl-item {
+    position: relative;
+    padding: 12px 0 20px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 16px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .tl-item h4 {
+    font-size: 15px;
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tl-item .when {
+    font-size: 11px;
+    color: var(--lake);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .tl-item p { font-size: 13px; color: var(--dark-grey); }
+  /* Why now */
+  .why-now {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .why-card {
+    background: var(--cream);
+    padding: 22px;
+    border-radius: 8px;
+  }
+  .why-card .icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: var(--lake);
+  }
+  .why-card h4 {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .why-card p { font-size: 13px; color: var(--dark-grey); margin: 0; line-height: 1.5; }
+  /* Conditions */
+  .conds {
+    background: var(--cream);
+    padding: 28px 32px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .conds h3 { font-size: 16px; font-family: 'Inter', sans-serif; color: var(--navy); margin-bottom: 12px; }
+  .conds ul { padding-left: 20px; }
+  .conds li { padding: 4px 0; }
+  /* Footer */
+  footer {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  footer .sig {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  footer p { font-size: 13px; opacity: 0.8; }
+  footer .accept {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 22px;
+    text-decoration: none;
+  }
+  @media print {
+    section { box-shadow: none; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="eyebrow">⚓ Proposition stratégique complémentaire · Juin 2026</div>
+    <h1>Faire vivre<br>la marque UNV<br>au-delà du site</h1>
+    <p class="sub">La refonte technique du site (Pedro / Garcan Digital) livre l'outil. Cette proposition livre <em>la vie qui va dedans</em> : direction artistique, contenu, présence sociale, recrutement membres.</p>
+    <div class="meta">
+      <span>HyperAgency · Nathalie Jungi</span>
+      <span>·</span>
+      <span>Préparé pour le Comité UNV</span>
+      <span>·</span>
+      <span>Indépendant du contrat Garcan CHF 2'800</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- LE CONSTAT -->
+<section>
+  <h2>Pourquoi cette proposition</h2>
+  <p class="lead">Le contrat actuel avec Garcan Digital (CHF 2'800 signé le 11 juin) couvre la <strong>refonte technique du site, les espaces privés et l'agent WhatsApp</strong>. C'est l'infrastructure. Mais une fois le site en ligne, il faut le faire vivre — sinon il rejoindra rapidement l'état du site actuel (1 seul article publié en plusieurs années).</p>
+
+  <p class="lead">L'audit complet réalisé en mars 2026 a mis en lumière 60 problèmes techniques, mais a aussi révélé un sujet plus profond : <strong>l'UNV a 62 ans d'histoire, des actifs uniques (Club House, Port de Vidy, communauté engagée), et zéro stratégie de communication active</strong>.</p>
+
+  <div class="pullquote">
+    « Le club a du contenu — personne ne clique publier. C'est un problème de workflow, pas de contenu. »
+    <div style="font-size: 12px; color: var(--dark-grey); margin-top: 8px; font-style: normal; font-family: 'Inter', sans-serif;">— Master Audit UNV, mai 2026</div>
+  </div>
+
+  <h3>Ce qu'on a observé pendant l'audit</h3>
+  <div class="constat-grid">
+    <div class="constat-card">
+      <div class="num">1</div>
+      <div class="label">article publié en plusieurs années (et c'est une annulation)</div>
+    </div>
+    <div class="constat-card">
+      <div class="num">13</div>
+      <div class="label">brouillons d'articles en attente, jamais publiés</div>
+    </div>
+    <div class="constat-card">
+      <div class="num">0</div>
+      <div class="label">présence Instagram ou LinkedIn (Facebook semi-actif)</div>
+    </div>
+    <div class="constat-card">
+      <div class="num">62</div>
+      <div class="label">ans d'histoire jamais raconté en ligne</div>
+    </div>
+    <div class="constat-card">
+      <div class="num">0</div>
+      <div class="label">campagne de recrutement membre digitale</div>
+    </div>
+    <div class="constat-card">
+      <div class="num">0</div>
+      <div class="label">newsletter aux membres existants</div>
+    </div>
+  </div>
+
+  <h3>Le constat clair</h3>
+  <p style="font-size: 15px;">Le nouveau site, aussi propre soit-il techniquement, restera <strong>invisible et statique</strong> si personne n'y injecte du contenu vivant. Et la communauté UNV mérite une présence digitale à la hauteur de son ancrage de 62 ans.</p>
+</section>
+
+<!-- LA PROPOSITION 4 AXES -->
+<section>
+  <h2>Notre proposition · 4 axes</h2>
+  <p class="lead">Quatre chantiers complémentaires, à activer en parallèle ou par étapes selon le budget. Chacun renforce les autres : la marque nourrit le contenu, le contenu nourrit le social, le social nourrit l'acquisition de nouveaux membres.</p>
+
+  <div class="axes">
+    <div class="axe">
+      <div class="axe-num">Axe 1</div>
+      <h4>Identité de marque</h4>
+      <p>Au-delà du logo, créer un <em>système</em> visuel et verbal cohérent qui peut être utilisé par n'importe quel membre du comité, sur n'importe quel support.</p>
+      <ul>
+        <li>Brand book v2 finalisé et imprimable</li>
+        <li>Logo system complet (variantes, formats)</li>
+        <li>Typographie + palette + iconographie codifiées</li>
+        <li>Templates email signature comité (5 personnes)</li>
+        <li>Templates papier en-tête + carte de visite</li>
+        <li>Préset photo + filtre Lightroom pour le comité</li>
+      </ul>
+    </div>
+
+    <div class="axe alt">
+      <div class="axe-num">Axe 2</div>
+      <h4>Contenu & storytelling</h4>
+      <p>Faire vivre les 62 ans d'histoire UNV en racontant les bons sujets, au bon moment, à la bonne audience.</p>
+      <ul>
+        <li>Calendrier éditorial 6 mois (24 contenus)</li>
+        <li>Storytelling 62 ans (5 articles fondateurs)</li>
+        <li>Portraits de membres (3 interviews initiales)</li>
+        <li>Couverture événements (Baptême, Fête nationale, régates)</li>
+        <li>Newsletter mensuelle (template + 3 numéros initiaux)</li>
+        <li>Direction artistique des shootings photo / vidéo</li>
+      </ul>
+    </div>
+
+    <div class="axe alt">
+      <div class="axe-num">Axe 3</div>
+      <h4>Présence sociale</h4>
+      <p>Lancer une présence cohérente sur Instagram et LinkedIn, alignée avec le ton et le visuel UNV — sans copier la concurrence.</p>
+      <ul>
+        <li>Création compte Instagram UNV (@unionnautiquevidy)</li>
+        <li>Création page LinkedIn UNV (organisation)</li>
+        <li>10 posts de lancement (mix photo + texte)</li>
+        <li>Templates Canva pour le comité (auto-publication)</li>
+        <li>Stratégie hashtag locale (#PortDeVidy #LacLéman)</li>
+        <li>Calendrier de publication 3 mois</li>
+      </ul>
+    </div>
+
+    <div class="axe">
+      <div class="axe-num">Axe 4</div>
+      <h4>Recrutement membres</h4>
+      <p>Transformer la nouvelle vitrine digitale en levier de recrutement actif. Convertir les visiteurs en sympathisants, puis en membres.</p>
+      <ul>
+        <li>Campagne « Devenez membre 2026 » (visuels + copy)</li>
+        <li>Landing page dédiée recrutement (incluse dans le site)</li>
+        <li>Capture lead via formulaire bénévolat (porte d'entrée)</li>
+        <li>Email nurturing 3 séquences automatisées</li>
+        <li>SEO local Lausanne (Google Business Profile)</li>
+        <li>Partenariats locaux (Sauvetage Ouchy, écoles voile)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section>
+  <h2>Trois forfaits adaptables</h2>
+  <p class="lead">Tous les forfaits sont indépendants du contrat Garcan Digital (refonte technique du site). Tarif famille / proximité appliqué : <strong>aucun de ces forfaits ne reflète un tarif agence pro romande standard (qui serait 3 à 5 fois plus élevé)</strong>.</p>
+
+  <div class="pricing-intro">
+    <p><strong>Référence agence pro suisse romande</strong> pour comparaison : Identité visuelle (3'500-6'000) + Stratégie de contenu 6 mois (8'000-15'000) + Lancement social (4'000-8'000) + Campagne recrutement (5'000-12'000) = <strong>CHF 20'000 à 40'000</strong>. Les forfaits ci-dessous sont à 15-40% de ces tarifs.</p>
+  </div>
+
+  <div class="pricing">
+
+    <div class="pkg">
+      <div class="pkg-name">Lancement</div>
+      <div class="pkg-tag">Brand + Social launch</div>
+      <div class="pkg-price">2'500<span class="pkg-currency"> CHF</span></div>
+      <div class="pkg-period">Forfait unique · 4 semaines</div>
+      <ul>
+        <li>Brand book v2 complet (PDF + web)</li>
+        <li>Templates signature email comité</li>
+        <li>Création comptes Instagram + LinkedIn UNV</li>
+        <li>10 posts de lancement multi-formats</li>
+        <li>3 templates newsletter prêts à utiliser</li>
+        <li>1 portrait de membre initial (interview + rédaction)</li>
+        <li>SEO local : optimisation Google Business Profile</li>
+        <li>Formation comité 1h (publication social autonome)</li>
+        <li>Documentation écrite (guide de marque)</li>
+      </ul>
+      <button class="pkg-cta">Lancer le projet</button>
+    </div>
+
+    <div class="pkg recommended">
+      <div class="pkg-name">Programme 6 mois</div>
+      <div class="pkg-tag">Brand + Contenu + Social</div>
+      <div class="pkg-price">4'800<span class="pkg-currency"> CHF</span></div>
+      <div class="pkg-period">6 mois · juillet → décembre 2026</div>
+      <ul>
+        <li>Tout le forfait Lancement +</li>
+        <li>Calendrier éditorial 6 mois (24 contenus planifiés)</li>
+        <li>Rédaction & publication 18 articles / posts</li>
+        <li>3 newsletters mensuelles complètes (juillet-sept)</li>
+        <li>Couverture éditoriale Baptême + Fête nationale + Régate</li>
+        <li>Direction artistique shooting photo (1 demi-journée)</li>
+        <li>3 portraits de membres (storytelling 62 ans)</li>
+        <li>Veille concurrentielle mensuelle (MYCL, Sauvetage…)</li>
+        <li>Reporting trimestriel KPIs (audience, engagement)</li>
+        <li>Support email illimité pendant la période</li>
+      </ul>
+      <button class="pkg-cta">Programme recommandé</button>
+    </div>
+
+    <div class="pkg">
+      <div class="pkg-name">Programme 12 mois</div>
+      <div class="pkg-tag">+ Recrutement membres</div>
+      <div class="pkg-price">8'500<span class="pkg-currency"> CHF</span></div>
+      <div class="pkg-period">12 mois · juillet 2026 → juin 2027</div>
+      <ul>
+        <li>Tout le Programme 6 mois +</li>
+        <li>Calendrier éditorial 12 mois complet</li>
+        <li>Newsletter mensuelle dédiée (12 numéros)</li>
+        <li>Campagne recrutement membres 2027 (visuels + landing + emails)</li>
+        <li>Shooting photo pro pleine journée (avec photographe local)</li>
+        <li>Vidéo drone Port de Vidy (1 prise complète)</li>
+        <li>Press kit + activation presse Baptême annuel</li>
+        <li>Activation 2 partenariats locaux (clubs nautiques voisins)</li>
+        <li>Stratégie hashtag avancée + ads localisées CHF 50/mois</li>
+        <li>Reporting mensuel + revue stratégique trimestrielle</li>
+        <li>Audit de fin de programme + recommandations 2027-2028</li>
+      </ul>
+      <button class="pkg-cta">Programme complet</button>
+    </div>
+  </div>
+
+  <h3>Options à la carte (en plus d'un forfait)</h3>
+  <ul style="padding-left: 20px; font-size: 14px; line-height: 1.9;">
+    <li><strong>Shooting photo professionnel pleine journée</strong> (photographe partenaire, 30 photos retouchées) — CHF 1'200</li>
+    <li><strong>Vidéo institutionnelle 60 sec</strong> (drone + interview comité) — CHF 1'500</li>
+    <li><strong>Lookbook Print catalogue membre</strong> (16 pages, A5) — CHF 800</li>
+    <li><strong>Atelier brand 2h avec le comité</strong> (alignement et co-création) — CHF 600</li>
+    <li><strong>Campagne recrutement Instagram/Facebook Ads</strong> (boost CHF 200-500/mois + gestion) — CHF 400/mois</li>
+    <li><strong>Refresh logo</strong> (si comité souhaite moderniser après 62 ans) — CHF 1'800</li>
+  </ul>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <h2>Planning indicatif</h2>
+  <p class="lead">Démarrage idéal : juste après la MEP du site (mardi 30 juin). Le forfait Lancement peut être mis en route immédiatement après. Les programmes 6/12 mois démarrent en juillet pour bénéficier du Baptême et de la Fête nationale comme premiers moments éditoriaux.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="when">Semaine 1 (post-MEP)</div>
+      <h4>Alignement & Brand book v2</h4>
+      <p>Atelier alignement avec le comité (1h). Finalisation du brand book à partir du v1 livré avec ce document. Production des templates email signatures, Instagram, LinkedIn.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">Semaine 2</div>
+      <h4>Lancement social</h4>
+      <p>Création des comptes IG + LinkedIn. Production des 10 premiers posts. Configuration du calendrier éditorial Notion / Airtable.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">Semaine 3-4</div>
+      <h4>Première vague de contenu</h4>
+      <p>Premier portrait de membre publié. Newsletter #1 envoyée. Couverture du Baptême annuel (article + posts social). Formation 1h du comité sur la publication autonome.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">Mois 2-6 (programme 6 mois)</div>
+      <h4>Programme de fond</h4>
+      <p>Calendrier éditorial régulier (2-4 contenus / mois). Newsletter mensuelle. Couverture événements. Storytelling 62 ans. Reporting trimestriel.</p>
+    </div>
+    <div class="tl-item">
+      <div class="when">Mois 7-12 (programme 12 mois)</div>
+      <h4>Recrutement & rayonnement</h4>
+      <p>Lancement campagne recrutement membres 2027. Activation partenariats locaux. Shooting photo + vidéo drone. Press kit Baptême. Bilan + recommandations 2027-2028.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section>
+  <h2>Pourquoi maintenant</h2>
+  <p class="lead">Le contexte n'est pas neutre. Plusieurs facteurs convergent pour rendre <em>maintenant</em> le bon moment.</p>
+
+  <div class="why-now">
+    <div class="why-card">
+      <div class="icon">🌐</div>
+      <h4>Le site refondu est l'occasion</h4>
+      <p>Un nouveau site sans stratégie de contenu = site qui meurt en 6 mois (cf. l'état actuel). Démarrer la stratégie post-MEP capitalise immédiatement sur l'investissement Garcan.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">📅</div>
+      <h4>Le Baptême du 27 juin</h4>
+      <p>Premier événement majeur post-MEP. Couverture éditoriale = puissant moment de lancement pour la nouvelle vie digitale UNV.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🏆</div>
+      <h4>Avantage compétitif lacustre</h4>
+      <p>MYCL en délabrement éditorial. Sauvetage d'Ouchy en référence mais sans approche club. L'opportunité de devenir <em>la</em> référence club nautique du Léman est ouverte 24 mois.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">👥</div>
+      <h4>Membres existants à fidéliser</h4>
+      <p>~100 membres aujourd'hui, dont une partie disent qu'ils « ne reçoivent jamais rien du club ». Newsletter + WhatsApp + IG = ré-engagement immédiat.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">⚓</div>
+      <h4>62 ans d'histoire à raconter</h4>
+      <p>Capital éditorial dormant énorme. Archives photos, fondateurs, anecdotes. Chaque histoire est un futur post ou article. Inépuisable pendant 18 mois minimum.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">💼</div>
+      <h4>Pas de cumul d'investissements</h4>
+      <p>Mutualisation avec le travail déjà réalisé (audit, brand book v1, démos visuelles). Économie de 30-40% par rapport à un mandat agence pro from scratch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section>
+  <h2>Conditions</h2>
+  <div class="conds">
+    <h3>Modalités</h3>
+    <ul>
+      <li><strong>Indépendance contractuelle</strong> : cette proposition est indépendante du contrat Garcan Digital (CHF 2'800 du 11 juin). Aucun cumul d'obligations.</li>
+      <li><strong>Tarif famille / proximité</strong> : appliqué par HyperAgency comme prolongement naturel du travail déjà réalisé en mars-mai 2026. Non communicable à des tiers.</li>
+      <li><strong>Modalités de paiement</strong> : 30% au démarrage · 40% à mi-parcours · 30% à la livraison finale. Règlement à 30 jours.</li>
+      <li><strong>Propriété intellectuelle</strong> : transfert intégral des droits sur les créations au profit de l'UNV au paiement intégral.</li>
+      <li><strong>Validité de l'offre</strong> : 30 jours à compter du 16 juin 2026.</li>
+      <li><strong>Confidentialité</strong> : secret professionnel sur les informations internes UNV.</li>
+      <li><strong>Conformité nLPD</strong> : tous les supports produits respectent la nLPD (consentements images, mentions légales).</li>
+      <li><strong>Réversibilité</strong> : les accès et templates sont transmis à l'UNV en fin de mandat (Canva, Notion, gestion sociale).</li>
+    </ul>
+
+    <h3 style="margin-top: 22px;">Choses non incluses</h3>
+    <ul>
+      <li>Production photographique pro (option à CHF 1'200, photographe partenaire)</li>
+      <li>Vidéo drone (option à CHF 1'500)</li>
+      <li>Achats publicitaires (Facebook Ads, Google Ads) — gestion possible en option, budget media en sus</li>
+      <li>Refresh ou refonte de logo (option à CHF 1'800)</li>
+      <li>Animation événementielle physique le jour J</li>
+    </ul>
+
+    <h3 style="margin-top: 22px;">Hypothèses</h3>
+    <ul>
+      <li>Le site refondu sera en ligne le 30 juin 2026 (engagement Garcan)</li>
+      <li>Le comité fournit photos de membres + contenus existants dans des délais raisonnables</li>
+      <li>Le comité désigne <em>un</em> référent pour la coordination (idéalement Eric ou Jacques)</li>
+      <li>Un rendez-vous mensuel de 30 min reste prévu pour la durée du programme</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="sig">HyperAgency</div>
+  <p>Proposition stratégique complémentaire · Juin 2026</p>
+  <p style="margin-top: 4px;">Nathalie Jungi · nathalie.luana.jungi@gmail.com</p>
+  <a href="#" class="accept">Discuter de cette proposition</a>
+</footer>
+
+</body>
+</html>
