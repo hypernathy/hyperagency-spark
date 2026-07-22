@@ -24,7 +24,7 @@ Pour l'envoi au comité : je propose qu'on attende d'avoir l'agent WhatsApp en �
 
 Le mapping des 4 cas d'usage me convient — il correspond exactement à ce que j'avais préparé de mon côté (templates de messages déjà rédigés, logique conversationnelle documentée). Je lis ta doc `/agent` en détail ce soir et je te signale si un point diverge.
 
-**Mon URL de webhook : [WEBHOOK_URL]**
+**Mon URL de webhook : https://connexaworld.app.n8n.cloud/webhook/unv-events**
 Tu peux m'envoyer le token et le secret en retour (idéalement par un canal séparé de l'email — WhatsApp ou coffre partagé).
 
 Trois questions techniques pour préparer la visio :
@@ -58,5 +58,5 @@ Nathalie
 
 - [ ] Staging visité (unv.garcandigital.ch) → remplir [RETOUR STAGING]
 - [ ] Doc /agent lue → confirmer ou nuancer « le mapping me convient »
-- [ ] Webhook n8n créé → remplir [WEBHOOK_URL]
+- [x] Webhook n8n créé et ACTIF → URL déjà dans le mail
 - [ ] Copier la doc /agent à Claude (copier-coller ou screenshots) pour validation du contrat d'intégration
