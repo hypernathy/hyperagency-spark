@@ -28,12 +28,19 @@
 
 Le webhook `event.published` alimente une Data Table locale `unv_events` ; les réponses RSVP WhatsApp (qui transitent par l'agent avant `POST /rsvp`) alimentent `unv_rsvp`. Rappels J-7/J-1 et « prochain événement » lisent **le local** — aucun polling du site.
 
-## Modifications workflows à appliquer (spécifiées dans `sprint-sept/01-…FINAL.md`)
+## Modifications workflows (spécifiées dans `sprint-sept/01-…FINAL.md`)
 
-- **A** : payload plat · vérif = IF sur header `X-UNV-WA-Secret` · message + rsvp_hint + iCal · write `unv_events`
-- **B** : auth Header `X-UNV-API-Token` (remplace Bearer) · `GET /cotisation?membre_key=` · réponse minimale · **+ branche RSVP** (mots-clés viens/peut-être/non → `POST /rsvp` avec téléphone, question « à combien ? » si viens) · write `unv_rsvp`
-- **C** : source `unv_events`, cibles `unv_rsvp`
+**✅ APPLIQUÉES le 17.09 via MCP n8n (connecteur revenu) :**
+- **A** : payload plat · vérif secret = comparaison header `X-UNV-WA-Secret` (nœud renommé « Vérifier Secret Webhook », secret placeholder `REMPLACER_PAR_SECRET_PEDRO` à coller) · annonce avec rsvp_hint + placeholder `[URL_ICAL_A_CONFIRMER]`
+- **B** : `GET /wp-json/unv/v1/cotisation?membre_key=` · auth passée en Header Auth (credential à lier au token Pedro) · réponse cotisation minimale nLPD · menu signé **Neptune** (nom public adopté) · nœud événements pointé sur `/unv/v1/events` (endpoint promis)
+- **Data Tables créées** : `unv_events` (sBX0OwkaE3FMIJzj) · `unv_rsvp` (qqeMroc44duHoXbt)
+
+**⏳ RESTE à appliquer (prochaine passe, un bloc) :**
+- **A** : ajout nœud write `unv_events` après l'annonce
+- **B** : branche RSVP (mots-clés viens/peut-être/non → `POST /rsvp` téléphone comme membre_key · « à combien ? » si viens · write `unv_rsvp`)
+- **C** : rebrancher sur les Data Tables (source `unv_events`, cibles `unv_rsvp`)
 - **D** : attendre l'endpoint agrégé de Pedro
+- Côté Nathalie : credentials « Wassenger API » (Header `Token`) + « UNV Site API » (Header `X-UNV-API-Token`, dès token reçu) · webhook Wassenger `message:in:new` → `/webhook/unv-whatsapp` · activer B
 
 ## Conventions
 
