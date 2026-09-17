@@ -13,7 +13,7 @@ Ce guide vous accompagne dans la gestion quotidienne du site www.unv.ch. Il est 
 En cas de doute, ce guide reste votre référence. En cas de blocage, contactez :
 
 - **Pedro Garcia (Garcan Digital)** — technique · ph@garcandigital.ch · +41 79 732 82 60
-- **Nathalie Jungi (HyperAgency)** — contenus + WhatsApp · nathalie.luana.jungi@gmail.com
+- **Nathalie Jungi (Nathalie Jungi)** — contenus + WhatsApp · nathalie.luana.jungi@gmail.com
 
 ---
 
@@ -307,7 +307,7 @@ Faire une capture d'écran. WhatsApp à Pedro.
 
 ---
 
-*Guide préparé par HyperAgency (Nathalie Jungi) le 16 juin 2026. Version 1.0 — sera mise à jour en fonction des retours utilisateurs du comité.*
+*Guide préparé par Nathalie Jungi le 16 juin 2026. Version 1.0 — sera mise à jour en fonction des retours utilisateurs du comité.*
 
 ---
 

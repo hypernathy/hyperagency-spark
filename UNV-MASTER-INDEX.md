@@ -30,7 +30,7 @@
 | `UNV_Pilot_Cockpit_Pedro_v1.html` | Cockpit interactif pilotage (dates de juin, à rafraîchir) |
 | `UNV_Weekend_Sprint_Playbook.html` | Playbook sprint juin (historique) |
 | `UNV_Brand_Book_v1.html` | **Brand book** : palette, typo, voix, iconographie, photo, applications |
-| `UNV_Strategic_Addon_Proposal.html` | Proposition forfait stratégique HyperAgency (2'500/4'800/8'500 CHF) |
+| `UNV_Strategic_Addon_Proposal.html` | Proposition forfait stratégique Nathalie Jungi (2'500/4'800/8'500 CHF) |
 
 ### ☁️ Dans le Google Drive de Nathalie (fichiers historiques mars-juin)
 

@@ -1,13 +1,13 @@
 # UNV — Livrables Nathalie · Sprint 30 juin 2026
 
 **Direction créative + stratégie + WhatsApp + nLPD + contenus**
-**HyperAgency (Nathalie Jungi) · Juin 2026**
+**Nathalie Jungi · Juin 2026**
 
 ---
 
 ## 📦 Contenu du dossier
 
-Ce dossier contient **tous les livrables produits par HyperAgency** pour le projet de refonte UNV. Chaque fichier est en Markdown, éditable dans n'importe quel éditeur de texte, et prêt à être intégré dans WordPress par Pedro (Garcan Digital) ou converti en PDF pour le comité.
+Ce dossier contient **tous les livrables produits par Nathalie Jungi** pour le projet de refonte UNV. Chaque fichier est en Markdown, éditable dans n'importe quel éditeur de texte, et prêt à être intégré dans WordPress par Pedro (Garcan Digital) ou converti en PDF pour le comité.
 
 | # | Fichier | Description | Statut |
 |---|---|---|---|
@@ -123,7 +123,7 @@ En plus de ce dossier, les documents suivants existent dans le repo :
 
 ## 📞 Contacts
 
-- **Nathalie Jungi (HyperAgency)** — nathalie.luana.jungi@gmail.com
+- **Nathalie Jungi (Nathalie Jungi)** — nathalie.luana.jungi@gmail.com
 - **Pedro Garcia (Garcan Digital)** — ph@garcandigital.ch · +41 79 732 82 60
 - **Eric Schmaltz (Président UNV)** — info@bati-conseils.ch
 - **Jacques Jungi (VP UNV)** — jungi.jacques@gmail.com
@@ -131,4 +131,4 @@ En plus de ce dossier, les documents suivants existent dans le repo :
 
 ---
 
-*Package livrables préparé le 16 juin 2026 par HyperAgency (Nathalie Jungi) pour l'Union Nautique de Vidy.*
+*Package livrables préparé le 16 juin 2026 par Nathalie Jungi pour l'Union Nautique de Vidy.*

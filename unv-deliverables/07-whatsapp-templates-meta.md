@@ -390,4 +390,4 @@ Ainsi tous les templates critiques sont approuvés d'ici jeudi 25.06 = câblage 
 
 ---
 
-*Templates préparés par HyperAgency (Nathalie Jungi) le 16 juin 2026. Ready to submit via Wassenger dès accès Meta Business Manager lundi 22 juin.*
+*Templates préparés par Nathalie Jungi le 16 juin 2026. Ready to submit via Wassenger dès accès Meta Business Manager lundi 22 juin.*

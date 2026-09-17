@@ -30,7 +30,7 @@ Tu rejoins un projet en cours comme consultant QA + stratège. Contexte :
 PROJET : Refonte digitale de l'Union Nautique de Vidy (UNV), club nautique
 lausannois fondé en 1962, ~100 membres, comité bénévole senior (60-75 ans).
 - Site WordPress refondu par Pedro (Garcan Digital) — staging privé en cours
-- Agent WhatsApp construit par Nathalie (HyperAgency) : bot button/keyword-driven
+- Agent WhatsApp construit par Nathalie : bot button/keyword-driven
   via Wassenger + n8n (4 flux : annonces événements, router bot avec statut de
   cotisation par code personnel, rappels J-7/J-1, alerte hebdo trésorier)
 - Mise en ligne : 15 août 2026. Séance de démo au comité visée semaine du 4 août.

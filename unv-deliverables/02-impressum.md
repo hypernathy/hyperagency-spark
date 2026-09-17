@@ -37,7 +37,7 @@ Pedro Garcia Candido
 Route du Signal 7 · 1080 Les Cullayes · Suisse
 Email : ph@garcandigital.ch
 
-**Direction créative, contenu, stratégie digitale** — HyperAgency
+**Direction créative, contenu, stratégie digitale** — Nathalie Jungi
 Nathalie Jungi
 Email : nathalie.luana.jungi@gmail.com
 
@@ -51,7 +51,7 @@ Toute reproduction, représentation, modification, publication ou adaptation tot
 
 **Photographies** : © Union Nautique de Vidy et/ou photographes crédités. Toute utilisation externe soumise à autorisation écrite du comité.
 
-**Contenu généré par intelligence artificielle** : certaines illustrations décoratives et visuels d'ambiance ont été générés par IA (DALL·E, Midjourney, Higgsfield) sous direction artistique HyperAgency, dans le respect des conditions générales des plateformes utilisées.
+**Contenu généré par intelligence artificielle** : certaines illustrations décoratives et visuels d'ambiance ont été générés par IA (DALL·E, Midjourney, Higgsfield) sous direction artistique Nathalie Jungi, dans le respect des conditions générales des plateformes utilisées.
 
 ## Droit applicable et for juridique
 
@@ -93,4 +93,4 @@ Pour signaler une erreur, un contenu inapproprié ou une atteinte à vos droits,
 
 **Version** : 1.0
 
-*Document préparé par HyperAgency (Nathalie Jungi) le 16 juin 2026.*
+*Document préparé par Nathalie Jungi le 16 juin 2026.*

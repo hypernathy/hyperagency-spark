@@ -249,7 +249,7 @@ info@unv.ch
 
 ## Email 8 · Newsletter mensuelle (template)
 
-**Déclencheur** : Envoi manuel mensuel par HyperAgency ou comité
+**Déclencheur** : Envoi manuel mensuel par Nathalie Jungi ou comité
 **Destinataire** : Membres opt-in newsletter
 **Envoyé par** : Manuel via WP ou service externe (Mailgun/Resend)
 
@@ -344,4 +344,4 @@ Envoyer chaque email de test à `nathalie.luana.jungi@gmail.com` AVANT mise en l
 
 ---
 
-*Emails préparés par HyperAgency (Nathalie Jungi) le 16 juin 2026. Prêts pour intégration WP dès Kadence en place.*
+*Emails préparés par Nathalie Jungi le 16 juin 2026. Prêts pour intégration WP dès Kadence en place.*

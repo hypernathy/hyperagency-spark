@@ -197,4 +197,4 @@ Nathalie
 
 ---
 
-*Brief préparé par HyperAgency (Nathalie Jungi) le 16 juin 2026.*
+*Brief préparé par Nathalie Jungi le 16 juin 2026.*

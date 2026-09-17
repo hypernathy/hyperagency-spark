@@ -24,7 +24,7 @@ Le Président convoque une cellule de crise incluant :
 - Vice-Président (Jacques Jungi)
 - Trésorier (Claude-Alain Chapalay)
 - Prestataire technique (Pedro Garcia — Garcan Digital)
-- Direction créative (Nathalie Jungi — HyperAgency)
+- Direction créative (Nathalie Jungi)
 
 Cette cellule évalue :
 - Réalité et ampleur de la violation
@@ -69,7 +69,7 @@ Si la violation présente un risque élevé pour les droits des personnes :
 ### Contacts d'urgence
 - **PFPDT** : +41 58 462 43 95 · portail en ligne
 - **Pedro Garcia (Garcan)** : +41 79 732 82 60
-- **Nathalie Jungi (HyperAgency)** : [téléphone à ajouter]
+- **Nathalie Jungi (Nathalie Jungi)** : [téléphone à ajouter]
 
 ### Registre des violations
 Un registre est tenu dans le Drive comité, protégé par accès restreint. Chaque violation, même mineure, y est consignée avec :
@@ -226,7 +226,7 @@ En cas d'incident nécessitant restauration :
 - Journalisation de la révocation
 
 ### Prestataires en fin de mandat
-En cas de fin de collaboration avec Pedro (Garcan) ou Nathalie (HyperAgency) :
+En cas de fin de collaboration avec Pedro (Garcan) ou Nathalie :
 - Récupération de tous les accès et codes sources
 - Récupération complète du site + base + assets
 - Signature d'un accord de non-divulgation continu
@@ -243,7 +243,7 @@ En cas de fin de collaboration avec Pedro (Garcan) ou Nathalie (HyperAgency) :
 - Évolution législative (mise à jour nLPD)
 
 ### Modalités
-1. Rédaction par HyperAgency (Nathalie) ou responsable désigné
+1. Rédaction par Nathalie Jungi ou responsable désigné
 2. Validation par le comité en séance
 3. Publication de la nouvelle version sur `/politique-de-confidentialite/`
 4. Notification aux membres par email si changement substantiel
@@ -273,4 +273,4 @@ Chaque membre du comité doit être sensibilisé aux principes nLPD et aux proc�
 
 ---
 
-*Procédures rédigées par HyperAgency (Nathalie Jungi) le 16 juin 2026 en conformité avec la nLPD suisse. À valider par le comité UNV avant intégration officielle dans les documents internes.*
+*Procédures rédigées par Nathalie Jungi le 16 juin 2026 en conformité avec la nLPD suisse. À valider par le comité UNV avant intégration officielle dans les documents internes.*

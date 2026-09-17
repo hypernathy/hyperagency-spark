@@ -68,7 +68,7 @@ Le présent registre recense l'ensemble des activités de traitement de données
 | **Base légale** | Consentement (opt-in explicite) |
 | **Catégories de personnes** | Abonnés newsletter, membres opt-in WhatsApp, followers réseaux sociaux |
 | **Catégories de données** | Nom, prénom, email, tél (WhatsApp), préférences de communication, statut ouverture emails |
-| **Destinataires internes** | Comité, HyperAgency (délégation communication) |
+| **Destinataires internes** | Comité, Nathalie Jungi (délégation communication) |
 | **Sous-traitants** | Wassenger, Meta (WhatsApp Cloud API), Make.com, Mailgun/Resend (emails), Meta Facebook/Instagram (à venir), LinkedIn (à venir) |
 | **Transferts hors CH/UE** | UE et USA (SCC en vigueur) |
 | **Durée de conservation** | Jusqu'à désabonnement (immédiat sur demande) |
@@ -116,7 +116,7 @@ Le présent registre recense l'ensemble des activités de traitement de données
 | **Base légale** | Consentement (bannière cookies) pour GA4 · Intérêt légitime + anonymisation pour Burst Statistics |
 | **Catégories de personnes** | Visiteurs du site unv.ch |
 | **Catégories de données** | Adresse IP anonymisée, pages visitées, durée, source, appareil, navigateur |
-| **Destinataires internes** | Comité, HyperAgency |
+| **Destinataires internes** | Comité, Nathalie Jungi |
 | **Sous-traitants** | Burst Statistics (self-hosted, CH), Google Analytics 4 (US), Cloudflare (US) |
 | **Transferts hors CH/UE** | USA (GA4, Cloudflare — SCC) |
 | **Durée de conservation** | 14 mois maximum (GA4), 12 mois (Burst) |
@@ -221,4 +221,4 @@ info@unv.ch
 
 ---
 
-*Registre établi par HyperAgency (Nathalie Jungi) le 16 juin 2026 en conformité avec l'article 12 de la nLPD suisse.*
+*Registre établi par Nathalie Jungi le 16 juin 2026 en conformité avec l'article 12 de la nLPD suisse.*

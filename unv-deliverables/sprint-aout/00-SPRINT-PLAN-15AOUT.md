@@ -1,7 +1,7 @@
 # SPRINT MEP 15 AOÛT — Plan de bataille
 
 **Kick-off : 22 juillet 2026 (email Pedro reçu 14:57) · MEP : vendredi 15 août 2026**
-**24 jours · Owner volet agent/WhatsApp/Meta : Nathalie (HyperAgency)**
+**24 jours · Owner volet agent/WhatsApp/Meta : Nathalie**
 
 ---
 

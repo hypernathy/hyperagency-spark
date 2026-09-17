@@ -639,4 +639,4 @@ Recevez chaque mois nos actualités par email. [Je m'abonne] (formulaire simple 
 
 ---
 
-*Copy préparée par HyperAgency (Nathalie Jungi) le 16 juin 2026. Prête pour intégration Kadence après validation Comité UNV et complément des placeholders par Jacques et Claude-Alain.*
+*Copy préparée par Nathalie Jungi le 16 juin 2026. Prête pour intégration Kadence après validation Comité UNV et complément des placeholders par Jacques et Claude-Alain.*

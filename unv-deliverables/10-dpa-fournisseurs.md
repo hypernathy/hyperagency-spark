@@ -25,7 +25,7 @@ Ce document liste chaque fournisseur, statut du DPA, référence, et actions req
 | 7 | **Google Analytics 4** | Analytics site | 🇺🇸 US | GA4 DPA | ✅ À accepter | Via GA4 Admin |
 | 8 | **Spreadshirt Group** | Merchandising boutique | 🇩🇪 UE | DPA standard | 🟡 À voir | Lors de l'ouverture Spreadshop |
 | 9 | **Garcan Digital (Pedro Garcia)** | Développement + maintenance | 🇨🇭 CH | Contrat signé du 11 juin | ✅ Signé | Aucune action |
-| 10 | **HyperAgency (Nathalie Jungi)** | Direction créative + stratégie | 🇨🇭 CH | À intégrer à la proposition strat | ⏳ À signer | Avec proposition add-on |
+| 10 | **Nathalie Jungi** | Direction créative + stratégie | 🇨🇭 CH | À intégrer à la proposition strat | ⏳ À signer | Avec proposition add-on |
 | 11 | **UpdraftPlus (Updraft LLC)** | Backup WP | 🇬🇧 UK | DPA standard | 🟡 À voir si nécessaire | À évaluer |
 | 12 | **Mailgun / Resend** (si utilisé) | Email transactionnel | 🇺🇸 US | DPA fournisseur | 🟡 À évaluer | Si utilisé pour envoi > SMTP Infomaniak |
 
@@ -161,7 +161,7 @@ Ce document liste chaque fournisseur, statut du DPA, référence, et actions req
 
 ---
 
-### DPA HyperAgency (Nathalie Jungi)
+### DPA Nathalie Jungi
 **Statut** : À intégrer à la proposition strat add-on (voir `UNV_Strategic_Addon_Proposal.html`)
 **Signataire** : Eric Schmaltz + Nathalie Jungi
 **Points à inclure dans la proposition** :
@@ -189,7 +189,7 @@ Ce document liste chaque fournisseur, statut du DPA, référence, et actions req
 | Make.com | Semaine 22-26.06 | Nathalie Jungi | v2026 | `Drive/UNV/Legal/DPA/2026-Make-DPA.pdf` |
 | Google Workspace | À faire | Eric Schmaltz | v2024 | `Drive/UNV/Legal/DPA/2026-Google-DPA.pdf` |
 | GA4 | À faire | Eric Schmaltz | v2024 | `Drive/UNV/Legal/DPA/2026-GA4-DPA.pdf` |
-| HyperAgency | Avec proposition | Nathalie + Eric | v1 juin | `Drive/UNV/Legal/DPA/2026-HyperAgency-DPA.pdf` |
+| Nathalie Jungi | Avec proposition | Nathalie + Eric | v1 juin | `Drive/UNV/Legal/DPA/2026-Nathalie-Jungi-DPA.pdf` |
 | Spreadshirt | Si activé | Nathalie | v2024 | `Drive/UNV/Legal/DPA/2026-Spreadshirt-DPA.pdf` |
 
 ---
@@ -197,7 +197,7 @@ Ce document liste chaque fournisseur, statut du DPA, référence, et actions req
 ## Revue annuelle des DPA
 
 **Fréquence** : chaque juin (anniversaire mise en ligne)
-**Responsable** : Secrétariat + HyperAgency
+**Responsable** : Secrétariat + Nathalie Jungi
 
 **Points à vérifier** :
 - Le DPA est-il toujours en vigueur ?
@@ -220,4 +220,4 @@ Ce document liste chaque fournisseur, statut du DPA, référence, et actions req
 
 ---
 
-*Registre préparé par HyperAgency (Nathalie Jungi) le 16 juin 2026 en conformité avec l'article 9 de la nLPD suisse.*
+*Registre préparé par Nathalie Jungi le 16 juin 2026 en conformité avec l'article 9 de la nLPD suisse.*

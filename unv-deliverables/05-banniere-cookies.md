@@ -187,4 +187,4 @@ Complianz enregistre automatiquement :
 
 ---
 
-*Wording préparé par HyperAgency (Nathalie Jungi) le 16 juin 2026. À intégrer dans Complianz WordPress lors de la Phase 4 du chantier Garcan.*
+*Wording préparé par Nathalie Jungi le 16 juin 2026. À intégrer dans Complianz WordPress lors de la Phase 4 du chantier Garcan.*

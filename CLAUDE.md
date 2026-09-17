@@ -7,7 +7,7 @@
 
 - **Client** : Union Nautique de Vidy (club nautique, Lausanne, ~100 membres, comité senior)
 - **Prestataire site** : Pedro Garcia / Garcan Digital — WordPress en préprod `unv.garcandigital.ch` (mdp aperçu : `unv2026`)
-- **Nathalie (HyperAgency)** = Volet 3 de l'offre signée 11.06.2026 : **agent WhatsApp + automatisations** (CHF 1'300/2'800)
+- **Nathalie** = Volet 3 de l'offre signée 11.06.2026 : **agent WhatsApp + automatisations** (CHF 1'300/2'800)
 - **Répartition** : l'agent, ses messages, ses scénarios = périmètre Nathalie (on informe Pedro, on ne demande pas). Pedro = site + endpoints.
 - **Échéance** : formation comité **28 ou 30.09.2026** (~17h30, au club, coordinatrice : Sophia) — l'agent doit y être démontrable
 - **MVP (28.09)** = PUSH uniquement : ① annonce nouvel événement (webhook site, avec lien iCal + rsvp_hint) ② rappels J-7/J-1 ③ alerte hebdo trésorier. **Phase 2** = menu 3 boutons (prochain événement / cotisation par code / contact comité) + éventuel « météo du lac » (endpoints publics bonus, hors offre)

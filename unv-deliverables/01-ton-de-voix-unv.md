@@ -1,6 +1,6 @@
 # TON DE VOIX UNV — Charte éditoriale
 
-**Version 1.0 · Juin 2026 · HyperAgency (Nathalie Jungi) pour Union Nautique de Vidy**
+**Version 1.0 · Juin 2026 · Nathalie Jungi pour Union Nautique de Vidy**
 
 ---
 
@@ -232,4 +232,4 @@ Pour référencement Google local Lausanne :
 
 ---
 
-*Document approuvé pour V1 par HyperAgency. À valider par le comité UNV en tant que charte officielle du club.*
+*Document approuvé pour V1 par Nathalie Jungi. À valider par le comité UNV en tant que charte officielle du club.*

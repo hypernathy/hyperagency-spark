@@ -88,7 +88,7 @@ L'UNV s'appuie sur les sous-traitants suivants, avec lesquels des accords de tra
 | **Google LLC** | Google Drive (docs internes) + Analytics 4 | 🇺🇸 États-Unis | SCC + garanties supplémentaires |
 | **Spreadshop / Spreadshirt** | Boutique merchandising | 🇩🇪 Allemagne (UE) | Adéquation UE |
 | **Garcan Digital** | Développement technique | 🇨🇭 Suisse | Prestataire suisse |
-| **HyperAgency** | Direction créative | 🇨🇭 Suisse | Prestataire suisse |
+| **Nathalie Jungi** | Direction créative | 🇨🇭 Suisse | Prestataire suisse |
 
 Les transferts vers les États-Unis (Cloudflare, Google) sont encadrés par les Clauses Contractuelles Types de la Commission Européenne, ainsi que par les certifications DPF (EU-US Data Privacy Framework) le cas échéant.
 
@@ -215,4 +215,4 @@ Nous nous engageons à vous répondre dans les meilleurs délais.
 
 ---
 
-*Document préparé par HyperAgency (Nathalie Jungi) le 16 juin 2026 conformément à la nLPD suisse (LPD révisée du 25 septembre 2020, entrée en vigueur au 1er septembre 2023).*
+*Document préparé par Nathalie Jungi le 16 juin 2026 conformément à la nLPD suisse (LPD révisée du 25 septembre 2020, entrée en vigueur au 1er septembre 2023).*
