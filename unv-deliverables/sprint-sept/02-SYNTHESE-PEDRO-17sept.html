@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNV · Agent WhatsApp — Point d'étape 17.09</title>
+<style>
+  :root{--navy:#0B1F3A;--lake:#2E7FA0;--red:#D32F2F;--gold:#C8A44A;--cream:#F5F0E8;--grey:#e5e0d8;--green:#2e7d32;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--cream);color:var(--navy);line-height:1.55;font-size:14.5px}
+  .page{max-width:840px;margin:0 auto;padding:20px 16px 48px}
+  header{background:linear-gradient(135deg,var(--navy),#16355c);color:var(--cream);border-radius:12px;padding:24px 28px;margin-bottom:18px}
+  header .kicker{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+  header h1{font-size:23px;line-height:1.2}
+  header .sub{font-size:13px;opacity:.85;margin-top:8px}
+  header .meta{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;opacity:.75;margin-top:16px;padding-top:14px;border-top:1px solid rgba(245,240,232,.2)}
+  section{background:#fff;border-radius:11px;padding:20px 24px;margin-bottom:14px;box-shadow:0 1px 3px rgba(11,31,58,.07)}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--lake);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  h3{font-size:13px;color:var(--navy);margin:14px 0 6px}
+  ul{list-style:none}
+  li{padding:5px 0 5px 24px;position:relative}
+  li::before{content:'✓';position:absolute;left:2px;color:var(--green);font-weight:700}
+  li.wait::before{content:'⏳';color:var(--gold)}
+  li.ask::before{content:'☐';color:var(--red)}
+  li b{color:var(--navy)}
+  li small{display:block;color:#6b6b6b;font-size:12px;line-height:1.4}
+  code{background:var(--cream);padding:1px 6px;border-radius:4px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace}
+  .proof{background:var(--navy);color:#7fd4a0;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;padding:12px 14px;border-radius:8px;word-break:break-all;margin:6px 0}
+  .proof small{display:block;color:#a8b8cc;font-family:-apple-system,sans-serif;margin-top:6px;font-size:11.5px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--cream);border-radius:8px;padding:14px 16px}
+  .card h4{font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--navy);margin-bottom:8px}
+  .card p,.card li{font-size:12.5px}
+  .card li{padding:3px 0 3px 20px}
+  /* chat preview */
+  .phone{background:#0d1418;border-radius:14px;padding:14px;max-width:340px;margin:0 auto}
+  .bub{background:#1f2c33;color:#e9edef;padding:9px 12px;border-radius:9px;font-size:12.5px;margin-bottom:8px;white-space:pre-line;line-height:1.5}
+  .bub.me{background:#005c4b;margin-left:40px}
+  .bub .who{display:block;font-size:10px;color:var(--gold);margin-bottom:4px;font-weight:700}
+  /* chain */
+  .chain{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;background:var(--cream);padding:12px 14px;border-radius:8px;margin-top:8px}
+  .chain span{background:#fff;border:1px solid var(--grey);padding:5px 10px;border-radius:6px;white-space:nowrap}
+  .chain span.done{background:#e8f5e9;border-color:#a5d6a7}
+  .chain span.block{background:#ffebee;border-color:#ef9a9a;font-weight:700}
+  .arrow{color:var(--lake);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  td{padding:7px 6px;border-bottom:1px solid var(--grey);vertical-align:top}
+  td:first-child{font-weight:700;color:var(--lake);white-space:nowrap;width:86px}
+  .highlight{border-left:4px solid var(--gold);background:#fdf9f0;padding:12px 16px;border-radius:6px;font-size:13px;margin-top:12px}
+  footer{text-align:center;font-size:11px;color:#8a8478;margin-top:10px}
+  @media print{body{background:#fff}section{box-shadow:none;border:1px solid var(--grey)}}
+</style>
+</head>
+<body><div class="page">
+
+<header>
+  <div class="kicker">⚓ Volet 3 · Agent WhatsApp · Point d'étape</div>
+  <h1>Neptune — l'agent WhatsApp de l'UNV</h1>
+  <div class="sub">Ce qui est opérationnel, ce qui est rédigé, et ce qu'il reste à brancher pour la formation du comité.</div>
+  <div class="meta">
+    <span>17 septembre 2026</span><span>·</span>
+    <span>Nathalie Jungi — HyperAgency</span><span>·</span>
+    <span>Cible : formation comité 28 / 30.09</span>
+  </div>
+</header>
+
+<section>
+  <h2>🟢 Opérationnel — vérifiable dès maintenant</h2>
+
+  <h3>L'URL de webhook que tu attendais</h3>
+  <div class="proof">POST https://connexaworld.app.n8n.cloud/webhook/unv-events
+    <small>Active. Tu peux y envoyer un <code>event.published</code> de test quand tu veux — je verrai l'appel arriver. En échange : le token + le secret.</small></div>
+
+  <h3>L'agent existe et tourne</h3>
+  <ul>
+    <li><b>Neptune</b> — passerelle WhatsApp connectée et opérationnelle (Wassenger, mode QR pour la phase de test)</li>
+    <li><b>4 automatisations construites</b> — annonce d'événement · router des messages entrants · rappels J-7/J-1 · alerte hebdo trésorier</li>
+    <li><b>Alignées sur ta doc <code>/agent</code></b> : en-têtes <code>X-UNV-API-Token</code> et <code>X-UNV-WA-Secret</code>, <code>GET /cotisation?membre_key=</code>, <code>POST /rsvp</code>, payload d'événement à plat</li>
+    <li><b>Deux registres de données</b> créés côté agent : <code>unv_events</code> et <code>unv_rsvp</code></li>
+  </ul>
+
+  <div class="highlight">
+    <b>Choix d'architecture :</b> comme tu le suggérais dans ta doc (« tu peux les mémoriser »), l'agent <b>mémorise</b> les événements reçus par webhook et les réponses RSVP qui transitent par lui. Les rappels J-7/J-1 et le « prochain événement » se servent dans ce registre local — <b>aucun sondage répété de ton site</b>.
+  </div>
+</section>
+
+<section>
+  <h2>💬 Les textes de Neptune — déjà écrits</h2>
+  <div class="phone">
+    <div class="bub"><span class="who">Membre</span>menu</div>
+    <div class="bub me"><span class="who">Neptune</span>Bonjour ⚓ Je suis Neptune, l'assistant de l'Union Nautique de Vidy.
+
+Je peux vous aider sur trois sujets — répondez avec le mot correspondant :
+
+📅 « événement » — les prochains événements du club
+💳 « cotisation » — le statut de votre cotisation
+📞 « contact » — joindre le comité
+
+À votre service !</div>
+    <div class="bub"><span class="who">Membre</span>cotisation</div>
+    <div class="bub me"><span class="who">Neptune</span>✅ Votre cotisation 2026 est à jour. Merci !
+
+Union Nautique de Vidy ⚓</div>
+  </div>
+
+  <h3 style="margin-top:16px">Annonce d'un nouvel événement (diffusion automatique)</h3>
+  <div class="phone">
+    <div class="bub me"><span class="who">Neptune</span>📅 Nouvel événement UNV : Sortie voile du printemps
+🗓 samedi 4 octobre, 10h00
+📍 Port de Vidy
+
+Détails et inscription : unv.ch/evenement/...
+📆 Ajouter au calendrier : [lien iCal]
+
+Répondez : Je viens / Peut-être / Non
+
+Union Nautique de Vidy ⚓</div>
+  </div>
+  <p style="font-size:12px;color:#6b6b6b;margin-top:8px">La réponse du membre repart vers <code>POST /rsvp</code> — son numéro sert de <code>membre_key</code>, donc aucun code à saisir. Elle se fusionne avec les réponses e-mail sur la fiche de l'événement.</p>
+</section>
+
+<section>
+  <h2>📦 Également prêt</h2>
+  <div class="grid">
+    <div class="card">
+      <h4>Contenu & ton</h4>
+      <ul>
+        <li>Charte éditoriale de l'agent (vouvoiement, sobre, maritime)</li>
+        <li>10 modèles de messages rédigés (catégorie utility, variables)</li>
+        <li>Messages d'erreur, de bienvenue, d'opt-out</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Conformité nLPD</h4>
+      <ul>
+        <li>Opt-in explicite via l'onglet Consentements</li>
+        <li>Opt-out « STOP » traité et journalisé</li>
+        <li>Politique de confidentialité, registre des traitements, DPA fournisseurs</li>
+        <li>Données minimales — l'agent ne stocke ni nom ni e-mail</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🔗 Deux chaînes de dépendance</h2>
+
+  <h3>① Côté site — pour brancher l'agent sur les données</h3>
+  <div class="chain">
+    <span class="done">Doc /agent lue</span><span class="arrow">→</span>
+    <span class="done">Workflows alignés</span><span class="arrow">→</span>
+    <span class="block">Token + secret</span><span class="arrow">→</span>
+    <span>Tests bout-en-bout</span>
+  </div>
+
+  <h3>② Côté Meta — pour la diffusion aux ~100 membres</h3>
+  <div class="chain">
+    <span class="block">Accès page Facebook UNV</span><span class="arrow">→</span>
+    <span>Portfolio business UNV</span><span class="arrow">→</span>
+    <span>Modèles pré-approuvés</span><span class="arrow">→</span>
+    <span>Diffusion légale</span>
+  </div>
+  <p style="font-size:12.5px;color:#6b6b6b;margin-top:10px">Le mode QR actuel permet de <b>répondre</b> à un membre qui écrit, mais pas de <b>diffuser</b> à cent personnes qui n'ont rien demandé — c'est ce qui fait bloquer un numéro. L'API officielle existe pour ça, et elle passe par un portfolio business au nom de l'UNV, donc par la page Facebook du club. Demande envoyée à Eric.</p>
+
+  <div class="highlight">
+    💡 <b>Idée pour le numéro de l'agent :</b> le <b>fixe du Club House</b>. WhatsApp Business accepte les lignes fixes (vérification par appel vocal). Numéro officiel du club, zéro coût, rien à acheter. À valider avec Eric ?
+  </div>
+</section>
+
+<section>
+  <h2>☐ Ce dont j'ai besoin de toi</h2>
+  <ul>
+    <li class="ask"><b>Token + secret</b><small>Par WhatsApp. Les emplacements sont déjà prêts dans les automatisations.</small></li>
+    <li class="ask"><b>Liste opt-in WhatsApp</b><small>Les membres qui acceptent dans l'onglet Consentements : endpoint, export, ou webhook à chaque nouveau consentement ? C'est le seul point que ta doc ne couvre pas — et sans lui je ne sais pas à qui diffuser.</small></li>
+    <li class="ask"><b>Format du champ <code>date</code></b> du webhook + <b>URL du flux iCal</b><small>Le lien d'abonnement au calendrier est prévu dans chaque annonce.</small></li>
+    <li class="ask"><b>Les deux endpoints que tu proposes</b><small>OUI pour les deux : <code>GET /unv/v1/events?limit=3</code> et la liste agrégée des cotisations en retard (indispensable à l'alerte hebdo du trésorier — sinon il faudrait interroger membre par membre).</small></li>
+  </ul>
+</section>
+
+<section>
+  <h2>📅 D'ici la formation</h2>
+  <table>
+    <tr><td>18-21.09</td><td>Token/secret échangés · accès Meta lancé · numéro de l'agent choisi · modèles soumis (validation 24-48h)</td></tr>
+    <tr><td>22-25.09</td><td>Branchement complet sur les endpoints réels · registres actifs · tests bout-en-bout ensemble</td></tr>
+    <tr><td>26-27.09</td><td>Répétition de la démo · profil de l'agent finalisé (nom, photo, description)</td></tr>
+    <tr><td><b>28 / 30.09</b></td><td><b>Formation comité — démo en direct</b></td></tr>
+  </table>
+
+  <div class="highlight">
+    🎬 <b>Proposition pour la séance :</b> pendant la formation, tu publies un événement de test sur le site — et le comité reçoit l'annonce <b>sur leurs téléphones, en direct</b>. Quelqu'un répond « Je viens », et la réponse apparaît sur la fiche de l'événement. C'est la meilleure démonstration possible, en trente secondes.
+  </div>
+</section>
+
+<footer>Nathalie Jungi · HyperAgency — Volet agent &amp; automatisations · Union Nautique de Vidy ⚓ 1962</footer>
+
+</div></body></html>
