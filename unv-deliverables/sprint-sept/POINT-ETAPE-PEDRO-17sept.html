@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNV · Agent WhatsApp — Point d'étape</title>
+<style>
+  :root { --navy:#0B1F3A; --lake:#2E7FA0; --red:#D32F2F; --gold:#C8A44A; --cream:#F5F0E8; --grey:#e5e0d8; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--cream); color:var(--navy); line-height:1.5; font-size:15px; }
+  .page { max-width:760px; margin:0 auto; padding:20px 16px 40px; }
+  header { background:var(--navy); color:var(--cream); border-radius:10px; padding:20px 24px; margin-bottom:16px; }
+  header h1 { font-size:20px; line-height:1.2; }
+  header .sub { font-size:12px; opacity:.8; margin-top:6px; }
+  .tag { display:inline-block; background:var(--gold); color:var(--navy); font-size:10px; font-weight:700; letter-spacing:1px; padding:3px 10px; border-radius:10px; margin-bottom:10px; text-transform:uppercase; }
+  section { background:#fff; border-radius:10px; padding:18px 20px; margin-bottom:14px; box-shadow:0 1px 3px rgba(11,31,58,.07); }
+  h2 { font-size:15px; text-transform:uppercase; letter-spacing:1px; color:var(--lake); margin-bottom:10px; }
+  .url-box { background:var(--navy); color:#7fd4a0; font-family:monospace; font-size:13px; padding:14px 16px; border-radius:8px; word-break:break-all; margin:8px 0 4px; }
+  .url-note { font-size:12px; color:#6b6b6b; }
+  ul { list-style:none; }
+  li { padding:6px 0 6px 26px; position:relative; font-size:14px; }
+  li::before { content:'✓'; position:absolute; left:2px; color:#2e7d32; font-weight:700; }
+  li.ask::before { content:'☐'; color:var(--red); }
+  li b { color:var(--navy); }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .cols{grid-template-columns:1fr;} }
+  .mini { background:var(--cream); border-radius:8px; padding:12px 14px; }
+  .mini h3 { font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--navy); margin-bottom:6px; }
+  .mini p, .mini li { font-size:13px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td { padding:7px 6px; border-bottom:1px solid var(--grey); vertical-align:top; }
+  td:first-child { font-weight:700; white-space:nowrap; color:var(--lake); width:92px; }
+  .wow { border-left:4px solid var(--gold); background:#fdf9f0; padding:12px 16px; border-radius:6px; font-size:13.5px; }
+  footer { text-align:center; font-size:11px; color:#8a8478; margin-top:8px; }
+  @media print { body{background:#fff;} section{box-shadow:none; border:1px solid var(--grey);} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="tag">⚓ Volet 3 · Agent WhatsApp</div>
+  <h1>Point d'étape — séance Nathalie × Pedro</h1>
+  <div class="sub">17 septembre 2026 · Objectif : agent en démo à la formation comité du 28/30.09</div>
+</header>
+
+<section>
+  <h2>🔑 L'URL de webhook que tu attendais</h2>
+  <div class="url-box">https://connexaworld.app.n8n.cloud/webhook/unv-events</div>
+  <p class="url-note">Active — accepte les POST JSON dès maintenant. En échange : ton <b>token</b> + ton <b>secret</b> (par WhatsApp, pas par email).</p>
+</section>
+
+<section>
+  <h2>✅ Déjà construit côté Nathalie</h2>
+  <ul>
+    <li><b>Automatisation « annonce nouvel événement »</b> — reçoit ton webhook, vérifie la signature, diffuse aux membres opt-in (active)</li>
+    <li><b>Rappels J-7 / J-1</b> — planificateur quotidien 09h00, prêt à brancher sur les inscrits</li>
+    <li><b>Alerte trésorier</b> — chaque lundi 08h30, cotisations en retard vers Claude-Alain</li>
+    <li><b>Router Phase 2</b> — menu 3 choix (prochain événement · ma cotisation · contact comité), en réserve</li>
+    <li><b>Textes des messages rédigés</b> — 10 modèles Meta (catégorie utility, FR, ton du club), prêts à soumettre</li>
+    <li><b>Cadre nLPD</b> — opt-in obligatoire via l'onglet Consentements, opt-out STOP, registre</li>
+  </ul>
+</section>
+
+<section>
+  <h2>☐ Ce qu'il me faut de ton côté (6 points)</h2>
+  <ul>
+    <li class="ask"><b>Doc /agent expliquée</b> + copie du contenu (formats exacts, header de signature)</li>
+    <li class="ask"><b>Token + secret</b> — remis en séance</li>
+    <li class="ask"><b>Liste opt-in WhatsApp</b> — endpoint ou export des membres ayant coché « oui » dans Consentements</li>
+    <li class="ask"><b>Inscrits par événement</b> — pour cibler les rappels J-7/J-1</li>
+    <li class="ask"><b>Cotisations en retard (agrégé)</b> — nb + total CHF pour l'alerte trésorier</li>
+    <li class="ask"><b>Accès Meta + numéro</b> — qui administre la page Facebook UNV ? m'ajouter au portfolio business · quel numéro WhatsApp pour l'agent ?</li>
+  </ul>
+</section>
+
+<section>
+  <div class="cols">
+    <div class="mini">
+      <h3>MVP formation 28/30.09</h3>
+      <p>3 automatisations <b>push</b> :<br>① Annonce nouvel événement (avec lien d'abonnement iCal)<br>② Rappels J-7 / J-1<br>③ Alerte hebdo trésorier</p>
+    </div>
+    <div class="mini">
+      <h3>Phase 2 (après lancement)</h3>
+      <p>Menu interactif 3 boutons :<br>📅 Prochain événement<br>💳 Ma cotisation (code personnel)<br>📞 Contacter le comité</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>📅 Calendrier à rebours</h2>
+  <table>
+    <tr><td>17-19.09</td><td>Échange token/secret · accès Meta portfolio UNV · numéro choisi · formats validés</td></tr>
+    <tr><td>20-23.09</td><td>Soumission des modèles Meta (validation 24-48h) · branchement des 3 flux sur les endpoints réels</td></tr>
+    <tr><td>24-26.09</td><td>Tests bout-en-bout ensemble (événement de test, groupe test comité)</td></tr>
+    <tr><td><b>28/30.09</b></td><td><b>Formation comité</b> — démo live de l'agent</td></tr>
+  </table>
+</section>
+
+<section class="wow">
+  💡 <b>Proposition pour la formation :</b> pendant la séance, on publie un événement de test sur le site — et le comité reçoit l'annonce sur WhatsApp <b>en direct, sur leurs téléphones</b>. Meilleure démonstration possible de la valeur de l'agent.
+</section>
+
+<footer>Nathalie Jungi · HyperAgency — Volet agent & automatisations · UNV ⚓ 1962</footer>
+
+</div>
+</body>
+</html>
