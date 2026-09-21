@@ -65,16 +65,18 @@
 
 | Flux | Workflow ID | Statut au 21.09 |
 |---|---|---|
-| A — Site → annonce d'événement | `6c1adymeeCp2kYjA` | 🟢 ACTIF · payload plat + vérif `X-UNV-WA-Secret` appliqués · reste : écriture `unv_events` |
-| B — Routeur WhatsApp | `p0RLX9RvRB5EilDf` | ⚪ prêt · endpoints réels câblés · **filtre liste blanche actif (numéro de Pedro uniquement)** · reste : branches RSVP + opt-in/STOP |
-| C — Rappels J-7/J-1 | `B4DGBJKS8UuottrN` | ⚪ prêt · reste : rebrancher sur les Data Tables |
+| A — Site → annonce d'événement | `6c1adymeeCp2kYjA` | 🟢 ACTIF · 9 nœuds · écriture `unv_events` en série avant diffusion · testé |
+| B — Routeur WhatsApp | `p0RLX9RvRB5EilDf` | ⚪ prêt · 31 nœuds · 11 intentions (opt-in, STOP, RSVP, nombre) · **filtre liste blanche actif (numéro de Pedro uniquement)** · testé |
+| C — Rappels J-7/J-1 | `B4DGBJKS8UuottrN` | ⚪ prêt · source `unv_events`, ciblage `unv_optin` × `unv_rsvp` · testé |
 | D — Alerte trésorier lundi | `TfVWHVQwjvveMZ53` | ⚪ en attente de l'endpoint agrégé de Pedro |
+
+Détail du build et des 6 tests d'intégration : `unv-deliverables/sprint-sept/05-etat-des-flux-et-tests.md`
 
 | Data Table | ID | Rôle |
 |---|---|---|
 | `unv_events` | `sBX0OwkaE3FMIJzj` | Registre local des événements publiés |
 | `unv_rsvp` | `qqeMroc44duHoXbt` | Réponses des membres (viens / peut_être / non) |
-| `unv_optin` | *à créer* | Numéros ayant activé les notifications |
+| `unv_optin` | `hpgxKcSQ9LQqjH0M` | Numéros ayant activé les notifications |
 
 **URL webhook pour Pedro : `https://connexaworld.app.n8n.cloud/webhook/unv-events`**
 **URL webhook pour Wassenger : `https://connexaworld.app.n8n.cloud/webhook/unv-whatsapp`**
@@ -142,11 +144,13 @@ Les deux chaînes sont **indépendantes**. L'email à Pedro part sans attendre �
 - [ ] Désactiver la suppression automatique des chats dans Wassenger (592/600)
 
 ### Claude
-- [ ] Flux A : nœud d'écriture dans `unv_events` après l'annonce
-- [ ] Flux B : branches opt-in / STOP / RSVP
-- [ ] Flux C : rebrancher sur les Data Tables
-- [ ] Créer la Data Table `unv_optin`
+- [x] Flux A : écriture dans `unv_events` (en série, avant la diffusion)
+- [x] Flux B : branches opt-in / STOP / RSVP / nombre de personnes
+- [x] Flux C : rebranché sur les Data Tables
+- [x] Data Table `unv_optin` créée
+- [x] 6 tests d'intégration exécutés · 2 défauts trouvés et corrigés
 - [ ] Réviser les 10 templates Meta (réponse cotisation minimale, lien iCal)
+- [ ] Supprimer les lignes de test des Data Tables avant la démo
 
 ### En attente
 - Flux D : endpoint agrégé « cotisations en retard » de Pedro

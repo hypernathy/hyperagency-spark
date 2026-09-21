@@ -35,12 +35,18 @@ Le webhook `event.published` alimente une Data Table locale `unv_events` ; les r
 - **B** : `GET /wp-json/unv/v1/cotisation?membre_key=` · auth passée en Header Auth (credential à lier au token Pedro) · réponse cotisation minimale nLPD · menu signé **Neptune** (nom public adopté) · nœud événements pointé sur `/unv/v1/events` (endpoint promis)
 - **Data Tables créées** : `unv_events` (sBX0OwkaE3FMIJzj) · `unv_rsvp` (qqeMroc44duHoXbt)
 
-**⏳ RESTE à appliquer (prochaine passe, un bloc) :**
-- **A** : ajout nœud write `unv_events` après l'annonce
-- **B** : branche RSVP (mots-clés viens/peut-être/non → `POST /rsvp` téléphone comme membre_key · « à combien ? » si viens · write `unv_rsvp`)
-- **C** : rebrancher sur les Data Tables (source `unv_events`, cibles `unv_rsvp`)
+**✅ APPLIQUÉES le 21.09 — build terminé, testé en exécution réelle (voir `sprint-sept/05-etat-des-flux-et-tests.md`) :**
+- **A** : write `unv_events` (upsert sur event_id) **en série, avant** la diffusion — un échec Wassenger ne doit pas empêcher l'enregistrement
+- **B** : 6 nouvelles intentions (11 sorties au routeur) — activation opt-in, STOP, RSVP viens/peut-être/non, nombre de personnes. Le « à combien ? » se résout via `unv_rsvp` : pas de session, le registre local fait mémoire.
+- **C** : source = `unv_events`, ciblage = `unv_optin` × `unv_rsvp`. L'appel à `/events/upcoming` (endpoint inexistant) est supprimé.
+- **Data Table créée** : `unv_optin` (hpgxKcSQ9LQqjH0M) — phone · actif · date_optin · source
+- **Corrigé grâce aux tests** : write en parallèle du broadcast (A, jamais exécuté en cas d'échec d'envoi) · connexion directe en doublon (C, rappel envoyé deux fois)
+
+**⏳ RESTE :**
 - **D** : attendre l'endpoint agrégé de Pedro
-- Côté Nathalie : credentials « Wassenger API » (Header `Token`) + « UNV Site API » (Header `X-UNV-API-Token`, dès token reçu) · webhook Wassenger `message:in:new` → `/webhook/unv-whatsapp` · activer B
+- Supprimer les lignes de test des 3 Data Tables avant la démo (`event_id` 998 et 999)
+- Côté Nathalie : credentials « Wassenger API » (Header `Token`) + « UNV Site API » (Header `X-UNV-API-Token`, dès token reçu) · webhook Wassenger `message:in:new` → `/webhook/unv-whatsapp` · activer B et C
+- Retirer le filtre « Liste blanche (test) » du Flux B une fois un numéro dédié relié
 
 ## Conventions
 
