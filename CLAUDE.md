@@ -56,6 +56,23 @@ n8n, Wassenger et le numéro restent sur les comptes personnels de Nathalie jusq
 
 ⚠️ Deux clauses du contrat restent ouvertes tant que la bascule n'est pas faite : « numéro dédié distinct des numéros privés du comité » et compte Wassenger « au nom de l'UNV ». Voir `sprint-sept/06-checklist-contractuelle-volet3.md`.
 
+### `info@unv.ch` = identité du club pour tous les services tiers (posé le 21.09)
+
+Compte Make gratuit créé avec `info@unv.ch`. C'est le bon réflexe, à répliquer sur **tout** :
+
+| Service | Au nom de | État |
+|---|---|---|
+| Make.com | `info@unv.ch` | ✅ fait 21.09 |
+| Infomaniak (hébergement + IA, produit 111601) | UNV | ✅ déjà |
+| n8n | Nathalie (perso) | ❌ **à basculer** — c'est là que vit l'agent |
+| Wassenger | Nathalie | ❌ à basculer (facturation club prévue au contrat) |
+| Portefeuille Meta business | à créer | ❌ dépend d'Éric |
+| Compte Google (Drive comité + Agenda) | Gmail à identifier | ❌ **à clarifier** — le Drive des PV en dépend |
+
+⚠️ **Sécurité de la boîte `info@unv.ch`** : elle devient la clé de réinitialisation de tous ces services. 2FA obligatoire, et deux personnes seulement qui détiennent l'accès, documentées. Ne pas confondre avec le **compte WordPress** `info@unv.ch`, que le contrat prévoit de supprimer au profit d'un admin nominatif : c'est l'**adresse e-mail** qui reste, publiée dans l'Impressum et la politique de confidentialité.
+
+⚠️ **Le compte Make ne vaut pas conformité.** Le palier gratuit est à 1'000 opérations/mois et Make facture par module × par élément : un seul événement (annonce + J-7 + J-1 vers ~100 membres) coûte ~310 opérations. n8n facture à l'exécution — le même envoi vaut 1. Le compte Make est conservé comme repli au nom du club ; **l'agent reste sur n8n**, et il faut le dire explicitement au comité plutôt que de laisser croire l'inverse.
+
 **⏳ RESTE :**
 - **D** : attendre l'endpoint agrégé de Pedro
 - Supprimer les lignes de test des 3 Data Tables avant la démo (`event_id` 998 et 999)
