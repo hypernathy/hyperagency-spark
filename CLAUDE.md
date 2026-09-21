@@ -42,6 +42,12 @@ Le webhook `event.published` alimente une Data Table locale `unv_events` ; les r
 - **Data Table créée** : `unv_optin` (hpgxKcSQ9LQqjH0M) — phone · actif · date_optin · source
 - **Corrigé grâce aux tests** : write en parallèle du broadcast (A, jamais exécuté en cas d'échec d'envoi) · connexion directe en doublon (C, rappel envoyé deux fois)
 
+## Décision comptes (21.09) — tout sur les comptes Nathalie, bascule après la formation
+
+n8n, Wassenger et le numéro restent sur les comptes personnels de Nathalie jusqu'à la formation du comité. La bascule vers des comptes au nom de l'UNV (Wassenger facturé au club ~CHF 30/mois comme prévu au contrat, numéro dédié, continuité n8n) se fait **après**, en une seule passe. Conséquence à annoncer à Pedro : les URLs et le numéro changeront une fois.
+
+⚠️ Deux clauses du contrat restent ouvertes tant que la bascule n'est pas faite : « numéro dédié distinct des numéros privés du comité » et compte Wassenger « au nom de l'UNV ». Voir `sprint-sept/06-checklist-contractuelle-volet3.md`.
+
 **⏳ RESTE :**
 - **D** : attendre l'endpoint agrégé de Pedro
 - Supprimer les lignes de test des 3 Data Tables avant la démo (`event_id` 998 et 999)
