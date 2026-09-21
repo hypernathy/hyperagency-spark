@@ -42,6 +42,14 @@ Le webhook `event.published` alimente une Data Table locale `unv_events` ; les r
 - **Data Table créée** : `unv_optin` (hpgxKcSQ9LQqjH0M) — phone · actif · date_optin · source
 - **Corrigé grâce aux tests** : write en parallèle du broadcast (A, jamais exécuté en cas d'échec d'envoi) · connexion directe en doublon (C, rappel envoyé deux fois)
 
+**✅ AJOUTÉ le 21.09 — classificateur d'intention IA (Infomaniak, produit `111601`) :**
+- Nœuds « Classer Intention (Infomaniak) » + « Appliquer Intention » insérés entre la liste blanche et le routeur du Flux B
+- Endpoint : `https://api.infomaniak.com/1/ai/111601/openai/chat/completions` · credential Header Auth « Infomaniak IA » (`Authorization: Bearer <token>`) **à créer par Nathalie** · modèle `MODELE_A_DEFINIR` à remplacer
+- **Le modèle ne génère aucun fait** : il renvoie une étiquette, traduite en mot-clé canonique pour le routeur déterministe. Les faits viennent de l'API de Pedro et des registres locaux.
+- **Repli prouvé par test** : credential absente → le nœud échoue proprement (`onError: continueRegularOutput`), le texte original passe tel quel, le routeur par mots-clés reprend la main. « ai-je payé ma cotisation ? » est bien routé sans IA.
+- Le texte n'est jamais réécrit pour `nombre_personnes` et `code_personnel`, où il porte la donnée
+- ⚠️ Le contrat dit « button-driven, **sans NLP libre** » → l'usage en classificateur seul est l'argument à tenir devant le comité (voir `sprint-sept/08-…`)
+
 ## Décision comptes (21.09) — tout sur les comptes Nathalie, bascule après la formation
 
 n8n, Wassenger et le numéro restent sur les comptes personnels de Nathalie jusqu'à la formation du comité. La bascule vers des comptes au nom de l'UNV (Wassenger facturé au club ~CHF 30/mois comme prévu au contrat, numéro dédié, continuité n8n) se fait **après**, en une seule passe. Conséquence à annoncer à Pedro : les URLs et le numéro changeront une fois.
